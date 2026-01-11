@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>关于我们 - Eurasia Tours 欧美亚旅游</title>
+    <title>联系我们 - Eurasia Tours 欧美亚旅游</title>
     
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://unpkg.com/vue@3/dist/vue.global.prod.js"></script>
@@ -46,6 +46,10 @@
         .input-error { border: 1.5px solid #ef4444 !important; background-color: #fef2f2 !important; }
         .fade-in { animation: fadeIn 0.6s ease-out forwards; }
         @keyframes fadeIn { from { opacity: 0; transform: translateY(15px); } to { opacity: 1; transform: translateY(0); } }
+
+        /* 新增：手机端菜单动画 (为保持一致性补充) */
+        .mobile-menu-enter-active, .mobile-menu-leave-active { transition: all 0.3s ease; }
+        .mobile-menu-enter-from, .mobile-menu-leave-to { opacity: 0; transform: translateY(-20px); }
     </style>
 </head>
 <body class="bg-white text-gray-800 antialiased">
@@ -58,44 +62,47 @@
                     <a href="index.html" class="flex items-center group">
                         <img src="https://www.eurasia-tours.fr/assets/logo-word-rNz8dsz6.jpg" alt="Logo" class="h-10 md:h-12 w-auto object-contain transition-transform group-hover:scale-105">
                     </a>
-                    <button class="lg:hidden text-2xl p-2" @click="isMobileMenuOpen = !isMobileMenuOpen">
+                    <button class="lg:hidden text-2xl p-2 text-gray-700" @click="isMobileMenuOpen = !isMobileMenuOpen">
                         <i class="fas" :class="isMobileMenuOpen ? 'fa-times' : 'fa-bars'"></i>
                     </button>
                 </div>
 
                 <nav class="hidden lg:flex flex-1 items-center justify-around ml-12 max-w-5xl">
-    <div v-for="link in navLinks" :key="link.name" class="relative group py-8"
-         @mouseenter="link.name === '目的地' ? isDestDropdownOpen = true : null"
-         @mouseleave="isDestDropdownOpen = false">
-        
-        <a :href="link.url" 
-           :class="['nav-link-spacing relative py-3 px-2 text-sm xl:text-[15px] font-bold uppercase transition-all flex items-center gap-1', 
-           link.current ? 'text-brand' : 'text-gray-700 hover:text-brand']">
-            {{ link.name }}
-            <i v-if="link.subLinks" class="fas fa-angle-down text-xs transition-transform duration-300" :class="{'rotate-180': link.name === '目的地' && isDestDropdownOpen}"></i>
-            <span :class="['absolute bottom-1 left-0 h-0.5 bg-brand transition-all duration-300 group-hover:w-full', link.current ? 'w-full' : 'w-0']"></span>
-        </a>
-
-        <transition name="dropdown">
-            <div v-if="link.name === '目的地' && isDestDropdownOpen" 
-                 class="absolute top-full left-1/2 -translate-x-1/2 w-[220px] bg-white shadow-[0_20px_50px_rgba(0,0,0,0.15)] rounded-xl border border-gray-100 p-3 overflow-hidden mt-[-5px]">
-                <div class="px-4 pb-2 mb-2 border-b border-gray-50 text-[10px] uppercase tracking-[0.2em] text-gray-400 font-bold">热门国家</div>
-                <ul class="space-y-1">
-                    <li v-for="sub in link.subLinks" :key="sub">
-                        <a href="index.html#tours" class="flex items-center gap-3 px-4 py-3 text-base font-medium text-gray-700 hover:bg-red-50 hover:text-brand rounded-lg transition-all group/item border-l-2 border-transparent hover:border-brand">
-                            <i class="fas fa-map-pin text-[10px] text-brand opacity-0 group-hover/item:opacity-100 transition-opacity duration-300"></i>
-                            {{ sub }}
+                    <div v-for="link in navLinks" :key="link.name" class="relative group py-8"
+                         @mouseenter="link.name === '目的地' ? isDestDropdownOpen = true : null"
+                         @mouseleave="isDestDropdownOpen = false">
+                        <a :href="link.url" :class="['nav-link-spacing relative py-3 px-2 text-sm xl:text-[15px] font-bold uppercase transition-all flex items-center gap-1', link.current ? 'text-brand' : 'text-gray-700 hover:text-brand']">
+                            {{ link.name }}
+                            <i v-if="link.subLinks" class="fas fa-angle-down text-xs transition-transform duration-300" :class="{'rotate-180': link.name === '目的地' && isDestDropdownOpen}"></i>
+                            <span :class="['absolute bottom-1 left-0 h-0.5 bg-brand transition-all duration-300 group-hover:w-full', link.current ? 'w-full' : 'w-0']"></span>
                         </a>
-                    </li>
-                </ul>
-                <div class="mt-3 pt-2 border-t border-gray-50">
-                       <a href="#" class="flex items-center justify-center gap-2 px-4 py-2 text-[13px] font-bold text-brand hover:underline">浏览所有目的地 <i class="fas fa-arrow-right text-[10px]"></i></a>
-                       </div>
+
+                        <transition name="dropdown">
+                            <div v-if="link.name === '目的地' && isDestDropdownOpen" class="absolute top-full left-1/2 -translate-x-1/2 w-[220px] bg-white shadow-[0_20px_50px_rgba(0,0,0,0.15)] rounded-xl border border-gray-100 p-3 overflow-hidden mt-[-5px]">
+                                <div class="px-4 pb-2 mb-2 border-b border-gray-50 text-[10px] uppercase tracking-[0.2em] text-gray-400 font-bold">热门国家</div>
+                                <ul class="space-y-1">
+                                    <li v-for="sub in ['中国', '越南', '柬埔寨', '泰国']" :key="sub">
+                                        <a href="index.html#tours" class="flex items-center gap-3 px-4 py-3 text-base font-medium text-gray-700 hover:bg-red-50 hover:text-brand rounded-lg transition-all group/item border-l-2 border-transparent hover:border-brand">
+                                            <i class="fas fa-map-pin text-[10px] text-brand opacity-0 group-hover/item:opacity-100 transition-opacity duration-300"></i> {{ sub }}
+                                        </a>
+                                    </li>
+                                </ul>
+                                <div class="mt-3 pt-2 border-t border-gray-50 text-center">
+                                    <a href="index.html#tours" class="inline-flex items-center gap-2 text-[13px] font-bold text-brand hover:underline">浏览所有目的地 <i class="fas fa-arrow-right text-[10px]"></i></a>
+                                </div>
+                            </div>
+                        </transition>
+                    </div>
+                </nav>
             </div>
-        </transition>
-    </div>
-</nav>
-            </div>
+            
+            <transition name="mobile-menu">
+                <nav v-if="isMobileMenuOpen" class="lg:hidden w-full bg-white border-t border-gray-100 py-6 pb-10 shadow-xl overflow-y-auto max-h-[80vh]">
+                    <div class="flex flex-col items-center gap-6">
+                        <a v-for="link in navLinks" :key="link.name" :href="link.url" class="text-xl font-bold py-2 uppercase tracking-widest text-gray-800" @click="isMobileMenuOpen = false"> {{ link.name }} </a>
+                    </div>
+                </nav>
+            </transition>
         </div>
     </header>
 
@@ -143,7 +150,7 @@
                     </div>
                 </div>
 
-                <div class="bg-gray-50 p-8 lg:p-12 rounded-[2.5rem] shadow-sm border border-gray-100 min-h-[620px] flex flex-col justify-center">
+                <div class="bg-gray-50 p-6 lg:p-12 rounded-[2.5rem] shadow-sm border border-gray-100 min-h-[620px] flex flex-col justify-center">
                     
                     <form v-if="!isSubmitted" @submit.prevent="handleFormSubmit" novalidate class="space-y-8">
                         <div class="space-y-2">
@@ -156,7 +163,7 @@
                         <div class="space-y-2">
                             <label class="text-sm font-bold text-gray-600 ml-1">联系电话 *</label>
                             <div class="flex gap-2">
-                                <div class="relative w-32 shrink-0">
+                                <div class="relative w-28 md:w-32 shrink-0">
                                     <select v-model="formData.countryCode" class="w-full pl-4 pr-8 py-4 bg-white border border-gray-200 rounded-xl focus:border-brand outline-none appearance-none cursor-pointer">
                                         <option value="+33">🇫🇷 +33</option>
                                         <option value="+86">🇨🇳 +86</option>
@@ -167,7 +174,7 @@
                                 </div>
                                 <input type="tel" v-model="formData.phone" placeholder="输入号码"
                                        :class="{'input-error': attemptedSubmit && (phoneError || !formData.phone)}"
-                                       class="flex-1 px-6 py-4 bg-white border border-gray-200 rounded-xl focus:border-brand outline-none transition-all">
+                                       class="flex-1 min-w-0 px-6 py-4 bg-white border border-gray-200 rounded-xl focus:border-brand outline-none transition-all">
                             </div>
                             <p v-if="attemptedSubmit && phoneError" class="text-red-600 text-[11px] ml-1 mt-1 font-medium">{{ phoneError }}</p>
                         </div>
@@ -215,7 +222,7 @@
         <div class="container mx-auto px-4">
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-16 mb-20">
                 <div class="space-y-6">
-                    <img src="https://www.eurasia-tours.fr/assets/logo-word-rNz8dsz6.jpg" alt="Logo" class="h-10 w-auto object-contain opacity-90">
+                   <img src="https://www.eurasia-tours.fr/assets/logo-word-rNz8dsz6.jpg" alt="Logo" class="h-10 md:h-12 w-auto object-contain opacity-90 mix-blend-lighten brightness-110">
                     <p class="text-sm leading-relaxed">自2000年起，欧美亚旅游致力为全球旅客提供最纯正的亚洲深度旅行体验。我们不仅是旅行社，更是您探索东方的文化向导。</p>
                 </div>
                 <div>
@@ -240,7 +247,7 @@
                         <div class="relative group" @mouseenter="isWechatQR = true" @mouseleave="isWechatQR = false">
                             <a href="#" class="w-10 h-10 bg-gray-800 rounded-full flex items-center justify-center hover:bg-[#07C160] transition"><i class="fab fa-weixin text-white"></i></a>
                             <transition name="qr-fade">
-                                <div v-if="isWechatQR" class="absolute bottom-12 left-1/2 -translate-x-1/2 bg-white p-2 rounded-lg shadow-2xl z-50 w-32 border border-gray-100">
+                                <div v-if="isWechatQR" class="absolute bottom-12 left-1/2 -translate-x-1/2 bg-white p-2 rounded-lg shadow-2xl z-50 w-32 border border-gray-100 text-center">
                                     <img src="https://www.eurasia-tours.fr/assets/wechat-account-VZcww6ek.jpg" alt="WeChat QR" class="w-full h-auto">
                                     <p class="text-[10px] text-gray-500 text-center mt-1">扫码关注微信</p>
                                 </div>
@@ -257,9 +264,7 @@
                         </div>
                     </div>
                     <div class="flex gap-4 text-3xl opacity-30">
-                        <i class="fab fa-cc-visa"></i>
-                        <i class="fab fa-cc-mastercard"></i>
-                        <i class="fab fa-cc-amex"></i>
+                        <i class="fab fa-cc-visa"></i><i class="fab fa-cc-mastercard"></i><i class="fab fa-cc-amex"></i>
                     </div>
                 </div>
             </div>
@@ -274,23 +279,23 @@
     const { createApp, ref, computed, nextTick } = Vue;
     createApp({
         setup() {
-            // 页眉页脚 Vue Data 严格保留
+            // 新增：控制手机端菜单
+            const isMobileMenuOpen = ref(false);
+            
             const isDestDropdownOpen = ref(false);
             const isWechatQR = ref(false);
             const isFacebookQR = ref(false);
-            const isMobileMenuOpen = ref(false);
             
-           const navLinks = [
-    { name: '首页', url: 'index.html' },
-    { name: '目的地', url: 'index.html#tours', subLinks: ['中国', '越南', '柬埔寨', '泰国'] },
-    { name: '机票服务', url: 'tickets.html' },
-    { name: '定制旅行', url: 'custom.html' }, 
-    { name: '关于我们', url: 'about.html' },
-    { name: '联系我们', url: 'contact.html', current: true },
-    { name: '博客', url: 'blog.html' }
-];
+            const navLinks = [
+                { name: '首页', url: 'index.html' },
+                { name: '目的地', url: 'index.html#tours', subLinks: ['中国', '越南', '柬埔寨', '泰国'] },
+                { name: '机票服务', url: 'tickets.html' },
+                { name: '定制旅行', url: 'custom.html' }, 
+                { name: '关于我们', url: 'about.html' },
+                { name: '联系我们', url: 'contact.html', current: true },
+                { name: '博客', url: 'blog.html' }
+            ];
 
-            // 业务逻辑 Data
             const isSubmitted = ref(false);
             const attemptedSubmit = ref(false);
             const formData = ref({
