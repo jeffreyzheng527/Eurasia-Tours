@@ -11,7 +11,6 @@
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;500;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
     
     <style>
-        /* 严格保留原始 Style */
         body { font-family: 'Noto Sans SC', sans-serif; }
         h1, h2, h3 { font-family: 'Playfair Display', 'Noto Sans SC', serif; }
         .text-brand { color: #b91c1c; }
@@ -42,27 +41,26 @@
             object-fit: cover;
         }
         
-        /* 业务优化专用样式 */
         .input-error { border: 1.5px solid #ef4444 !important; background-color: #fef2f2 !important; }
         .fade-in { animation: fadeIn 0.6s ease-out forwards; }
         @keyframes fadeIn { from { opacity: 0; transform: translateY(15px); } to { opacity: 1; transform: translateY(0); } }
 
-        /* 新增：手机端菜单动画 (为保持一致性补充) */
         .mobile-menu-enter-active, .mobile-menu-leave-active { transition: all 0.3s ease; }
-        .mobile-menu-enter-from, .mobile-menu-leave-to { opacity: 0; transform: translateY(-20px); }
+        .mobile-menu-enter-from, .mobile-menu-leave-to { opacity: 0; transform: translateY(-10px); }
     </style>
 </head>
 <body class="bg-white text-gray-800 antialiased">
 
 <div id="app">
-    <header class="fixed w-full top-0 z-50 bg-white/95 backdrop-blur-md shadow-sm border-b border-gray-100">
+    <header class="fixed w-full top-0 z-[100] bg-white/95 backdrop-blur-md shadow-sm border-b border-gray-100">
         <div class="container mx-auto px-4">
             <div class="flex flex-col lg:flex-row items-center justify-between py-2 lg:h-24">
                 <div class="flex items-center justify-between w-full lg:w-auto">
                     <a href="index.html" class="flex items-center group">
-                        <img src="https://www.eurasia-tours.fr/assets/logo-word-rNz8dsz6.jpg" alt="Logo" class="h-10 md:h-12 w-auto object-contain transition-transform group-hover:scale-105">
+                        <img src="https://www.eurasia-tours.fr/assets/logo-word-rNz8dsz6.jpg" 
+                             alt="Logo" class="h-10 md:h-12 w-auto object-contain transition-transform group-hover:scale-105 mix-blend-multiply">
                     </a>
-                    <button class="lg:hidden text-2xl p-2 text-gray-700" @click="isMobileMenuOpen = !isMobileMenuOpen">
+                    <button class="lg:hidden relative z-50 text-2xl p-2 text-gray-700 focus:outline-none cursor-pointer" @click="isMobileMenuOpen = !isMobileMenuOpen">
                         <i class="fas" :class="isMobileMenuOpen ? 'fa-times' : 'fa-bars'"></i>
                     </button>
                 </div>
@@ -76,34 +74,40 @@
                             <i v-if="link.subLinks" class="fas fa-angle-down text-xs transition-transform duration-300" :class="{'rotate-180': link.name === '目的地' && isDestDropdownOpen}"></i>
                             <span :class="['absolute bottom-1 left-0 h-0.5 bg-brand transition-all duration-300 group-hover:w-full', link.current ? 'w-full' : 'w-0']"></span>
                         </a>
-
                         <transition name="dropdown">
-                            <div v-if="link.name === '目的地' && isDestDropdownOpen" class="absolute top-full left-1/2 -translate-x-1/2 w-[220px] bg-white shadow-[0_20px_50px_rgba(0,0,0,0.15)] rounded-xl border border-gray-100 p-3 overflow-hidden mt-[-5px]">
+                            <div v-if="link.name === '目的地' && isDestDropdownOpen" 
+                                 class="absolute top-full left-1/2 -translate-x-1/2 w-[220px] bg-white shadow-[0_20px_50px_rgba(0,0,0,0.15)] rounded-xl border border-gray-100 p-3 overflow-hidden mt-[-5px]">
                                 <div class="px-4 pb-2 mb-2 border-b border-gray-50 text-[10px] uppercase tracking-[0.2em] text-gray-400 font-bold">热门国家</div>
                                 <ul class="space-y-1">
-                                    <li v-for="sub in ['中国', '越南', '柬埔寨', '泰国']" :key="sub">
-                                        <a href="index.html#tours" class="flex items-center gap-3 px-4 py-3 text-base font-medium text-gray-700 hover:bg-red-50 hover:text-brand rounded-lg transition-all group/item border-l-2 border-transparent hover:border-brand">
-                                            <i class="fas fa-map-pin text-[10px] text-brand opacity-0 group-hover/item:opacity-100 transition-opacity duration-300"></i> {{ sub }}
+                                    <li v-for="sub in link.subLinks" :key="sub.name">
+                                        <a :href="sub.url" class="flex items-center gap-3 px-4 py-3 text-base font-medium text-gray-700 hover:bg-red-50 hover:text-brand rounded-lg transition-all group/item border-l-2 border-transparent hover:border-brand">
+                                            <i class="fas fa-map-pin text-[10px] text-brand opacity-0 group-hover/item:opacity-100 transition-opacity duration-300"></i>
+                                            {{ sub.name }}
                                         </a>
                                     </li>
                                 </ul>
-                                <div class="mt-3 pt-2 border-t border-gray-50 text-center">
-                                    <a href="index.html#tours" class="inline-flex items-center gap-2 text-[13px] font-bold text-brand hover:underline">浏览所有目的地 <i class="fas fa-arrow-right text-[10px]"></i></a>
+                                <div class="mt-3 pt-2 border-t border-gray-50">
+                                    <a href="destination main.html" class="flex items-center justify-center gap-2 px-4 py-2 text-[13px] font-bold text-brand hover:underline">浏览所有目的地 <i class="fas fa-arrow-right text-[10px]"></i></a>
                                 </div>
                             </div>
                         </transition>
                     </div>
                 </nav>
             </div>
-            
-            <transition name="mobile-menu">
-                <nav v-if="isMobileMenuOpen" class="lg:hidden w-full bg-white border-t border-gray-100 py-6 pb-10 shadow-xl overflow-y-auto max-h-[80vh]">
-                    <div class="flex flex-col items-center gap-6">
-                        <a v-for="link in navLinks" :key="link.name" :href="link.url" class="text-xl font-bold py-2 uppercase tracking-widest text-gray-800" @click="isMobileMenuOpen = false"> {{ link.name }} </a>
-                    </div>
-                </nav>
-            </transition>
         </div>
+
+        <transition name="mobile-menu">
+            <nav v-if="isMobileMenuOpen" class="lg:hidden absolute top-full left-0 w-full bg-white border-t border-gray-100 py-6 pb-10 shadow-xl overflow-y-auto max-h-[80vh]">
+                <div class="flex flex-col items-center gap-6">
+                    <a v-for="link in navLinks" :key="link.name" :href="link.url"
+                       class="text-xl font-bold py-2 uppercase tracking-widest text-gray-800 hover:text-brand transition"
+                       @click="isMobileMenuOpen = false">
+                       {{ link.name }}
+                    </a>
+                    <a href="contact.html" class="bg-brand text-white px-10 py-3 rounded-full font-bold shadow-lg mt-4" @click="isMobileMenuOpen = false">立即咨询</a>
+                </div>
+            </nav>
+        </transition>
     </header>
 
     <main class="pt-24">
@@ -118,6 +122,7 @@
 
         <section class="py-24 container mx-auto px-4 max-w-6xl">
             <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-start">
+                
                 <div class="space-y-12">
                     <div class="space-y-6">
                         <div class="inline-block px-4 py-1 bg-red-50 text-brand text-sm font-bold rounded-full tracking-widest uppercase">Contact Info</div>
@@ -150,7 +155,7 @@
                     </div>
                 </div>
 
-                <div class="bg-gray-50 p-6 lg:p-12 rounded-[2.5rem] shadow-sm border border-gray-100 min-h-[620px] flex flex-col justify-center">
+                <div class="bg-gray-50 p-8 lg:p-12 rounded-[2.5rem] shadow-sm border border-gray-100 min-h-[620px] flex flex-col justify-center">
                     
                     <form v-if="!isSubmitted" @submit.prevent="handleFormSubmit" novalidate class="space-y-8">
                         <div class="space-y-2">
@@ -163,7 +168,7 @@
                         <div class="space-y-2">
                             <label class="text-sm font-bold text-gray-600 ml-1">联系电话 *</label>
                             <div class="flex gap-2">
-                                <div class="relative w-28 md:w-32 shrink-0">
+                                <div class="relative w-32 shrink-0">
                                     <select v-model="formData.countryCode" class="w-full pl-4 pr-8 py-4 bg-white border border-gray-200 rounded-xl focus:border-brand outline-none appearance-none cursor-pointer">
                                         <option value="+33">🇫🇷 +33</option>
                                         <option value="+86">🇨🇳 +86</option>
@@ -174,7 +179,7 @@
                                 </div>
                                 <input type="tel" v-model="formData.phone" placeholder="输入号码"
                                        :class="{'input-error': attemptedSubmit && (phoneError || !formData.phone)}"
-                                       class="flex-1 min-w-0 px-6 py-4 bg-white border border-gray-200 rounded-xl focus:border-brand outline-none transition-all">
+                                       class="flex-1 px-6 py-4 bg-white border border-gray-200 rounded-xl focus:border-brand outline-none transition-all">
                             </div>
                             <p v-if="attemptedSubmit && phoneError" class="text-red-600 text-[11px] ml-1 mt-1 font-medium">{{ phoneError }}</p>
                         </div>
@@ -222,7 +227,7 @@
         <div class="container mx-auto px-4">
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-16 mb-20">
                 <div class="space-y-6">
-                   <img src="https://www.eurasia-tours.fr/assets/logo-word-rNz8dsz6.jpg" alt="Logo" class="h-10 md:h-12 w-auto object-contain opacity-90 mix-blend-lighten brightness-110">
+                    <img src="https://www.eurasia-tours.fr/assets/logo-word-rNz8dsz6.jpg" alt="Logo" class="h-10 w-auto object-contain opacity-90 mix-blend-lighten brightness-110">
                     <p class="text-sm leading-relaxed">自2000年起，欧美亚旅游致力为全球旅客提供最纯正的亚洲深度旅行体验。我们不仅是旅行社，更是您探索东方的文化向导。</p>
                 </div>
                 <div>
@@ -279,23 +284,35 @@
     const { createApp, ref, computed, nextTick } = Vue;
     createApp({
         setup() {
-            // 新增：控制手机端菜单
+            // 页眉状态 (与 index.html 逻辑一致)
             const isMobileMenuOpen = ref(false);
-            
             const isDestDropdownOpen = ref(false);
+            
+            // 底部二维码状态
             const isWechatQR = ref(false);
             const isFacebookQR = ref(false);
             
+            // 导航数据：严格复刻 index.html 顺序，并修复目的地数据结构
             const navLinks = [
                 { name: '首页', url: 'index.html' },
-                { name: '目的地', url: 'index.html#tours', subLinks: ['中国', '越南', '柬埔寨', '泰国'] },
+                { 
+                    name: '目的地', 
+                    url: 'destination main.html', 
+                    subLinks: [
+                        { name: '中国', url: 'destination china.html' },
+                        { name: '日本', url: 'destination japan.html' },
+                        { name: '德国', url: 'destination product germany.html' },
+                        { name: '瑞士', url: 'destination product germany.html' }
+                    ] 
+                },
+                { name: '定制旅行', url: 'custom.html' },
                 { name: '机票服务', url: 'tickets.html' },
-                { name: '定制旅行', url: 'custom.html' }, 
                 { name: '关于我们', url: 'about.html' },
-                { name: '联系我们', url: 'contact.html', current: true },
+                { name: '联系我们', url: 'contact.html', current: true }, // 设置当前页高亮
                 { name: '博客', url: 'blog.html' }
             ];
 
+            // 业务逻辑 Data (表单部分)
             const isSubmitted = ref(false);
             const attemptedSubmit = ref(false);
             const formData = ref({

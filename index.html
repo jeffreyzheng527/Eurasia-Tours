@@ -15,12 +15,9 @@
         h1, h2, h3 { font-family: 'Playfair Display', 'Noto Sans SC', serif; }
         .text-brand { color: #b91c1c; }
         .bg-brand { background-color: #b91c1c; }
+        .hover\:bg-brand:hover { background-color: #991b1b; }
         .hero-text-shadow { text-shadow: 0 4px 15px rgba(0, 0, 0, 0.6); }
         .nav-link-spacing { letter-spacing: 0.1em; }
-
-        /* 移动端菜单切换动画 */
-        .mobile-menu-enter-active, .mobile-menu-leave-active { transition: all 0.3s ease; }
-        .mobile-menu-enter-from, .mobile-menu-leave-to { opacity: 0; transform: translateY(-10px); }
 
         .dropdown-enter-active { transition: all 0.3s ease-out; }
         .dropdown-leave-active { transition: all 0.2s ease-in; }
@@ -32,12 +29,19 @@
         .brochure-card { perspective: 1000px; transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1); }
         .brochure-card:hover { transform: translateY(-10px) rotateY(-5deg); }
 
-        .modal-fade-enter-active, .modal-fade-leave-active { transition: all 0.4s ease; }
-        .modal-fade-enter-from, .modal-fade-leave-to { opacity: 0; }
-
-        /* 二维码动画 */
+        /* 二维码淡入淡出动画 */
         .qr-fade-enter-active, .qr-fade-leave-active { transition: all 0.3s ease-out; }
         .qr-fade-enter-from, .qr-fade-leave-to { opacity: 0; transform: translateY(10px); }
+
+        /* PDF 弹窗过渡动画 */
+        .modal-fade-enter-active, .modal-fade-leave-active { transition: all 0.4s ease; }
+        .modal-fade-enter-from, .modal-fade-leave-to { opacity: 0; }
+        .modal-fade-enter-active .modal-content { transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1); }
+        .modal-fade-enter-from .modal-content { transform: scale(0.9) translateY(20px); }
+
+        /* 移动端菜单动画 */
+        .mobile-menu-enter-active, .mobile-menu-leave-active { transition: all 0.3s ease; }
+        .mobile-menu-enter-from, .mobile-menu-leave-to { opacity: 0; transform: translateY(-10px); }
     </style>
 </head>
 <body class="bg-gray-50 text-gray-800 antialiased">
@@ -45,13 +49,13 @@
 <div id="app">
     <header class="fixed w-full top-0 z-[100] bg-white/95 backdrop-blur-md shadow-sm border-b border-gray-100">
         <div class="container mx-auto px-4">
-            <div class="flex items-center justify-between py-2 lg:h-24">
+            <div class="flex flex-col lg:flex-row items-center justify-between py-2 lg:h-24">
                 <div class="flex items-center justify-between w-full lg:w-auto">
                     <a href="index.html" class="flex items-center group">
                         <img src="https://www.eurasia-tours.fr/assets/logo-word-rNz8dsz6.jpg" 
                              alt="Logo" class="h-10 md:h-12 w-auto object-contain transition-transform group-hover:scale-105 mix-blend-multiply">
                     </a>
-                    <button class="lg:hidden text-2xl p-2 text-gray-700" @click="isMobileMenuOpen = !isMobileMenuOpen">
+                    <button class="lg:hidden relative z-50 text-2xl p-2 text-gray-700 focus:outline-none cursor-pointer" @click="isMobileMenuOpen = !isMobileMenuOpen">
                         <i class="fas" :class="isMobileMenuOpen ? 'fa-times' : 'fa-bars'"></i>
                     </button>
                 </div>
@@ -60,66 +64,78 @@
                     <div v-for="link in navLinks" :key="link.name" class="relative group py-8"
                          @mouseenter="link.name === '目的地' ? isDestDropdownOpen = true : null"
                          @mouseleave="isDestDropdownOpen = false">
-                        <a :href="link.url" 
-                           :class="['nav-link-spacing relative py-3 px-2 text-sm xl:text-[15px] font-bold uppercase transition-all flex items-center gap-1', 
-                           link.current ? 'text-brand' : 'text-gray-700 hover:text-brand']">
+                        <a :href="link.url" class="nav-link-spacing relative py-3 px-2 text-sm xl:text-[15px] font-bold uppercase text-gray-700 hover:text-brand transition-all flex items-center gap-1">
                             {{ link.name }}
                             <i v-if="link.subLinks" class="fas fa-angle-down text-xs transition-transform duration-300" :class="{'rotate-180': link.name === '目的地' && isDestDropdownOpen}"></i>
-                            <span :class="['absolute bottom-1 left-0 h-0.5 bg-brand transition-all duration-300 group-hover:w-full', link.current ? 'w-full' : 'w-0']"></span>
+                            <span class="absolute bottom-1 left-0 w-0 h-0.5 bg-brand transition-all duration-300 group-hover:w-full"></span>
                         </a>
                         <transition name="dropdown">
                             <div v-if="link.name === '目的地' && isDestDropdownOpen" 
                                  class="absolute top-full left-1/2 -translate-x-1/2 w-[220px] bg-white shadow-[0_20px_50px_rgba(0,0,0,0.15)] rounded-xl border border-gray-100 p-3 overflow-hidden mt-[-5px]">
                                 <div class="px-4 pb-2 mb-2 border-b border-gray-50 text-[10px] uppercase tracking-[0.2em] text-gray-400 font-bold">热门国家</div>
                                 <ul class="space-y-1">
-                                    <li v-for="sub in link.subLinks" :key="sub">
-                                        <a href="index.html#tours" class="flex items-center gap-3 px-4 py-3 text-base font-medium text-gray-700 hover:bg-red-50 hover:text-brand rounded-lg transition-all group/item border-l-2 border-transparent hover:border-brand">
+                                    <li v-for="sub in link.subLinks" :key="sub.name">
+                                        <a :href="sub.url" class="flex items-center gap-3 px-4 py-3 text-base font-medium text-gray-700 hover:bg-red-50 hover:text-brand rounded-lg transition-all group/item border-l-2 border-transparent hover:border-brand">
                                             <i class="fas fa-map-pin text-[10px] text-brand opacity-0 group-hover/item:opacity-100 transition-opacity duration-300"></i>
-                                            {{ sub }}
+                                            {{ sub.name }}
                                         </a>
                                     </li>
                                 </ul>
                                 <div class="mt-3 pt-2 border-t border-gray-50">
-                                    <a href="#" class="flex items-center justify-center gap-2 px-4 py-2 text-[13px] font-bold text-brand hover:underline">浏览所有目的地 <i class="fas fa-arrow-right text-[10px]"></i></a>
+                                    <a href="destination main.html" class="flex items-center justify-center gap-2 px-4 py-2 text-[13px] font-bold text-brand hover:underline">浏览所有目的地 <i class="fas fa-arrow-right text-[10px]"></i></a>
                                 </div>
                             </div>
                         </transition>
                     </div>
                 </nav>
             </div>
-
-            <transition name="mobile-menu">
-                <nav v-if="isMobileMenuOpen" class="lg:hidden w-full bg-white border-t border-gray-100 py-6 pb-10 shadow-xl overflow-y-auto max-h-[80vh]">
-                    <div class="flex flex-col items-center gap-6">
-                        <a v-for="link in navLinks" :key="link.name" :href="link.url" 
-                           class="text-xl font-bold py-2 uppercase tracking-widest text-gray-800" 
-                           @click="isMobileMenuOpen = false">
-                            {{ link.name }}
-                        </a>
-                        <a href="contact.html" class="bg-brand text-white px-10 py-3 rounded-full font-bold shadow-lg mt-4">立即咨询</a>
-                    </div>
-                </nav>
-            </transition>
         </div>
+
+        <transition name="mobile-menu">
+            <nav v-if="isMobileMenuOpen" class="lg:hidden absolute top-full left-0 w-full bg-white border-t border-gray-100 py-6 pb-10 shadow-xl overflow-y-auto max-h-[80vh]">
+                <div class="flex flex-col items-center gap-6">
+                    <a v-for="link in navLinks" :key="link.name" :href="link.url"
+                       class="text-xl font-bold py-2 uppercase tracking-widest text-gray-800 hover:text-brand transition"
+                       @click="isMobileMenuOpen = false">
+                       {{ link.name }}
+                    </a>
+                    <a href="contact.html" class="bg-brand text-white px-10 py-3 rounded-full font-bold shadow-lg mt-4" @click="isMobileMenuOpen = false">立即咨询</a>
+                </div>
+            </nav>
+        </transition>
     </header>
 
     <main class="pt-24">
-        <section class="relative h-[70vh] lg:h-[85vh] min-h-[500px] flex items-center justify-center bg-gray-900 overflow-hidden">
+        <section class="relative h-[85vh] min-h-[600px] flex items-center justify-center bg-gray-900 overflow-hidden">
             <transition-group name="fade-hero">
                 <img v-for="(img, index) in heroImages" v-show="currentHeroIndex === index" :src="img" :key="img" class="absolute inset-0 w-full h-full object-cover">
             </transition-group>
             <div class="absolute inset-0 bg-gradient-to-b from-black/50 via-black/20 to-black/60 z-10"></div>
             <div class="relative z-20 text-center px-4 hero-text-shadow">
-                <span class="inline-block border border-white/50 bg-white/10 backdrop-blur-md px-6 lg:px-10 py-2 lg:py-3.5 rounded-full text-white text-xs lg:text-lg font-medium tracking-[0.3em] mb-4 lg:mb-8 uppercase shadow-xl">探索东方之美 · 匠心深耕二十六载</span>
-                <h1 class="text-3xl lg:text-8xl font-bold text-white mb-4 lg:mb-6 font-serif">换个角度，<span class="italic text-red-500">看亚洲</span></h1>
-                <p class="text-sm lg:text-2xl text-gray-100 mb-8 lg:mb-10 max-w-3xl mx-auto font-light leading-relaxed">不仅是旅行，更是一次深入灵魂的文化发现。<br class="hidden lg:block">专注中国云南、越南探秘及丝绸之路高端定制。</p>
-                <div class="flex flex-col sm:flex-row justify-center gap-4 lg:gap-6">
-                    <a href="index.html#tours" class="bg-brand hover:bg-red-800 text-white px-8 lg:px-10 py-3 lg:py-4 rounded-full text-base lg:text-lg font-bold transition shadow-2xl transform hover:-translate-y-1">探索热门线路</a>
-                    <a href="custom.html" class="bg-white/10 hover:bg-white/20 backdrop-blur-md border border-white text-white px-8 lg:px-10 py-3 lg:py-4 rounded-full text-base lg:text-lg font-bold transition">私人定制旅行</a>
+                <span class="inline-block border border-white/50 bg-white/10 backdrop-blur-md px-10 py-3.5 rounded-full text-white text-base md:text-lg font-medium tracking-[0.3em] mb-8 uppercase shadow-xl">探索东方之美 · 匠心深耕二十六载</span>
+                <h1 class="text-5xl md:text-8xl font-bold text-white mb-6 font-serif">换个角度，<span class="italic text-red-500">看亚洲</span></h1>
+                <p class="text-lg md:text-2xl text-gray-100 mb-10 max-w-3xl mx-auto font-light leading-relaxed">不仅是旅行，更是一次深入灵魂的文化发现。<br>专注中国云南、越南探秘及丝绸之路高端定制。</p>
+                <div class="flex flex-col sm:flex-row justify-center gap-6">
+                    <a href="#tours" class="bg-brand hover:bg-red-800 text-white px-10 py-4 rounded-full text-lg font-bold transition shadow-2xl transform hover:-translate-y-1">探索热门线路</a>
+                    <a href="custom.html" class="bg-white/10 hover:bg-white/20 backdrop-blur-md border border-white text-white px-10 py-4 rounded-full text-lg font-bold transition">私人定制旅行</a>
                 </div>
             </div>
-            <button @click="prevHero" class="absolute left-4 lg:left-6 top-1/2 -translate-y-1/2 z-30 w-10 h-10 lg:w-12 lg:h-12 flex items-center justify-center rounded-full bg-white/10 text-white border border-white/20 hover:bg-white/30 transition"><i class="fas fa-chevron-left"></i></button>
-            <button @click="nextHero" class="absolute right-4 lg:right-6 top-1/2 -translate-y-1/2 z-30 w-10 h-10 lg:w-12 lg:h-12 flex items-center justify-center rounded-full bg-white/10 text-white border border-white/20 hover:bg-white/30 transition"><i class="fas fa-chevron-right"></i></button>
+            <button @click="prevHero" class="absolute left-6 top-1/2 -translate-y-1/2 z-30 w-12 h-12 flex items-center justify-center rounded-full bg-white/10 hover:bg-white/30 text-white transition backdrop-blur-sm border border-white/20"><i class="fas fa-chevron-left text-xl"></i></button>
+            <button @click="nextHero" class="absolute right-6 top-1/2 -translate-y-1/2 z-30 w-12 h-12 flex items-center justify-center rounded-full bg-white/10 hover:bg-white/30 text-white transition backdrop-blur-sm border border-white/20"><i class="fas fa-chevron-right text-xl"></i></button>
+        </section>
+
+        <section class="py-16 bg-white border-b border-gray-100 relative z-20 -mt-10 mx-4 md:mx-auto max-w-6xl rounded-2xl shadow-xl">
+            <div class="container mx-auto px-4">
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-8 text-center divide-y md:divide-y-0 md:divide-x divide-gray-100">
+                    <div v-for="val in values" :key="val.title" class="group pt-4 md:pt-0">
+                        <div class="w-16 h-16 bg-red-50 text-brand rounded-2xl flex items-center justify-center text-3xl mx-auto mb-4 transition-transform group-hover:rotate-12 group-hover:scale-110">
+                            <i :class="val.icon"></i>
+                        </div>
+                        <h3 class="text-xl font-bold mb-2">{{ val.title }}</h3>
+                        <p class="text-sm text-gray-500 leading-relaxed px-4">{{ val.desc }}</p>
+                    </div>
+                </div>
+            </div>
         </section>
 
         <section id="tours" class="py-24 bg-gray-50">
@@ -127,23 +143,25 @@
                 <div class="flex flex-col md:flex-row justify-between items-end mb-16 gap-4">
                     <div>
                         <h2 class="text-4xl font-bold mb-4">精选推荐线路</h2>
-                        <p class="text-gray-500">挑选最受旅客欢迎的亚洲深度行程</p>
+                        <p class="text-gray-500">挑选最受旅客欢迎的深度行程</p>
                         <div class="h-1.5 w-24 bg-brand mt-4"></div>
                     </div>
-                    <a href="index.html#tours" class="text-brand font-bold flex items-center gap-2 hover:gap-4 transition-all">查看全部线路 <i class="fas fa-arrow-right"></i></a>
+                    <a href="destination main.html" class="text-brand font-bold flex items-center gap-2 hover:gap-4 transition-all">查看全部线路 <i class="fas fa-arrow-right"></i></a>
                 </div>
                 <div class="grid grid-cols-1 md:grid-cols-3 gap-10">
-                    <div v-for="tour in tours" :key="tour.title" class="bg-white rounded-3xl shadow-lg overflow-hidden hover:shadow-2xl transition duration-500 group">
-                        <div class="relative h-72 overflow-hidden">
+                    <div v-for="tour in tours" :key="tour.title" class="bg-white rounded-3xl shadow-lg overflow-hidden hover:shadow-2xl transition duration-500 group flex flex-col h-full">
+                        <div class="relative h-72 overflow-hidden cursor-pointer" @click="goToProduct(tour.url)">
                             <img :src="tour.image" :alt="tour.title" class="w-full h-full object-cover group-hover:scale-110 transition duration-700">
                             <div class="absolute top-6 right-6 bg-black/70 backdrop-blur text-white text-xs font-bold px-4 py-2 rounded-full">{{ tour.days }} 天</div>
                         </div>
-                        <div class="p-8">
-                            <h3 class="text-2xl font-bold mb-4 group-hover:text-brand transition">{{ tour.title }}</h3>
-                            <p class="text-gray-600 text-sm mb-8 line-clamp-2 leading-relaxed">{{ tour.desc }}</p>
+                        <div class="p-8 flex-1 flex flex-col justify-between">
+                            <div>
+                                <h3 class="text-2xl font-bold mb-4 group-hover:text-brand transition cursor-pointer" @click="goToProduct(tour.url)">{{ tour.title }}</h3>
+                                <p class="text-gray-600 text-sm mb-8 line-clamp-3 leading-relaxed">{{ tour.desc }}</p>
+                            </div>
                             <div class="flex items-center justify-between pt-6 border-t border-gray-100">
-                                <div><span class="text-xs text-gray-400 block mb-1">优惠价起</span><div class="text-3xl font-bold text-brand">{{ tour.price }} <span class="text-sm">€</span></div></div>
-                                <button class="w-12 h-12 rounded-full bg-gray-900 text-white flex items-center justify-center hover:bg-brand transition-colors shadow-lg"><i class="fas fa-chevron-right"></i></button>
+                                <div><span class="text-xs text-gray-400 block mb-1">优惠价起</span><div class="text-3xl font-bold text-brand">{{ tour.price }}</div></div>
+                                <a :href="tour.url" class="w-12 h-12 rounded-full bg-gray-900 text-white flex items-center justify-center hover:bg-brand transition-colors shadow-lg"><i class="fas fa-chevron-right"></i></a>
                             </div>
                         </div>
                     </div>
@@ -159,11 +177,29 @@
                     <p class="text-gray-400 max-w-2xl mx-auto tracking-widest font-light">翻阅我们的精选旅游指南，指尖开启亚洲灵感之旅。</p>
                 </div>
                 <div class="grid grid-cols-1 md:grid-cols-3 gap-12 max-w-6xl mx-auto">
-                    <div v-for="b in brochures" :key="b.type" class="brochure-card group cursor-pointer" @click="openBrochure(b.type)">
-                        <div class="relative bg-white aspect-[3/4] rounded-r-xl shadow-2xl overflow-hidden border-l-8" :style="{ borderColor: b.color }">
-                            <img :src="b.img" class="w-full h-full object-cover grayscale-[20%] group-hover:grayscale-0 transition-all duration-700">
+                    <div class="brochure-card group cursor-pointer" @click="openBrochure('china')">
+                        <div class="relative bg-white aspect-[3/4] rounded-r-xl shadow-2xl overflow-hidden border-l-8 border-brand/80">
+                            <img src="https://p3-pc-sign.douyinpic.com/tos-cn-i-0813/owIAgEjenw1QAEB7FeyPoALsoAeGzOABAJwUUE~tplv-dy-aweme-images:q75.webp?biz_tag=aweme_images&from=327834062&lk3s=138a59ce&s=PackSourceEnum_SEARCH&sc=image&se=false&x-expires=1770408000&x-signature=oWDCo6INaxLfPlPzyixDudvhgvw%3D" class="w-full h-full object-cover">
                             <div class="absolute inset-0 bg-gradient-to-t from-black/80 flex flex-col justify-end p-8 text-white">
-                                <h3 class="text-2xl font-bold mb-2 text-shadow">{{ b.title }}</h3>
+                                <h3 class="text-2xl font-bold mb-2 text-shadow">大美中国篇</h3>
+                                <span class="text-brand font-bold group-hover:translate-x-2 transition">在线阅读 <i class="fas fa-book-open ml-2"></i></span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="brochure-card group cursor-pointer" @click="openBrochure('vietnam')">
+                        <div class="relative bg-white aspect-[3/4] rounded-r-xl shadow-2xl overflow-hidden border-l-8 border-blue-800/80">
+                            <img src="https://images.unsplash.com/photo-1528127269322-539801943592?q=80&w=800" class="w-full h-full object-cover">
+                            <div class="absolute inset-0 bg-gradient-to-t from-black/80 flex flex-col justify-end p-8 text-white">
+                                <h3 class="text-2xl font-bold mb-2 text-shadow">醉美越南篇</h3>
+                                <span class="text-brand font-bold group-hover:translate-x-2 transition">在线阅读 <i class="fas fa-book-open ml-2"></i></span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="brochure-card group cursor-pointer" @click="openBrochure('global')">
+                        <div class="relative bg-white aspect-[3/4] rounded-r-xl shadow-2xl overflow-hidden border-l-8 border-gray-800">
+                            <img src="https://img.freepik.com/free-photo/women-tourists-holding-man-s-hand-leading-him-kaohsiung-s-famous-tourist-attractions-taiwan_335224-629.jpg?semt=ais_hybrid&w=740&q=80" class="w-full h-full object-cover">
+                            <div class="absolute inset-0 bg-gradient-to-t from-black/80 flex flex-col justify-end p-8 text-white">
+                                <h3 class="text-2xl font-bold mb-2 text-shadow">2026全年团期</h3>
                                 <span class="text-brand font-bold group-hover:translate-x-2 transition">在线阅读 <i class="fas fa-book-open ml-2"></i></span>
                             </div>
                         </div>
@@ -171,35 +207,21 @@
                 </div>
             </div>
         </section>
-
-        <section class="py-24 bg-white">
-            <div class="container mx-auto px-4">
-                <div class="grid grid-cols-1 md:grid-cols-3 gap-16 text-center">
-                    <div v-for="val in values" :key="val.title" class="group">
-                        <div class="w-20 h-20 bg-red-50 text-brand rounded-3xl flex items-center justify-center text-4xl mx-auto mb-8 transition-transform group-hover:rotate-12 group-hover:scale-110 shadow-sm">
-                            <i :class="val.icon"></i>
-                        </div>
-                        <h3 class="text-2xl font-bold mb-4">{{ val.title }}</h3>
-                        <p class="text-gray-500 leading-relaxed">{{ val.desc }}</p>
-                    </div>
-                </div>
-            </div>
-        </section>
     </main>
 
     <transition name="modal-fade">
-        <div v-if="isBrochureModalOpen" class="fixed inset-0 z-[200] flex items-center justify-center p-0 lg:p-10">
+        <div v-if="isBrochureModalOpen" class="fixed inset-0 z-[100] flex items-center justify-center p-4 md:p-10">
             <div class="absolute inset-0 bg-black/90 backdrop-blur-md" @click="isBrochureModalOpen = false"></div>
-            <div class="modal-content relative w-full h-full lg:max-w-6xl bg-white lg:rounded-2xl overflow-hidden shadow-2xl flex flex-col">
-                <div class="flex items-center justify-between px-4 lg:px-6 py-4 border-b border-gray-100 bg-white">
-                    <h3 class="text-base lg:text-xl font-bold text-gray-800 flex items-center gap-3 italic">
-                        <i class="fas fa-file-pdf text-red-600"></i> 在线预览：<span class="text-brand">{{ activeTitle }}</span>
+            <div class="modal-content relative w-full h-full max-w-6xl bg-white rounded-2xl overflow-hidden shadow-[0_0_50px_rgba(0,0,0,0.5)] flex flex-col">
+                <div class="flex items-center justify-between px-6 py-4 border-b border-gray-100 bg-white">
+                    <h3 class="text-xl font-bold text-gray-800 flex items-center gap-3">
+                        <i class="fas fa-file-pdf text-red-600"></i> 在线预览：{{ activeTitle }}
                     </h3>
-                    <button @click="isBrochureModalOpen = false" class="text-gray-400 hover:text-brand transition text-2xl p-2">
+                    <button @click="isBrochureModalOpen = false" class="w-10 h-10 flex items-center justify-center rounded-full hover:bg-gray-100 transition text-gray-500 text-xl">
                         <i class="fas fa-times"></i>
                     </button>
                 </div>
-                <div class="flex-1 bg-gray-200">
+                <div class="flex-1 bg-gray-200 relative overflow-hidden">
                     <embed :src="activePdfUrl" type="application/pdf" class="w-full h-full" />
                 </div>
             </div>
@@ -211,7 +233,7 @@
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-16 mb-20">
                 <div class="space-y-6">
                     <img src="https://www.eurasia-tours.fr/assets/logo-word-rNz8dsz6.jpg" 
-                         alt="Logo" class="h-10 w-auto object-contain opacity-90 mix-blend-screen">
+                         alt="Eurasia Tours Logo" class="h-10 w-auto object-contain opacity-90">
                     <p class="text-sm leading-relaxed">自2000年起，欧美亚旅游致力为全球旅客提供最纯正的亚洲深度旅行体验。我们不仅是旅行社，更是您探索东方的文化向导。</p>
                 </div>
                 <div>
@@ -244,6 +266,7 @@
                                 </div>
                             </transition>
                         </div>
+
                         <div class="relative group" @mouseenter="isFacebookQR = true" @mouseleave="isFacebookQR = false">
                             <a href="#" class="w-10 h-10 bg-gray-800 rounded-full flex items-center justify-center hover:bg-[#1877F2] transition">
                                 <i class="fab fa-facebook-f text-white"></i>
@@ -272,12 +295,11 @@
     const { createApp, ref } = Vue;
     createApp({
         setup() {
-            const isMobileMenuOpen = ref(false);
+            const isMobileMenuOpen = ref(false); // 必须在 return 中返回
             const isDestDropdownOpen = ref(false);
             const isWechatQR = ref(false);
             const isFacebookQR = ref(false);
             const isBrochureModalOpen = ref(false);
-            
             const activePdfUrl = ref('');
             const activeTitle = ref('');
             const currentHeroIndex = ref(0);
@@ -292,25 +314,49 @@
             const prevHero = () => { currentHeroIndex.value = (currentHeroIndex.value - 1 + heroImages.length) % heroImages.length; };
 
             const navLinks = [
-                { name: '首页', url: 'index.html', current: true },
-                { name: '目的地', url: 'index.html#tours', subLinks: ['中国', '越南', '柬埔寨', '泰国'] },
-                { name: '机票服务', url: 'tickets.html' },
+                { name: '首页', url: 'index.html' },
+                { 
+                    name: '目的地', 
+                    url: 'destination main.html', 
+                    subLinks: [
+                        { name: '中国', url: 'destination china.html' },
+                        { name: '日本', url: 'destination japan.html' },
+                        { name: '德国', url: 'destination product germany.html' },
+                        { name: '瑞士', url: 'destination product germany.html' }
+                    ] 
+                },
                 { name: '定制旅行', url: 'custom.html' },
+                { name: '机票服务', url: 'tickets.html' },
                 { name: '关于我们', url: 'about.html' },
                 { name: '联系我们', url: 'contact.html' },
                 { name: '博客', url: 'blog.html' }
             ];
 
             const tours = [
-                { title: '七彩云南：民族风情之旅', days: 12, price: 2490, image: 'https://pic.cyol.com/img/20231218/img_96a525bb03bff58004570098afdaa5c225_c.jpg', desc: '从元阳哈尼梯田的晨曦到香格里拉的雪山圣境，穿越多元文化交汇的彩云之南。' },
-                { title: '传奇丝绸之路：大漠与绿洲', days: 15, price: 2890, image: 'https://wy-static.wenxiaobai.com/aigc-online/delogo_adc0d0f3-160d-4eab-b60a-0a09c4bfcb17.webp?ratioWH=1.7777777777777777&type=opt', desc: '沿着千年古道，从古都西安出发，一路向西直至喀什，探寻文明交融的奇迹。' },
-                { title: '经典中国：紫禁城与魔都', days: 10, price: 1990, image: 'https://images.unsplash.com/photo-1508804185872-d7badad00f7d?q=80&w=1000', desc: '北京、西安、上海三城连线，初次探索中国历史底蕴与现代繁华的最佳首选。' }
-            ];
-
-            const brochures = [
-                { type: 'china', title: '大美中国篇', img: 'https://p3-pc-sign.douyinpic.com/tos-cn-i-0813/owIAgEjenw1QAEB7FeyPoALsoAeGzOABAJwUUE~tplv-dy-aweme-images:q75.webp?biz_tag=aweme_images&from=327834062&lk3s=138a59ce&s=PackSourceEnum_SEARCH&sc=image&se=false&x-expires=1770408000&x-signature=oWDCo6INaxLfPlPzyixDudvhgvw%3D', color: '#b91c1c' },
-                { type: 'vietnam', title: '醉美越南篇', img: 'https://images.unsplash.com/photo-1528127269322-539801943592?q=80&w=2070', color: '#1e40af' },
-                { type: 'global', title: '2026全年团期', img: 'https://img.freepik.com/free-photo/women-tourists-holding-man-s-hand-leading-him-kaohsiung-s-famous-tourist-attractions-taiwan_335224-629.jpg?semt=ais_hybrid&w=740&q=80', color: '#1f2937' }
+                { 
+                    title: '帝国荣光：皇朝历史深度游', 
+                    days: 16, 
+                    price: '2 654 €', 
+                    image: 'https://img.peapix.com/9fcccb61b21f45c6baf66428a6a0609a_1280.jpg', 
+                    desc: '从魔都上海到帝都北京，途经西安与桂林，完美融合了现代繁华与皇朝遗韵。',
+                    url: 'destination product china.html'
+                },
+                { 
+                    title: '日本奇迹与阿尔卑斯山之旅', 
+                    days: 13, 
+                    price: '4 450 €', 
+                    image: 'https://www.agoda.com/wp-content/uploads/2024/07/Kiyomizu-dera-Temple-Kyoto-featured.jpg', 
+                    desc: '一次穿越日本历史与自然的奇迹之旅：从神圣的信贵山宿坊体验，到阿尔卑斯山脚下的古老村落。',
+                    url: 'destination product japan.html'
+                },
+                { 
+                    title: '德国与瑞士双重魅力', 
+                    days: 10, 
+                    price: '2 988 $', 
+                    image: 'https://articleimage.ecentime.com/240228gD1bus.png', 
+                    desc: '一次深入欧洲心脏的旅行，从德国的历史古堡到瑞士的雪山湖泊，感受双重国度的极致魅力。',
+                    url: 'destination product germany.html'
+                }
             ];
 
             const values = [
@@ -321,22 +367,29 @@
 
             const openBrochure = (type) => {
                 if(type === 'china') {
-                    activePdfUrl.value = 'https://www2.maisonsduvoyage.com/wordpress/wp-content/uploads/2021/07/Catalogue_Chine.pdf';
+                    activePdfUrl.value = 'https://drive.google.com/file/d/1pFXCZ2slnz29_T6IQcuqKWGma_lysc8G/preview';
                     activeTitle.value = '大美中国篇';
+                    isBrochureModalOpen.value = true;
                 } else if(type === 'vietnam') {
-                    activePdfUrl.value = 'https://circuitvietnam.com/hinhanh/sanpham/Voyage%20au%20Vietnam%20en%2021%20jours.pdf';
+                    activePdfUrl.value = 'https://drive.google.com/file/d/1ub6sBCkzofgi1jHvneThb_RxbOd3-GUF/preview';
                     activeTitle.value = '醉美越南篇';
+                    isBrochureModalOpen.value = true;
                 } else {
-                    activePdfUrl.value = 'https://www.hkmiramartravel.com/Tour/PDF/CKCC08_JUL.pdf';
+                    activePdfUrl.value = 'https://drive.google.com/file/d/1goXPo_cjuQEAkMOCQIiX7PTpb0A9rLG8/preview'; 
                     activeTitle.value = '2026全年团期';
+                    isBrochureModalOpen.value = true;
                 }
-                isBrochureModalOpen.value = true;
             };
 
+            const goToProduct = (url) => {
+                window.location.href = url;
+            };
+
+            // 修复：将 isMobileMenuOpen 添加到返回对象中
             return { 
-                isMobileMenuOpen, isDestDropdownOpen, isWechatQR, isFacebookQR, isBrochureModalOpen, 
-                activePdfUrl, activeTitle, currentHeroIndex, heroImages, 
-                nextHero, prevHero, navLinks, tours, brochures, values, openBrochure 
+                isMobileMenuOpen, // 关键修复
+                isDestDropdownOpen, isWechatQR, isFacebookQR, isBrochureModalOpen, activePdfUrl, activeTitle,
+                currentHeroIndex, heroImages, nextHero, prevHero, navLinks, tours, values, openBrochure, goToProduct
             }
         }
     }).mount('#app');

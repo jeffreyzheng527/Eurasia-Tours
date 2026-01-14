@@ -1,0 +1,538 @@
+<!DOCTYPE html>
+<html lang="zh-CN" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>中国探索之旅 - Eurasia Tours 欧美亚旅游</title>
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/vue@3/dist/vue.global.prod.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;500;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+    
+    <style>
+        body { font-family: 'Noto Sans SC', sans-serif; }
+        h1, h2, h3 { font-family: 'Playfair Display', 'Noto Sans SC', serif; }
+        .text-brand { color: #b91c1c; }
+        .bg-brand { background-color: #b91c1c; }
+        .text-brand-dark { color: #991b1b; }
+        .bg-brand-dark { background-color: #991b1b; }
+        
+        .nav-link-spacing { letter-spacing: 0.1em; }
+
+        /* 移动端菜单切换动画 */
+        .mobile-menu-enter-active, .mobile-menu-leave-active { transition: all 0.3s ease; }
+        .mobile-menu-enter-from, .mobile-menu-leave-to { opacity: 0; transform: translateY(-10px); }
+
+        .dropdown-enter-active { transition: all 0.3s ease-out; }
+        .dropdown-leave-active { transition: all 0.2s ease-in; }
+        .dropdown-enter-from, .dropdown-leave-to { opacity: 0; transform: translateY(12px) scale(0.98); }
+
+        /* 二维码动画 */
+        .qr-fade-enter-active, .qr-fade-leave-active { transition: all 0.3s ease-out; }
+        .qr-fade-enter-from, .qr-fade-leave-to { opacity: 0; transform: translateY(10px); }
+        
+        /* 列表项动画 */
+        .list-enter-active, .list-leave-active { transition: all 0.5s ease; }
+        .list-enter-from, .list-leave-to { opacity: 0; transform: translateY(30px); }
+
+        /* 自定义下拉框箭头 */
+        .custom-select {
+            -webkit-appearance: none;
+            -moz-appearance: none;
+            appearance: none;
+            background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%236b7280' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e");
+            background-repeat: no-repeat;
+            background-position: right 0.5rem center;
+            background-size: 1em;
+        }
+    </style>
+</head>
+<body class="bg-gray-50 text-gray-800 antialiased">
+
+<div id="app">
+    <header class="fixed w-full top-0 z-[100] bg-white/95 backdrop-blur-md shadow-sm border-b border-gray-100">
+        <div class="container mx-auto px-4">
+            <div class="flex flex-col lg:flex-row items-center justify-between py-2 lg:h-24">
+                <div class="flex items-center justify-between w-full lg:w-auto">
+                    <a href="index.html" class="flex items-center group">
+                        <img src="https://www.eurasia-tours.fr/assets/logo-word-rNz8dsz6.jpg" 
+                             alt="Logo" class="h-10 md:h-12 w-auto object-contain transition-transform group-hover:scale-105 mix-blend-multiply">
+                    </a>
+                    <button class="lg:hidden relative z-50 text-2xl p-2 text-gray-700 focus:outline-none cursor-pointer" @click="isMobileMenuOpen = !isMobileMenuOpen">
+                        <i class="fas" :class="isMobileMenuOpen ? 'fa-times' : 'fa-bars'"></i>
+                    </button>
+                </div>
+
+                <nav class="hidden lg:flex flex-1 items-center justify-around ml-12 max-w-5xl">
+                    <div v-for="link in navLinks" :key="link.name" class="relative group py-8"
+                         @mouseenter="link.name === '目的地' ? isDestDropdownOpen = true : null"
+                         @mouseleave="isDestDropdownOpen = false">
+                        <a :href="link.url" 
+                           :class="['nav-link-spacing relative py-3 px-2 text-sm xl:text-[15px] font-bold uppercase transition-all flex items-center gap-1',
+                           link.current ? 'text-brand' : 'text-gray-700 hover:text-brand']">
+                            {{ link.name }}
+                            <i v-if="link.subLinks" class="fas fa-angle-down text-xs transition-transform duration-300" :class="{'rotate-180': link.name === '目的地' && isDestDropdownOpen}"></i>
+                            <span :class="['absolute bottom-1 left-0 h-0.5 bg-brand transition-all duration-300 group-hover:w-full', link.current ? 'w-full' : 'w-0']"></span>
+                        </a>
+                        <transition name="dropdown">
+                            <div v-if="link.name === '目的地' && isDestDropdownOpen" 
+                                 class="absolute top-full left-1/2 -translate-x-1/2 w-[220px] bg-white shadow-[0_20px_50px_rgba(0,0,0,0.15)] rounded-xl border border-gray-100 p-3 overflow-hidden mt-[-5px]">
+                                <div class="px-4 pb-2 mb-2 border-b border-gray-50 text-[10px] uppercase tracking-[0.2em] text-gray-400 font-bold">热门国家</div>
+                                <ul class="space-y-1">
+                                    <li v-for="sub in link.subLinks" :key="sub.name">
+                                        <a :href="sub.url" class="flex items-center gap-3 px-4 py-3 text-base font-medium text-gray-700 hover:bg-red-50 hover:text-brand rounded-lg transition-all group/item border-l-2 border-transparent hover:border-brand">
+                                            <i class="fas fa-map-pin text-[10px] text-brand opacity-0 group-hover/item:opacity-100 transition-opacity duration-300"></i>
+                                            {{ sub.name }}
+                                        </a>
+                                    </li>
+                                </ul>
+                                <div class="mt-3 pt-2 border-t border-gray-50">
+                                    <a href="destination main.html" class="flex items-center justify-center gap-2 px-4 py-2 text-[13px] font-bold text-brand hover:underline">浏览所有目的地 <i class="fas fa-arrow-right text-[10px]"></i></a>
+                                </div>
+                            </div>
+                        </transition>
+                    </div>
+                </nav>
+            </div>
+        </div>
+
+        <transition name="mobile-menu">
+            <nav v-if="isMobileMenuOpen" class="lg:hidden absolute top-full left-0 w-full bg-white border-t border-gray-100 py-6 pb-10 shadow-xl overflow-y-auto max-h-[80vh]">
+                <div class="flex flex-col items-center gap-6">
+                    <a v-for="link in navLinks" :key="link.name" :href="link.url"
+                       class="text-xl font-bold py-2 uppercase tracking-widest text-gray-800 hover:text-brand transition"
+                       @click="isMobileMenuOpen = false">
+                       {{ link.name }}
+                    </a>
+                    <a href="contact.html" class="bg-brand text-white px-10 py-3 rounded-full font-bold shadow-lg mt-4" @click="isMobileMenuOpen = false">立即咨询</a>
+                </div>
+            </nav>
+        </transition>
+    </header>
+
+    <main class="pt-24 min-h-screen">
+        <section class="relative h-[50vh] min-h-[400px] flex items-center justify-center overflow-hidden">
+            <img src="https://images.unsplash.com/photo-1508804185872-d7badad00f7d?q=80&w=2000&auto=format&fit=crop" class="absolute inset-0 w-full h-full object-cover">
+            <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-black/30"></div>
+            <div class="relative z-10 container mx-auto px-4 text-center md:text-left mt-10">
+                <div class="inline-flex items-center gap-2 text-white/80 text-sm mb-4 bg-black/30 px-4 py-1 rounded-full backdrop-blur-sm">
+                    <a href="index.html" class="hover:text-white transition">首页</a> <i class="fas fa-chevron-right text-[10px]"></i>
+                    <a href="destinations.html" class="hover:text-white transition">目的地</a> <i class="fas fa-chevron-right text-[10px]"></i>
+                    <span class="text-white font-bold">中国</span>
+                </div>
+                <h1 class="text-5xl lg:text-7xl font-bold text-white mb-4 font-serif">中国 <span class="text-2xl lg:text-3xl font-light opacity-80 block md:inline md:ml-4">China</span></h1>
+                <p class="text-lg lg:text-xl text-gray-200 max-w-2xl font-light leading-relaxed">
+                    五千年的文明画卷，从巍峨长城到江南水乡，<br>体验东方古国的壮丽山河与人文精髓。
+                </p>
+            </div>
+        </section>
+
+        <section class="py-12 bg-gray-50" id="tour-list">
+            <div class="container mx-auto px-4">
+                
+                <div class="sticky top-24 z-40 bg-white rounded-xl shadow-lg border border-gray-100 p-3 mb-10 transition-all duration-300">
+                    <div class="flex flex-col md:flex-row items-center justify-between gap-4">
+                        <div class="flex flex-wrap items-center gap-3 w-full md:w-auto justify-center md:justify-start">
+                            <span class="text-sm font-bold text-gray-400 mr-2 uppercase tracking-wider hidden lg:inline">排序:</span>
+                            
+                            <button @click="resetToDefault" 
+                                :class="['px-4 py-2 rounded-lg text-sm font-bold transition whitespace-nowrap border', 
+                                currentSort === 'default' ? 'bg-brand text-white border-brand shadow-md' : 'bg-white text-gray-600 border-transparent hover:bg-gray-50']">
+                                综合推荐
+                            </button>
+
+                            <button @click="setSort('sales')" 
+                                :class="['px-4 py-2 rounded-lg text-sm font-bold transition whitespace-nowrap flex items-center gap-1 border', 
+                                currentSort === 'sales' ? 'bg-brand text-white border-brand shadow-md' : 'bg-white text-gray-600 border-transparent hover:bg-gray-50']">
+                                销量优先 <i class="fas fa-fire text-xs"></i>
+                            </button>
+
+                            <div class="relative group">
+                                <select v-model="priceSortVal" @change="handlePriceChange"
+                                    :class="['custom-select pl-4 pr-10 py-2 rounded-lg text-sm font-bold border transition cursor-pointer focus:outline-none focus:ring-1 focus:ring-brand',
+                                    currentSort.includes('price') ? 'bg-red-50 text-brand border-brand' : 'bg-gray-100 text-gray-600 border-transparent hover:bg-gray-200']">
+                                    <option value="" disabled selected>按价格排序</option>
+                                    <option value="price_asc">价格：从低到高</option>
+                                    <option value="price_desc">价格：从高到低</option>
+                                </select>
+                            </div>
+
+                            <div class="relative group">
+                                <select v-model="daysSortVal" @change="handleDaysChange"
+                                    :class="['custom-select pl-4 pr-10 py-2 rounded-lg text-sm font-bold border transition cursor-pointer focus:outline-none focus:ring-1 focus:ring-brand',
+                                    currentSort.includes('days') ? 'bg-red-50 text-brand border-brand' : 'bg-gray-100 text-gray-600 border-transparent hover:bg-gray-200']">
+                                    <option value="" disabled selected>按天数排序</option>
+                                    <option value="days_desc">天数：从长到短</option>
+                                    <option value="days_asc">天数：从短到长</option>
+                                </select>
+                            </div>
+                        </div>
+                        
+                        <div class="hidden lg:block text-sm text-gray-500 font-medium whitespace-nowrap">
+                            共找到 <span class="text-brand font-bold">{{ sortedTours.length }}</span> 条精品线路
+                        </div>
+                    </div>
+                </div>
+
+                <transition-group name="list" tag="div" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
+                    <div v-for="tour in sortedTours" :key="tour.id" 
+                         @click="goToProduct(tour.url)"
+                         :class="['group bg-white rounded-2xl shadow-sm hover:shadow-2xl hover:-translate-y-1 transition-all duration-500 border border-gray-100 overflow-hidden flex flex-col h-full', tour.url ? 'cursor-pointer' : '']">
+                        
+                        <div class="relative aspect-[4/3] overflow-hidden bg-gray-100">
+                            <img :src="tour.image" :alt="tour.title" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110">
+                            <div class="absolute top-4 left-4 flex flex-col gap-2">
+                                <span v-if="tour.isHot" class="bg-red-600 text-white text-xs font-bold px-3 py-1 rounded-full shadow-lg"><i class="fas fa-fire mr-1"></i> 热销</span>
+                                <span v-if="tour.tag" class="bg-black/60 backdrop-blur-md text-white text-xs font-bold px-3 py-1 rounded-full">{{ tour.tag }}</span>
+                            </div>
+                            <div class="absolute bottom-0 left-0 w-full h-1/2 bg-gradient-to-t from-black/60 to-transparent"></div>
+                            <div class="absolute bottom-4 right-4 text-white font-bold text-sm bg-black/40 backdrop-blur px-3 py-1 rounded-lg border border-white/20">
+                                <i class="far fa-clock mr-1"></i> {{ tour.days }} 天
+                            </div>
+                        </div>
+                        
+                        <div class="p-5 flex-1 flex flex-col">
+                            <div class="mb-1 text-xs text-gray-400 font-bold uppercase tracking-wider">{{ tour.engName }}</div>
+                            <h3 class="text-xl font-bold text-gray-800 mb-3 group-hover:text-brand transition-colors line-clamp-2 font-serif min-h-[3.5rem]">{{ tour.title }}</h3>
+                            
+                            <div class="space-y-2 mb-6 flex-1">
+                                <div v-for="(point, idx) in tour.highlights" :key="idx" class="flex items-start gap-2 text-xs text-gray-600">
+                                    <i class="fas fa-check text-brand/60 mt-0.5"></i>
+                                    <span class="line-clamp-1">{{ point }}</span>
+                                </div>
+                            </div>
+
+                            <div class="pt-4 border-t border-gray-100 flex items-end justify-between mt-auto">
+                                <div>
+                                    <div class="text-xs text-gray-400 mb-1">销量 {{ tour.sales }}+</div>
+                                    <div class="flex items-baseline gap-1">
+                                        <span class="text-xs text-brand font-bold">€</span>
+                                        <span class="text-2xl font-bold text-brand">{{ tour.price }}</span>
+                                        <span class="text-xs text-gray-400">起</span>
+                                    </div>
+                                </div>
+                                <button class="w-10 h-10 rounded-full bg-gray-100 text-gray-600 flex items-center justify-center group-hover:bg-brand group-hover:text-white transition-colors">
+                                    <i class="fas fa-arrow-right transform -rotate-45 group-hover:rotate-0 transition-transform duration-300"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </transition-group>
+
+                <div class="mt-16 text-center">
+                    <p class="text-gray-400 text-sm mb-4">没有更多线路了</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="py-20 bg-gradient-to-b from-white to-gray-50 border-t border-gray-100">
+            <div class="container mx-auto px-4 text-center">
+                <div class="w-16 h-1 bg-brand mx-auto mb-8 rounded-full"></div>
+                <h2 class="text-3xl lg:text-4xl font-bold mb-4 font-serif text-gray-800">没找到心仪的路线？</h2>
+                <p class="text-lg text-gray-500 mb-10 max-w-2xl mx-auto leading-relaxed">
+                    每一位旅行者都是独一无二的。<br>
+                    告诉我们您的想法，我们的中国旅行专家将为您量身打造专属行程。
+                </p>
+                <a href="custom.html" class="inline-flex items-center gap-3 bg-brand hover:bg-red-800 text-white px-10 py-4 rounded-full font-bold shadow-xl shadow-red-900/10 transition-all transform hover:-translate-y-1">
+                    <i class="fas fa-pen-fancy"></i> 开启免费私人定制
+                </a>
+            </div>
+        </section>
+    </main>
+
+    <footer class="bg-gray-900 text-gray-400 pt-20 pb-10 border-t-8 border-brand">
+        <div class="container mx-auto px-4">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-16 mb-20">
+                <div class="space-y-6">
+                    <img src="https://www.eurasia-tours.fr/assets/logo-word-rNz8dsz6.jpg" 
+                         alt="Logo" class="h-10 w-auto object-contain opacity-90 mix-blend-screen">
+                    <p class="text-sm leading-relaxed">自2000年起，欧美亚旅游致力为全球旅客提供最纯正的亚洲深度旅行体验。我们不仅是旅行社，更是您探索东方的文化向导。</p>
+                </div>
+                <div>
+                    <h4 class="text-white font-bold text-lg mb-8 flex items-center gap-3"><span class="w-1 h-5 bg-brand"></span> 资质保障</h4>
+                    <ul class="space-y-4 text-sm text-gray-400">
+                        <li class="flex items-center gap-3"><i class="fas fa-check-circle text-brand"></i> APST 法国旅游保障协会成员</li>
+                        <li class="flex items-center gap-3"><i class="fas fa-check-circle text-brand"></i> IATA 国际航空运输协会认证</li>
+                        <li class="flex items-center gap-3"><i class="fas fa-shield-alt text-brand"></i> 包含 RCP 专业商业责任险</li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="text-white font-bold text-lg mb-8 flex items-center gap-3"><span class="w-1 h-5 bg-brand"></span> 联系我们</h4>
+                    <ul class="space-y-4 text-sm text-gray-400">
+                        <li class="flex items-start gap-3"><i class="fas fa-map-marker-alt text-brand mt-1"></i> 30 Rue Ernest Renan, 75015 Paris</li>
+                        <li class="flex items-center gap-3"><i class="fas fa-phone-alt text-brand"></i> 01 56 69 12 80</li>
+                        <li class="flex items-center gap-3"><i class="fas fa-envelope text-brand"></i> contact@eurasiatours.fr</li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="text-white font-bold text-lg mb-8 flex items-center gap-3"><span class="w-1 h-5 bg-brand"></span> 关注 & 支付</h4>
+                    <div class="flex gap-4 mb-8">
+                        <div class="relative group" @mouseenter="isWechatQR = true" @mouseleave="isWechatQR = false">
+                            <a href="#" class="w-10 h-10 bg-gray-800 rounded-full flex items-center justify-center hover:bg-[#07C160] transition">
+                                <i class="fab fa-weixin text-white"></i>
+                            </a>
+                            <transition name="qr-fade">
+                                <div v-if="isWechatQR" class="absolute bottom-12 left-1/2 -translate-x-1/2 bg-white p-2 rounded-lg shadow-2xl z-50 w-32 border border-gray-100">
+                                    <img src="https://www.eurasia-tours.fr/assets/wechat-account-VZcww6ek.jpg" alt="WeChat QR" class="w-full h-auto">
+                                    <p class="text-[10px] text-gray-500 text-center mt-1 font-sans">扫码关注微信</p>
+                                </div>
+                            </transition>
+                        </div>
+                        <div class="relative group" @mouseenter="isFacebookQR = true" @mouseleave="isFacebookQR = false">
+                            <a href="#" class="w-10 h-10 bg-gray-800 rounded-full flex items-center justify-center hover:bg-[#1877F2] transition">
+                                <i class="fab fa-facebook-f text-white"></i>
+                            </a>
+                            <transition name="qr-fade">
+                                <div v-if="isFacebookQR" class="absolute bottom-12 left-1/2 -translate-x-1/2 bg-white p-2 rounded-lg shadow-2xl z-50 w-32 border border-gray-100">
+                                    <img src="https://www.eurasia-tours.fr/assets/3-Bjf7LFHD.png" alt="Facebook QR" class="w-full h-auto">
+                                    <p class="text-[10px] text-gray-500 text-center mt-1 font-sans">关注我们的Facebook</p>
+                                </div>
+                            </transition>
+                        </div>
+                    </div>
+                    <div class="flex gap-4 text-3xl opacity-30">
+                        <i class="fab fa-cc-visa"></i><i class="fab fa-cc-mastercard"></i><i class="fab fa-cc-amex"></i>
+                    </div>
+                </div>
+            </div>
+            <div class="border-t border-gray-800 pt-10 text-center text-xs tracking-widest uppercase">
+                © 2026 EURASIA TOURS 欧美亚旅游 · 版权所有
+            </div>
+        </div>
+    </footer>
+</div>
+
+<script>
+    const { createApp, ref, computed } = Vue;
+    createApp({
+        setup() {
+            // UI State
+            const isMobileMenuOpen = ref(false);
+            const isDestDropdownOpen = ref(false);
+            const isWechatQR = ref(false);
+            const isFacebookQR = ref(false);
+            
+            // Sorting State
+            const currentSort = ref('default'); 
+            const priceSortVal = ref(""); 
+            const daysSortVal = ref("");
+
+            // Navigation (与 Index.html 完全一致，顺序：定制 -> 机票)
+            const navLinks = [
+                { name: '首页', url: 'index.html', current: false },
+                { 
+                    name: '目的地', 
+                    url: 'destination main.html', 
+                    current: true, // 保持当前页面高亮
+                    subLinks: [
+                        { name: '中国', url: 'destination china.html' },
+                        { name: '日本', url: 'destination japan.html' },
+                        { name: '德国', url: 'destination product germany.html' },
+                        { name: '瑞士', url: 'destination product germany.html' }
+                    ] 
+                },
+                { name: '定制旅行', url: 'custom.html' }, // 定制在前
+                { name: '机票服务', url: 'tickets.html' }, // 机票在后
+                { name: '关于我们', url: 'about.html' },
+                { name: '联系我们', url: 'contact.html' },
+                { name: '博客', url: 'blog.html' }
+            ];
+
+            // 10 Tours Data 
+            const rawTours = [
+                { 
+                    id: 1, 
+                    // 修正：帝国荣光 放在数组第一个，并添加 url
+                    title: '帝国荣光：皇朝历史深度游', 
+                    engName: 'Chine Impériale',
+                    price: 2350, 
+                    days: 14, 
+                    sales: 150,
+                    isHot: true,
+                    tag: '深度历史',
+                    image: 'https://images.unsplash.com/photo-1599571234909-29ed5d1321d6?q=80&w=2070', 
+                    highlights: ['洛阳龙门石窟', '平遥古城体验', '五台山佛教圣地'],
+                    url: 'destination product china.html' // 交互链接
+                },
+                { 
+                    id: 2, 
+                    title: '经典中国：精华全景巡礼', 
+                    engName: 'Chine Essentielle',
+                    price: 1890, 
+                    days: 10, 
+                    sales: 120,
+                    isHot: true,
+                    tag: '首选',
+                    image: 'https://images.unsplash.com/photo-1508804185872-d7badad00f7d?q=80&w=1000', 
+                    highlights: ['北京故宫与长城', '西安兵马俑', '上海外滩夜景']
+                },
+                { 
+                    id: 3, 
+                    title: '七彩云南：云岭之南秘境', 
+                    engName: 'Les Couleurs du Yunnan',
+                    price: 2190, 
+                    days: 12, 
+                    sales: 230,
+                    isHot: true,
+                    tag: '少数民族',
+                    image: 'https://rmrbcmsonline.peopleapp.com/upload/ueditor/image/20231217/a_920955103563739136.jpeg?x-oss-process=image/format,jpg/auto-orient,1',
+                    highlights: ['大理丽江双古城', '元阳哈尼梯田日出', '香格里拉普达措'] 
+                },
+                { 
+                    id: 4, 
+                    title: '圣山之巅：五岳问道之旅', 
+                    engName: 'Au Sommet des Montagnes Sacrées',
+                    price: 2580, 
+                    days: 15, 
+                    sales: 45,
+                    isHot: false,
+                    tag: '徒步摄影',
+                    image: 'https://pic.kekenet.com/2015/0626/47861435304671.jpg', 
+                    highlights: ['黄山云海奇观', '华山险峻栈道', '峨眉山金顶'] 
+                },
+                { 
+                    id: 5, 
+                    title: '千面贵州：山地公园与苗侗风情', 
+                    engName: 'Les Milles Visages des Guizhou',
+                    price: 1750, 
+                    days: 11, 
+                    sales: 92,
+                    isHot: false,
+                    tag: '民俗',
+                    image: 'https://res.klook.com/images/fl_lossy.progressive,q_65/c_fill,w_1295,h_673/w_80,x_15,y_15,g_south_west,l_Klook_water_br_trans_yhcmh3/activities/nskkm1wzbqrftsbztmdg/%E8%B4%B5%E5%B7%9E%E7%B2%BE%E5%8D%8E%E6%99%AF%E7%82%B93%E6%97%A5%E7%95%85%E6%B8%B8%EF%BC%88%E5%AF%BB%E5%B9%BD%E5%B0%8F%E4%B8%83%E5%AD%94%E7%A7%98%E5%A2%83+%E6%8E%A2%E8%AE%BF%E8%A5%BF%E6%B1%9F%E5%8D%83%E6%88%B7%E8%8B%97%E5%AF%A8+%E6%BC%AB%E6%AD%A5%E9%95%87%E8%BF%9C%E6%97%B6%E5%85%89%E5%B7%B7+%E6%8E%A2%E7%A7%98%E4%BA%BF%E4%B8%87%E5%B9%B4%E6%A2%B5%E5%87%80%E5%B1%B1%E5%A5%87%E8%A7%82+%E9%80%81%E6%99%AF%E5%8C%BA%E6%99%AF%E4%BA%A4%E8%BD%A6%E4%BF%9D%E9%99%A9+%E5%8F%AF%E9%80%89%E5%A4%A7%E5%B0%8F%E5%9B%A2+%E8%B4%B5%E9%98%B3%E5%BE%80%E8%BF%94%EF%BC%89.webp', 
+                    highlights: ['西江千户苗寨', '黄果树瀑布', '荔波小七孔'] 
+                },
+                { 
+                    id: 6, 
+                    title: '丝绸之路：穿越河西走廊', 
+                    engName: 'Route de la Soie',
+                    price: 2990, 
+                    days: 15, 
+                    sales: 150,
+                    isHot: true,
+                    tag: '史诗',
+                    image: 'https://wy-static.wenxiaobai.com/aigc-online/delogo_adc0d0f3-160d-4eab-b60a-0a09c4bfcb17.webp?ratioWH=1.7777777777777777&type=opt', 
+                    highlights: ['敦煌莫高窟', '张掖七彩丹霞', '嘉峪关城楼'] 
+                },
+                { 
+                    id: 7, 
+                    title: '雪域高原：西藏文化瑰宝', 
+                    engName: 'Joyaux du Tibet',
+                    price: 3200, 
+                    days: 10, 
+                    sales: 68,
+                    isHot: false,
+                    tag: '高原',
+                    image: 'https://intranet.travel4u.com.tw/eWeb_t4u/IMGDB/002294/002306/002435/00067254.JPG', 
+                    highlights: ['布达拉宫朝圣', '纳木错圣湖', '林芝桃花沟'] 
+                },
+                { 
+                    id: 8, 
+                    title: '食味四川：熊猫与川菜之旅', 
+                    engName: 'Saveurs du Sichuan',
+                    price: 1650, 
+                    days: 9, 
+                    sales: 310,
+                    isHot: true,
+                    tag: '美食',
+                    image: 'https://imgcdn.scol.com.cn/media/202401/202401291842027398.jpg', 
+                    highlights: ['大熊猫繁育基地', '乐山大佛', '正宗川菜烹饪课'] 
+                },
+                { 
+                    id: 9, 
+                    title: '岭南往事：从广州到客家土楼', 
+                    engName: 'Sur les Routes du Sud',
+                    price: 1880, 
+                    days: 11, 
+                    sales: 55,
+                    isHot: false,
+                    tag: '文化',
+                    image: 'https://lh5.googleusercontent.com/proxy/6p2OCSP6Mp4WZK0qlrIQNFLtSfwNgYNjkvL4FqkNqYSg4yrpqHBTagh2g6EErbAD1dTcQmcGfRdDr889MFQ8oCOyioqGWwf9nhkJa28bV8OXYOgx6-Q36P4_1_I2mz1g2v-hl-oT1lG5bxi52rp--tIZsE-r--iGtE32clm4Vqu5ETONBJKh5ONyBF8Gy4Iu_NBFtA', 
+                    highlights: ['广州早茶文化', '福建客家土楼群', '厦门鼓浪屿'] 
+                },
+                { 
+                    id: 10, 
+                    title: '边境秘境：广西与北越探险', 
+                    engName: 'Secrets du Nord Vietnam et du Guangxi',
+                    price: 2450, 
+                    days: 14, 
+                    sales: 76,
+                    isHot: false,
+                    tag: '跨国',
+                    image: 'https://www.nbtour.com/wp-content/uploads/2025/04/what-to-see-guangxi-china.jpg', 
+                    highlights: ['德天跨国瀑布', '桂林漓江山水', '龙脊梯田'] 
+                }
+            ];
+
+            // Sorting Logic Handlers
+            const resetToDefault = () => {
+                currentSort.value = 'default';
+                priceSortVal.value = "";
+                daysSortVal.value = "";
+            };
+
+            const setSort = (type) => {
+                currentSort.value = type;
+                priceSortVal.value = "";
+                daysSortVal.value = "";
+            };
+
+            const handlePriceChange = () => {
+                if (priceSortVal.value) {
+                    currentSort.value = priceSortVal.value;
+                    daysSortVal.value = ""; // Reset days selector
+                }
+            };
+
+            const handleDaysChange = () => {
+                if (daysSortVal.value) {
+                    currentSort.value = daysSortVal.value;
+                    priceSortVal.value = ""; // Reset price selector
+                }
+            };
+
+            // 跳转函数
+            const goToProduct = (url) => {
+                if (url) {
+                    window.location.href = url;
+                }
+            };
+
+            // Computed List
+            const sortedTours = computed(() => {
+                let tours = [...rawTours];
+                switch(currentSort.value) {
+                    case 'sales':
+                        return tours.sort((a, b) => b.sales - a.sales);
+                    case 'price_asc':
+                        return tours.sort((a, b) => a.price - b.price);
+                    case 'price_desc':
+                        return tours.sort((a, b) => b.price - a.price);
+                    case 'days_asc':
+                        return tours.sort((a, b) => a.days - b.days);
+                    case 'days_desc':
+                        return tours.sort((a, b) => b.days - a.days);
+                    default:
+                        // Default sort: 确保“帝国荣光”（id:1）始终在默认排序的第一位
+                        // 无论其他条件如何，id为1的总是排在前面
+                        return tours.sort((a, b) => {
+                             if(a.id === 1) return -1;
+                             if(b.id === 1) return 1;
+                             // 之后的按热度和销量排序
+                             return (b.isHot === a.isHot) ? 0 : b.isHot ? 1 : -1
+                        });
+                }
+            });
+
+            return { 
+                isMobileMenuOpen, isDestDropdownOpen, isWechatQR, isFacebookQR,
+                navLinks, sortedTours, currentSort, 
+                priceSortVal, daysSortVal, 
+                resetToDefault, setSort, handlePriceChange, handleDaysChange, goToProduct
+            }
+        }
+    }).mount('#app');
+</script>
+</body>
+</html>
