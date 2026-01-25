@@ -64,6 +64,10 @@
         @keyframes fadeIn { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
         .mobile-menu-enter-active, .mobile-menu-leave-active { transition: all 0.3s ease; }
         .mobile-menu-enter-from, .mobile-menu-leave-to { opacity: 0; transform: translateY(-20px); }
+        
+        /* 隐藏横向滚动条但保留功能 */
+        .scrollbar-hide::-webkit-scrollbar { display: none; }
+        .scrollbar-hide { -ms-overflow-style: none; scrollbar-width: none; }
     </style>
 </head>
 <body class="bg-gray-50 text-gray-800 antialiased">
@@ -220,6 +224,49 @@
                         </div>
                         <h4 class="font-bold text-gray-800 mb-1">04 开启旅程</h4>
                         <p class="text-xs text-gray-400">确认订单 精彩出发</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section v-if="!isSubmitted" class="py-20 bg-white overflow-hidden relative group/carousel">
+            <div class="container mx-auto px-4">
+                <div class="text-center mb-12">
+                    <span class="text-brand font-bold tracking-widest uppercase text-sm mb-2 block">Our Exclusive Projects</span>
+                    <h2 class="text-3xl md:text-4xl font-bold text-gray-800">过往定制及交流项目</h2>
+                    <div class="w-16 h-1 bg-brand mx-auto mt-6"></div>
+                </div>
+        
+                <div class="relative max-w-7xl mx-auto">
+                    <button @click="scrollPrev" class="hidden md:flex absolute left-0 top-[40%] -translate-x-4 z-20 w-12 h-12 bg-white rounded-full shadow-lg items-center justify-center text-brand hover:bg-brand hover:text-white transition-all transform hover:scale-110 focus:outline-none border border-gray-100">
+                        <i class="fas fa-chevron-left"></i>
+                    </button>
+                    <button @click="scrollNext" class="hidden md:flex absolute right-0 top-[40%] translate-x-4 z-20 w-12 h-12 bg-white rounded-full shadow-lg items-center justify-center text-brand hover:bg-brand hover:text-white transition-all transform hover:scale-110 focus:outline-none border border-gray-100">
+                        <i class="fas fa-chevron-right"></i>
+                    </button>
+                    
+                    <div ref="carouselRef" class="flex gap-6 overflow-x-auto snap-x snap-mandatory scrollbar-hide pb-10 px-4">
+                        <div v-for="(caseItem, index) in pastCases" :key="index" 
+                             class="w-[85%] md:w-[calc(33.333%-16px)] snap-center flex-shrink-0 group cursor-pointer">
+                            <div class="relative w-full aspect-[4/3] rounded-2xl overflow-hidden mb-6 shadow-md border border-gray-100">
+                                <img :src="caseItem.image" :alt="caseItem.title" 
+                                     class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-110">
+                                
+                                <div class="absolute top-4 left-4 flex gap-2 z-10">
+                                    <span class="bg-white/95 backdrop-blur-sm px-3 py-1 text-xs font-bold text-brand rounded-full uppercase tracking-wider shadow-sm">
+                                        {{ caseItem.tag }}
+                                    </span>
+                                </div>
+                            </div>
+                            <div class="text-center px-2">
+                                <h3 class="text-lg font-bold font-serif text-gray-800 mb-2 group-hover:text-brand transition-colors line-clamp-1">
+                                    {{ caseItem.title }}
+                                </h3>
+                                <p class="text-sm text-gray-500 leading-relaxed mb-3 h-10 line-clamp-2">
+                                    {{ caseItem.desc }}
+                                </p>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -534,6 +581,58 @@
             const attemptedSubmit = ref(false);
             const hotDestinations = ["瑞士", "法国", "意大利", "西班牙"];
             
+            // ================= Carousel Logic =================
+            const carouselRef = ref(null);
+            
+            // 案例数据更新为用户指定内容
+            const pastCases = ref([
+                {
+                    title: "法国大学生北京研学考察",
+                    tag: "教育交流",
+                    desc: "组织法国知名高校学生团深入北京，体验中国历史与现代发展的融合。",
+                    image: "images/custom/group-etudiante.jpg"
+                },
+                {
+                    title: "中法建交60周年卢浮宫特展",
+                    tag: "艺术展览",
+                    desc: "东方美学绽放卡鲁塞尔厅，以此献礼中法建交60周年的辉煌时刻。",
+                    image: "images/custom/exhibition-louvre.jpg"
+                },
+                {
+                    title: "拉封丹寓言剧组川渝行",
+                    tag: "戏剧巡演",
+                    desc: "协助法国剧组深入川渝，在国际戏剧节呈现经典寓言与巴蜀文化的对话。",
+                    image: "images/custom/opera-en-chengdu.jpg"
+                },
+                {
+                    title: "联合国教科文中医药大会",
+                    tag: "国际会议",
+                    desc: "在巴黎UNESCO总部，见证第二十届世界中医药盛会走向世界的里程碑。",
+                    image: "images/custom/medicale-chinoise-en-unesco.jpg"
+                },
+                {
+                    title: "大足石刻中法音乐交流会",
+                    tag: "非遗音乐",
+                    desc: "世界遗产见证下，法国古典乐与中国传统民乐的跨时空共鸣。",
+                    image: "images/custom/music-classic-chinoise.jpg"
+                }
+            ]);
+
+            const scrollLeft = () => {
+                if(carouselRef.value) {
+                    // 每次滑动约一个卡片的宽度
+                    const cardWidth = carouselRef.value.children[0].offsetWidth + 24; // width + gap
+                    carouselRef.value.scrollBy({ left: -cardWidth, behavior: 'smooth' });
+                }
+            };
+            const scrollRight = () => {
+                if(carouselRef.value) {
+                    const cardWidth = carouselRef.value.children[0].offsetWidth + 24;
+                    carouselRef.value.scrollBy({ left: cardWidth, behavior: 'smooth' });
+                }
+            };
+
+
             const formData = ref({
                 name: '',
                 countryCode: '+33',
@@ -671,7 +770,9 @@
                 formData, handleFormSubmit, phoneError, 
                 isInputFocused, hotDestinations, selectDest, handleBlur,
                 availableDestinations, isSubmitted, attemptedSubmit, resetForm,
-                isSending 
+                isSending,
+                // New export for past cases & carousel
+                pastCases, carouselRef, scrollPrev: scrollLeft, scrollNext: scrollRight
             }
         }
     }).mount('#app');
