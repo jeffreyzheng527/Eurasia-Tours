@@ -1,0 +1,1113 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The 3 Pearls of the Mekong: Laos, Cambodia & Vietnam - Eurasia Tours</title>
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/vue@3/dist/vue.global.prod.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;500;700&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
+    
+    <style>
+        body { font-family: 'Noto Sans SC', sans-serif; }
+        h1, h2, h3, h4, h5 { font-family: 'Playfair Display', serif; }
+        .text-brand { color: #b91c1c; }
+        .bg-brand { background-color: #b91c1c; }
+        .border-brand { border-color: #b91c1c; }
+        .hover-border-brand:hover { border-color: #b91c1c; }
+        .hover\:bg-brand:hover { background-color: #991b1b; }
+        
+        .nav-item {
+            font-family: 'Noto Sans SC', sans-serif;
+            font-size: 13px;
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 0.15em;
+            color: #374151;
+        }
+
+        /* Animations */
+        .mobile-menu-enter-active, .mobile-menu-leave-active { transition: opacity 0.3s ease, transform 0.3s ease; }
+        .mobile-menu-enter-from, .mobile-menu-leave-to { opacity: 0; transform: translateY(-10px); }
+        
+        .dropdown-enter-active { transition: all 0.3s ease-out; }
+        .dropdown-leave-active { transition: all 0.2s ease-in; }
+        .dropdown-enter-from, .dropdown-leave-to { opacity: 0; transform: translateY(10px); }
+        
+        .qr-fade-enter-active, .qr-fade-leave-active { transition: all 0.3s ease-out; }
+        .qr-fade-enter-from, .qr-fade-leave-to { opacity: 0; transform: translateY(10px); }
+
+        /* Carousel Fade */
+        .carousel-enter-active, .carousel-leave-active { transition: opacity 1s ease; }
+        .carousel-enter-from, .carousel-leave-to { opacity: 0; }
+
+        /* Timeline Line */
+        .timeline-line {
+            position: absolute;
+            left: 15px;
+            top: 40px;
+            bottom: 0;
+            width: 2px;
+            background-color: #e5e7eb;
+        }
+        .last-item .timeline-line { display: none; }
+        
+        /* Form Highlight Animation */
+        @keyframes highlightPulse {
+            0% { box-shadow: 0 0 0 0 rgba(185, 28, 28, 0); border-color: #e5e7eb; }
+            50% { box-shadow: 0 0 20px 0 rgba(185, 28, 28, 0.3); border-color: #b91c1c; background-color: #fff1f2; }
+            100% { box-shadow: 0 0 0 0 rgba(185, 28, 28, 0); border-color: #e5e7eb; background-color: white; }
+        }
+        .highlight-active { animation: highlightPulse 1.5s ease-in-out 2; }
+        
+        .input-error { 
+            border-color: #ef4444 !important; 
+            background-color: #fef2f2 !important; 
+            animation: shake 0.5s cubic-bezier(.36,.07,.19,.97) both;
+        }
+        
+        @keyframes shake {
+            10%, 90% { transform: translate3d(-1px, 0, 0); }
+            20%, 80% { transform: translate3d(2px, 0, 0); }
+            30%, 50%, 70% { transform: translate3d(-4px, 0, 0); }
+            40%, 60% { transform: translate3d(4px, 0, 0); }
+        }
+
+        .fade-in { animation: fadeIn 0.8s ease-out forwards; }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+        
+        /* Custom Scrollbar */
+        .custom-scrollbar {
+            scrollbar-width: thin;
+            scrollbar-color: #d1d5db transparent;
+        }
+        .custom-scrollbar::-webkit-scrollbar { width: 4px; }
+        .custom-scrollbar::-webkit-scrollbar-track { background: transparent; }
+        .custom-scrollbar::-webkit-scrollbar-thumb { background-color: #d1d5db; border-radius: 20px; }
+        .custom-scrollbar::-webkit-scrollbar-thumb:hover { background-color: #9ca3af; }
+
+        [v-cloak] { display: none; }
+    </style>
+</head>
+<body class="bg-gray-50 text-gray-800 antialiased">
+
+<div id="app" v-cloak>
+    <header class="fixed w-full top-0 z-[100] bg-white/95 backdrop-blur-md shadow-[0_2px_15px_rgba(0,0,0,0.05)] border-b border-gray-100 transition-all duration-300">
+        <div class="container mx-auto px-6 lg:px-12">
+            <div class="flex flex-col lg:flex-row items-center justify-between h-auto lg:h-24 py-3 lg:py-0">
+                
+                <div class="flex items-center justify-between w-full lg:w-auto">
+                    <a href="index-en.html" class="flex items-center group">
+                        <img src="https://www.eurasia-tours.fr/assets/logo-word-rNz8dsz6.jpg" 
+                             alt="Eurasia Tours Logo" class="h-10 lg:h-12 w-auto object-contain transition-transform group-hover:scale-105 mix-blend-multiply">
+                    </a>
+                    <button class="lg:hidden relative z-50 text-2xl p-2 text-gray-700 focus:outline-none cursor-pointer hover:text-brand transition" @click="isMobileMenuOpen = !isMobileMenuOpen">
+                        <i class="fas" :class="isMobileMenuOpen ? 'fa-times' : 'fa-bars'"></i>
+                    </button>
+                </div>
+
+                <nav class="hidden lg:flex flex-1 items-center justify-end pl-12 gap-10">
+                    <div v-for="link in navLinks" :key="link.name" class="relative group h-24 flex items-center"
+                         @mouseenter="link.name === 'Destinations' ? isDestDropdownOpen = true : null"
+                         @mouseleave="isDestDropdownOpen = false">
+                        
+                        <a :href="link.url" class="nav-item relative py-2 hover:text-brand transition-colors flex items-center gap-1 group" :class="{'text-brand': link.name === 'Destinations'}">
+                            {{ link.name }}
+                            <i v-if="link.subLinks" class="fas fa-chevron-down text-[9px] opacity-50 transition-transform duration-300 ml-1" :class="{'rotate-180': link.name === 'Destinations' && isDestDropdownOpen}"></i>
+                            <span class="absolute bottom-0 left-0 h-[2px] bg-brand transition-all duration-300 opacity-0 group-hover:opacity-100" :class="link.name === 'Destinations' ? 'w-full opacity-100' : 'w-0 group-hover:w-full'"></span>
+                        </a>
+
+                        <transition name="dropdown">
+                            <div v-if="link.name === 'Destinations' && isDestDropdownOpen" 
+                                 class="absolute top-[80%] left-1/2 -translate-x-1/2 w-[240px] bg-white shadow-[0_10px_40px_rgba(0,0,0,0.1)] rounded-sm border-t-2 border-brand p-0 overflow-hidden">
+                                <div class="px-6 py-3 bg-gray-50 border-b border-gray-100 text-[10px] uppercase tracking-[0.2em] text-gray-400 font-bold">Select Region</div>
+                                <ul class="py-2">
+                                    <li v-for="sub in link.subLinks" :key="sub.name">
+                                        <a :href="sub.url" class="flex items-center justify-between px-6 py-3 text-sm font-medium text-gray-600 hover:bg-gray-50 hover:text-brand transition-all group/item">
+                                            <span>{{ sub.name }}</span>
+                                            <i class="fas fa-arrow-right text-[10px] opacity-0 -translate-x-2 group-hover/item:opacity-100 group-hover/item:translate-x-0 transition-all text-brand"></i>
+                                        </a>
+                                    </li>
+                                </ul>
+                                <div class="bg-gray-50 p-3 text-center border-t border-gray-100">
+                                    <a href="destination-europe-en.html" class="text-[11px] font-bold uppercase tracking-widest text-brand hover:underline">All Destinations</a>
+                                </div>
+                            </div>
+                        </transition>
+                    </div>
+
+                    <div class="relative group h-24 flex items-center pl-6 ml-4 border-l border-gray-200"
+                         @mouseenter="isLangDropdownOpen = true"
+                         @mouseleave="isLangDropdownOpen = false">
+                        
+                        <a href="#" class="nav-item hover:text-brand transition-colors flex items-center gap-2">
+                            <i class="fas fa-globe text-gray-400 text-lg"></i>
+                            {{ currentLang }}
+                        </a>
+                        
+                        <transition name="dropdown">
+                            <div v-if="isLangDropdownOpen" 
+                                 class="absolute top-[80%] right-0 w-[160px] bg-white shadow-[0_10px_40px_rgba(0,0,0,0.1)] rounded-sm border-t-2 border-brand p-1">
+                                <ul class="space-y-0.5">
+                                    <li v-for="lang in ['中文', 'English', 'Française']" :key="lang">
+                                        <a href="#" @click.prevent="switchLang(lang)" 
+                                           class="flex items-center justify-between px-4 py-2.5 text-xs font-medium text-gray-600 hover:bg-gray-50 hover:text-brand transition-all"
+                                           :class="{'text-brand bg-red-50/50': currentLang === lang}">
+                                            {{ lang }}
+                                            <i v-if="currentLang === lang" class="fas fa-check text-[10px]"></i>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </transition>
+                    </div>
+                </nav>
+            </div>
+        </div>
+
+        <transition name="mobile-menu">
+            <nav v-if="isMobileMenuOpen" class="lg:hidden absolute top-full left-0 w-full bg-white border-t border-gray-100 py-8 shadow-2xl h-screen overflow-y-auto">
+                <div class="flex flex-col items-center gap-8 px-6">
+                    <a v-for="link in navLinks" :key="link.name" :href="link.url"
+                       class="text-lg font-medium uppercase tracking-[0.2em] text-gray-800 hover:text-brand transition"
+                       @click="isMobileMenuOpen = false">
+                       {{ link.name }}
+                    </a>
+                    
+                    <div class="w-16 h-px bg-gray-200 my-2"></div>
+
+                    <div class="flex flex-col items-center gap-4 w-full">
+                        <span class="text-xs text-gray-400 uppercase tracking-widest">Select Language</span>
+                        <div class="flex gap-3">
+                            <button @click="switchLang('中文')" class="px-5 py-2 rounded-full text-xs font-bold transition border" :class="currentLang === '中文' ? 'bg-brand text-white border-brand' : 'bg-white text-gray-600 border-gray-200'">中文</button>
+                            <button @click="switchLang('English')" class="px-5 py-2 rounded-full text-xs font-bold transition border" :class="currentLang === 'English' ? 'bg-brand text-white border-brand' : 'bg-white text-gray-600 border-gray-200'">EN</button>
+                            <button @click="switchLang('Française')" class="px-5 py-2 rounded-full text-xs font-bold transition border" :class="currentLang === 'Française' ? 'bg-brand text-white border-brand' : 'bg-white text-gray-600 border-gray-200'">FR</button>
+                        </div>
+                    </div>
+                </div>
+            </nav>
+        </transition>
+    </header>
+
+    <main class="pt-24 min-h-screen">
+        
+        <section class="relative h-[60vh] min-h-[500px] w-full overflow-hidden bg-gray-900 group">
+            <transition-group name="carousel">
+                <div v-for="(img, index) in heroImages" :key="img" 
+                     v-show="currentHeroIndex === index"
+                     class="absolute inset-0 w-full h-full will-change-opacity">
+                    <img :src="img" 
+                         alt="Hero Background" 
+                         class="w-full h-full object-cover opacity-90 transition-transform duration-[5000ms] ease-linear transform scale-105">
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-transparent"></div>
+                </div>
+            </transition-group>
+
+            <div class="absolute bottom-0 left-0 w-full z-20 pt-20 pb-10">
+                <div class="container mx-auto px-6 lg:px-12 flex flex-col md:flex-row items-end justify-between gap-6">
+                    <div class="text-white max-w-3xl">
+                        <div class="flex items-center gap-3 mb-3">
+                            <span class="bg-brand text-white text-xs font-bold px-3 py-1 rounded-full uppercase tracking-widest">Indochina</span>
+                            <span class="bg-white/20 backdrop-blur text-white text-xs font-bold px-3 py-1 rounded-full"><i class="far fa-clock mr-1"></i> 21 Days / 18 Nights</span>
+                        </div>
+                        <h1 class="text-4xl md:text-5xl lg:text-6xl font-bold font-serif mb-2 leading-tight">
+                            {{ tour.title }}
+                        </h1>
+                        <p class="text-xl md:text-2xl font-light opacity-90 font-serif italic">{{ tour.route }}</p>
+                    </div>
+                    
+                    <div class="hidden md:block text-right pb-2">
+                        <div class="text-gray-300 text-sm mb-1 font-medium uppercase tracking-widest">Price / Person (Excl. Flights)</div>
+                        <div class="flex items-baseline justify-end gap-1 mb-4">
+                            <span class="text-xl font-bold text-white/80 mr-1">from</span>
+                            <span class="text-2xl font-bold text-brand">€</span>
+                            <span class="text-5xl font-bold text-white shadow-black drop-shadow-lg">2,500</span>
+                        </div>
+                        <button @click="handleBookingScroll()" class="bg-brand text-white text-lg px-10 py-4 rounded-full font-bold shadow-[0_10px_20px_rgba(185,28,28,0.4)] hover:-translate-y-1 hover:shadow-2xl transition-all flex items-center gap-2">
+                            <span>Quote / Pre-booking</span>
+                            <i class="fas fa-arrow-right"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <div id="sticky-nav" class="sticky top-[80px] lg:top-[96px] z-40 bg-white/95 backdrop-blur shadow-md border-b border-gray-100 transition-all">
+            <div class="container mx-auto px-6 lg:px-12">
+                <div class="flex items-center justify-between overflow-x-auto scrollbar-hide">
+                    <ul class="flex items-center gap-6 md:gap-8 h-14 whitespace-nowrap">
+                        <li v-for="item in subMenu" :key="item.id">
+                            <a :href="'#' + item.id" 
+                               v-if="!item.hidden"
+                               class="text-sm font-bold uppercase tracking-wider py-4 border-b-2 border-transparent hover:text-brand hover:border-brand transition-colors block"
+                               :class="activeSection === item.id ? 'text-brand border-brand' : 'text-gray-500'">
+                                {{ item.name }}
+                            </a>
+                        </li>
+                    </ul>
+                    <div class="md:hidden pl-4 border-l border-gray-100 ml-4 py-2">
+                        <button @click="handleBookingScroll()" class="bg-brand text-white text-xs px-4 py-2 rounded-full font-bold whitespace-nowrap">
+                            Book
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="container mx-auto px-6 lg:px-12 py-12">
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-12">
+                
+                <div class="lg:col-span-8 space-y-12">
+                    
+                    <section id="dates" class="scroll-mt-40">
+                         <div class="flex items-center gap-3 mb-6">
+                            <h2 class="text-3xl font-bold text-gray-800">Dates & Prices</h2>
+                            <span class="bg-brand text-white text-xs font-bold px-2 py-1 rounded">2026</span>
+                        </div>
+                        
+                        <div class="bg-white rounded-2xl shadow-[0_8px_30px_rgba(0,0,0,0.04)] border border-gray-100 overflow-hidden">
+                            <div class="overflow-x-auto">
+                                <table class="w-full">
+                                    <thead class="bg-gray-50/50 border-b border-gray-100">
+                                        <tr>
+                                            <th class="py-5 pl-8 text-left text-xs font-bold text-gray-400 uppercase tracking-widest w-1/4">Dates (Depart - Arrive)</th>
+                                            <th class="py-5 text-left text-xs font-bold text-gray-400 uppercase tracking-widest">Price / Person</th>
+                                            <th class="py-5 text-left text-xs font-bold text-gray-400 uppercase tracking-widest hidden md:table-cell">Single Supplement</th>
+                                            <th class="py-5 text-center text-xs font-bold text-gray-400 uppercase tracking-widest">Status</th>
+                                            <th class="py-5 pr-8 text-right"></th>
+                                        </tr>
+                                    </thead>
+                                    <tbody class="divide-y divide-gray-50">
+                                        <tr v-for="date in tour.dates" :key="date.start" class="group hover:bg-red-50/10 transition-colors duration-300">
+                                            <td class="py-6 pl-8">
+                                                <div class="flex items-center gap-3">
+                                                    <div class="w-10 h-10 rounded-full bg-red-50 text-brand flex items-center justify-center flex-shrink-0">
+                                                        <i class="far fa-calendar-alt"></i>
+                                                    </div>
+                                                    <div class="flex flex-col">
+                                                        <span class="font-bold text-gray-800 text-sm md:text-base font-serif">{{ date.start }}</span>
+                                                        <span class="text-xs text-gray-400 font-medium">to {{ date.end }}</span>
+                                                    </div>
+                                                </div>
+                                            </td>
+                                            
+                                            <td class="py-6 align-middle">
+                                                <div class="flex flex-col">
+                                                    <span class="text-xl font-bold text-brand font-serif">{{ date.price }}</span>
+                                                    <span class="text-[10px] text-gray-400 uppercase tracking-wide">Excl. Flights</span>
+                                                </div>
+                                            </td>
+
+                                            <td class="py-6 align-middle hidden md:table-cell">
+                                                <span class="text-sm font-medium text-gray-500">+ {{ tour.singleSupplement }}</span>
+                                            </td>
+
+                                            <td class="py-6 align-middle text-center">
+                                                <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-bold bg-emerald-50 text-emerald-600 border border-emerald-100">
+                                                    <span class="w-1.5 h-1.5 rounded-full bg-emerald-500"></span>
+                                                    Confirmed
+                                                </span>
+                                            </td>
+
+                                            <td class="py-6 pr-8 text-right align-middle">
+                                                <button @click="handleBookingScroll(date.start)" 
+                                                        class="bg-gray-900 text-white text-sm px-6 py-2.5 rounded-full font-bold shadow-lg shadow-gray-200 hover:bg-brand hover:shadow-red-200 hover:-translate-y-0.5 transition-all duration-300">
+                                                    Book
+                                                </button>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                            <div class="bg-gray-50 px-6 py-3 text-[11px] text-gray-500 border-t border-gray-100 flex flex-wrap gap-4 items-center justify-between">
+                                <span class="flex items-center gap-2"><i class="fas fa-info-circle text-brand"></i> Guaranteed departures from 2 people. Group limited to 15 people.</span>
+                                <span class="hidden md:inline text-gray-400">* Price excludes international flights</span>
+                            </div>
+                        </div>
+                    </section>
+
+                    <section id="overview" class="scroll-mt-40 pt-8 border-t border-gray-100">
+                        <h2 class="text-2xl font-bold text-gray-800 mb-6 flex items-center gap-3">
+                            Tour Overview
+                        </h2>
+                        <div class="prose prose-lg text-gray-600 mb-8">
+                            <p class="italic text-gray-500 mb-6 border-l-4 border-brand pl-4">
+                                "An exceptional journey through Laos, Cambodia, and Vietnam, combining spectacular landscapes, iconic sites, and authentic encounters."
+                            </p>
+                            <p class="text-sm">
+                                Vientiane and Kuang Si Falls, Luang Prabang (UNESCO World Heritage), the temples of Angkor, Hanoi and Halong Bay, Hoi An, Hue, and the Mekong Delta for a complete immersion in the heart of Southeast Asia.
+                            </p>
+                        </div>
+                        
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                            <div v-for="(highlight, index) in tour.highlights" :key="index" class="bg-red-50 p-4 rounded-xl flex items-start gap-3 border border-transparent hover:border-red-100 transition-colors">
+                                <div class="w-8 h-8 rounded-full bg-white text-brand flex items-center justify-center flex-shrink-0 shadow-sm mt-1">
+                                    <i class="fas fa-check text-sm"></i>
+                                </div>
+                                <span class="font-medium text-gray-800">{{ highlight }}</span>
+                            </div>
+                        </div>
+                    </section>
+
+                    <section id="map" class="scroll-mt-40">
+                        <h2 class="text-2xl font-bold text-gray-800 mb-6 flex items-center gap-3">
+                            Itinerary Map
+                        </h2>
+                        <div class="bg-white p-2 rounded-2xl shadow-lg border border-gray-100 overflow-hidden">
+                            <img src="images/les-3-perles-du-mekong-laos-cambodge-vietnam/map.jpg" alt="Route Map" class="w-full h-auto object-cover rounded-xl hover:scale-[1.01] transition-transform duration-500">
+                        </div>
+                    </section>
+
+                    <section id="itinerary" class="scroll-mt-40">
+                        <div class="flex items-center justify-between mb-8">
+                            <h2 class="text-3xl font-bold text-gray-800">Detailed Itinerary</h2>
+                            <button @click="toggleAllDays" class="text-brand text-sm font-bold hover:underline px-3 py-1 rounded hover:bg-red-50 transition">
+                                {{ isAllExpanded ? 'Collapse All' : 'Expand All' }}
+                            </button>
+                        </div>
+
+                        <div class="relative space-y-8">
+                            <div v-for="(day, index) in tour.daysData" :key="index" 
+                                 class="relative pl-10 group" :class="{'last-item': index === tour.daysData.length - 1}">
+                                
+                                <div class="timeline-line"></div>
+                                
+                                <div class="absolute left-0 top-0 w-8 h-8 bg-brand text-white rounded-full flex items-center justify-center font-bold text-sm shadow-md z-10">
+                                    {{ day.day }}
+                                </div>
+
+                                <div class="bg-white border border-gray-100 rounded-2xl p-6 shadow-sm hover:shadow-md transition-shadow">
+                                    <div class="flex flex-col md:flex-row md:items-center justify-between gap-4 mb-4 cursor-pointer select-none" 
+                                         @click="toggleDay(index)">
+                                        <div>
+                                            <div class="text-xs font-bold text-gray-400 uppercase tracking-widest mb-1">
+                                                {{ day.transport }}
+                                            </div>
+                                            <h3 class="text-xl font-bold text-gray-800 group-hover:text-brand transition-colors">
+                                                {{ day.title }}
+                                            </h3>
+                                        </div>
+                                        <i class="fas fa-chevron-down text-gray-300 transition-transform duration-300" 
+                                           :class="{'rotate-180': day.isOpen}"></i>
+                                    </div>
+
+                                    <div v-show="day.isOpen" class="space-y-4 text-gray-600 leading-relaxed border-t border-gray-50 pt-4">
+                                        <div v-html="day.content"></div>
+                                        
+                                        <div class="mt-4 rounded-xl overflow-hidden h-48 md:h-64 w-full relative bg-gray-100 flex items-center justify-center group/img">
+                                            <img :src="day.image" class="w-full h-full object-cover transition-transform duration-700 group-hover/img:scale-105" alt="Day Image">
+                                        </div>
+                                        
+                                        <div class="flex flex-wrap gap-2 mt-4">
+                                            <div v-if="day.hotel" class="flex items-center gap-2 text-xs text-gray-500 bg-gray-50 px-3 py-2 rounded-lg">
+                                                <i class="fas fa-bed text-brand"></i>
+                                                <span class="font-bold">Accommodation:</span> {{ day.hotel }}
+                                            </div>
+                                            <div v-if="day.meals" class="flex items-center gap-2 text-xs text-gray-500 bg-gray-50 px-3 py-2 rounded-lg">
+                                                <i class="fas fa-utensils text-brand"></i>
+                                                <span class="font-bold">Meals:</span> {{ day.meals }}
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+                    
+                    <section id="includes" class="scroll-mt-40 grid grid-cols-1 md:grid-cols-2 gap-8">
+                        <div class="bg-green-50/50 p-6 rounded-2xl border border-green-100">
+                            <h3 class="font-bold text-green-800 mb-4 flex items-center gap-2">
+                                <i class="fas fa-check-circle"></i> The price includes
+                            </h3>
+                            <ul class="space-y-3">
+                                <li v-for="(item, i) in tour.includes" :key="i" class="flex items-start gap-3 text-sm text-gray-700">
+                                    <span class="w-1.5 h-1.5 bg-green-500 rounded-full mt-1.5 flex-shrink-0"></span>
+                                    <span>{{ item }}</span>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="bg-red-50/50 p-6 rounded-2xl border border-red-100">
+                            <h3 class="font-bold text-red-800 mb-4 flex items-center gap-2">
+                                <i class="fas fa-times-circle"></i> The price does not include
+                            </h3>
+                            <ul class="space-y-3">
+                                <li v-for="(item, i) in tour.excludes" :key="i" class="flex items-start gap-3 text-sm text-gray-700">
+                                    <span class="w-1.5 h-1.5 bg-red-400 rounded-full mt-1.5 flex-shrink-0"></span>
+                                    <span>{{ item }}</span>
+                                </li>
+                            </ul>
+                        </div>
+                    </section>
+                </div>
+
+                <div class="lg:col-span-4 relative">
+                    <div class="sticky top-28 max-h-[calc(100vh-130px)] overflow-y-auto custom-scrollbar pr-2 pb-4">
+                        <div id="contact" 
+                             :class="['bg-white rounded-2xl shadow-[0_20px_50px_rgba(0,0,0,0.1)] border p-5 relative overflow-hidden transition-all duration-300', formHighlight ? 'highlight-active border-brand' : 'border-gray-100']">
+                            
+                            <div class="absolute top-0 left-0 w-full h-2 bg-brand"></div>
+                            
+                            <div v-if="isSubmitted" class="py-10 text-center fade-in">
+                                <div class="w-16 h-16 bg-green-100 text-green-600 rounded-full flex items-center justify-center text-3xl mx-auto mb-4 animate-bounce">
+                                    <i class="fas fa-check-circle"></i>
+                                </div>
+                                <h3 class="text-xl font-bold text-gray-800 mb-3">Request Sent!</h3>
+                                <p class="text-xs text-gray-600 mb-6 leading-relaxed">
+                                    We will contact you within <span class="text-brand font-bold underline">24 hours</span>.
+                                </p>
+                                <button @click="resetForm" class="text-brand font-bold text-xs hover:underline flex items-center gap-2 mx-auto">
+                                    <i class="fas fa-redo-alt text-[10px]"></i> New Request
+                                </button>
+                            </div>
+
+                            <form v-else class="space-y-3" @submit.prevent="handleFormSubmit" novalidate>
+                                <div class="flex items-center justify-between">
+                                    <div>
+                                        <h3 class="text-xl font-bold font-serif mb-1">Start the Adventure</h3>
+                                        <p class="text-xs text-gray-400">Fill out the form, we will reply within 24h.</p>
+                                    </div>
+                                </div>
+
+                                <div class="grid grid-cols-2 gap-3">
+                                    <div>
+                                        <label class="block text-[10px] font-bold text-gray-500 mb-1 ml-1 uppercase">Name *</label>
+                                        <input type="text" v-model="formData.name" required placeholder="Your name"
+                                               :class="{'input-error': attemptedSubmit && !formData.name}"
+                                               class="w-full bg-gray-50 border border-gray-200 rounded-lg px-3 py-2 text-sm focus:outline-none focus:border-brand transition outline-none">
+                                    </div>
+                                    <div>
+                                        <label class="block text-[10px] font-bold text-gray-500 mb-1 ml-1 uppercase">Participants *</label>
+                                        <input type="number" v-model.number="formData.passengers" min="1" required
+                                               :class="{'input-error': attemptedSubmit && !formData.passengers}"
+                                               class="w-full bg-gray-50 border border-gray-200 rounded-lg px-3 py-2 text-sm focus:outline-none focus:border-brand transition outline-none">
+                                    </div>
+                                </div>
+
+                                <div>
+                                    <label class="block text-[10px] font-bold text-gray-500 mb-1 ml-1 uppercase">Phone *</label>
+                                    <div class="flex gap-2">
+                                        <div class="relative w-24 shrink-0">
+                                            <select v-model="formData.countryCode" class="w-full pl-2 pr-5 py-2 bg-gray-50 border border-gray-200 rounded-lg focus:outline-none focus:border-brand transition text-xs appearance-none h-full">
+                                                <option value="+33">🇫🇷 +33</option>
+                                                <option value="+86">🇨🇳 +86</option>
+                                                <option value="+852">🇭🇰 +852</option>
+                                                <option value="+44">🇬🇧 +44</option>
+                                                <option value="+1">🇺🇸 +1</option>
+                                            </select>
+                                            <i class="fas fa-chevron-down absolute right-2 top-1/2 -translate-y-1/2 text-gray-400 pointer-events-none text-[10px]"></i>
+                                        </div>
+                                        <input type="tel" v-model="formData.phone" required placeholder="Number"
+                                               :class="{'input-error': attemptedSubmit && (phoneError || !formData.phone)}"
+                                               class="flex-1 w-full bg-gray-50 border border-gray-200 rounded-lg px-3 py-2 text-sm focus:outline-none focus:border-brand transition outline-none">
+                                    </div>
+                                    <p v-if="attemptedSubmit && phoneError" class="text-red-600 text-[10px] ml-1 mt-1">{{ phoneError }}</p>
+                                </div>
+
+                                <div>
+                                    <label class="block text-[10px] font-bold text-gray-500 mb-1 ml-1 uppercase">Email *</label>
+                                    <input type="email" v-model="formData.email" required placeholder="example@email.com"
+                                           :class="{'input-error': attemptedSubmit && !formData.email}"
+                                           class="w-full bg-gray-50 border border-gray-200 rounded-lg px-3 py-2 text-sm focus:outline-none focus:border-brand transition outline-none">
+                                </div>
+
+                                <div>
+                                    <label class="block text-[10px] font-bold text-gray-500 mb-1 ml-1 uppercase">Preferred Date *</label>
+                                    <div class="relative">
+                                        <select v-model="formData.date" required 
+                                                :class="{'input-error': attemptedSubmit && !formData.date}"
+                                                class="w-full bg-gray-50 border border-gray-200 rounded-lg px-3 py-2 focus:outline-none focus:border-brand transition text-gray-700 font-medium appearance-none text-sm">
+                                            <option value="" disabled>Choose a date</option>
+                                            <option v-for="date in tour.dates" :key="date.start" :value="date.start">{{ date.start }} ({{ date.price }})</option>
+                                            <option value="other">Other date / TBC</option>
+                                        </select>
+                                        <i class="fas fa-chevron-down absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 pointer-events-none text-xs"></i>
+                                    </div>
+                                </div>
+
+                                <div v-if="calculatedPrice > 0" class="bg-red-50 p-3 rounded-lg border border-red-100 flex justify-between items-center">
+                                    <div class="flex flex-col">
+                                        <span class="text-[10px] text-red-600 font-bold uppercase">Estimated Price (Excl. Flights)</span>
+                                        <div class="flex flex-col">
+                                            <span v-if="hasSingleSupplement" class="text-[9px] text-red-400 leading-tight">* Includes single supplement {{ tour.singleSupplement }}</span>
+                                        </div>
+                                    </div>
+                                    <div class="text-right">
+                                        <span class="text-lg font-bold text-brand">{{ calculatedPrice.toLocaleString() }} €</span>
+                                    </div>
+                                </div>
+
+                                <div>
+                                    <label class="block text-[10px] font-bold text-gray-500 mb-1 ml-1 uppercase">Remarks</label>
+                                    <textarea v-model="formData.remarks" class="w-full bg-gray-50 border border-gray-200 rounded-lg px-3 py-2 text-sm focus:outline-none focus:border-brand transition h-16 outline-none resize-none" placeholder="Special diets, flights, etc..."></textarea>
+                                </div>
+
+                                <button class="w-full bg-brand text-white font-bold py-3 rounded-lg hover:bg-[#991b1b] transition shadow-lg flex items-center justify-center gap-2 transform active:scale-95 text-sm">
+                                    <span v-if="isSending"><i class="fas fa-spinner fa-spin"></i> Sending...</span>
+                                    <span v-else>Send Inquiry <i class="fas fa-paper-plane"></i></span>
+                                </button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </main>
+
+    <footer class="bg-[#111] text-gray-400 pt-20 pb-10 border-t border-gray-800">
+        <div class="container mx-auto px-6 lg:px-12">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-16 mb-20">
+                <div class="space-y-8">
+                    <div class="inline-block bg-white p-3 rounded-md shadow-sm">
+                        <img src="https://www.eurasia-tours.fr/assets/logo-word-rNz8dsz6.jpg" alt="Eurasia Tours" class="h-10 w-auto object-contain">
+                    </div>
+                    <p class="text-sm leading-relaxed font-light">Since 2000, creating bespoke journeys that bridge cultures. Your trusted partner for authentic travel experiences across Europe and Asia.</p>
+                </div>
+                
+                <div>
+                    <h4 class="text-white font-serif text-lg mb-6">Accreditations</h4>
+                    <ul class="space-y-4 text-sm font-light">
+                        <li class="flex items-center gap-3"><i class="fas fa-certificate text-gray-600"></i> APST France Member</li>
+                        <li class="flex items-center gap-3"><i class="fas fa-plane text-gray-600"></i> IATA Accredited Agent</li>
+                        <li class="flex items-center gap-3"><i class="fas fa-shield-alt text-gray-600"></i> RCP Insurance Coverage</li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h4 class="text-white font-serif text-lg mb-6">Paris Headquarters</h4>
+                    <ul class="space-y-4 text-sm font-light">
+                        <li class="flex items-start gap-3"><i class="fas fa-map-marker-alt text-gray-600 mt-1"></i> 30 Rue Ernest Renan, 75015 Paris</li>
+                        <li class="flex items-center gap-3"><i class="fas fa-phone text-gray-600"></i> +33 (0)1 56 69 12 80</li>
+                        <li class="flex items-center gap-3"><i class="fas fa-envelope text-gray-600"></i> contact@eurasiatours.fr</li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h4 class="text-white font-serif text-lg mb-6">Connect</h4>
+                    <div class="flex gap-4 mb-8">
+                        <div class="relative group" @mouseenter="isWechatQR = true" @mouseleave="isWechatQR = false">
+                            <a href="#" class="w-10 h-10 border border-gray-700 rounded-full flex items-center justify-center hover:bg-[#07C160] hover:border-[#07C160] hover:text-white transition-all">
+                                <i class="fab fa-weixin"></i>
+                            </a>
+                            <transition name="qr-fade">
+                                <div v-if="isWechatQR" class="absolute bottom-14 left-1/2 -translate-x-1/2 bg-white p-2 rounded shadow-xl z-50 w-32">
+                                    <img src="https://www.eurasia-tours.fr/assets/wechat-account-VZcww6ek.jpg" class="w-full">
+                                </div>
+                            </transition>
+                        </div>
+                        <div class="relative group" @mouseenter="isFacebookQR = true" @mouseleave="isFacebookQR = false">
+                            <a href="#" class="w-10 h-10 border border-gray-700 rounded-full flex items-center justify-center hover:bg-[#1877F2] hover:border-[#1877F2] hover:text-white transition-all">
+                                <i class="fab fa-facebook-f"></i>
+                            </a>
+                            <transition name="qr-fade">
+                                <div v-if="isFacebookQR" class="absolute bottom-14 left-1/2 -translate-x-1/2 bg-white p-2 rounded shadow-xl z-50 w-32">
+                                    <img src="https://www.eurasia-tours.fr/assets/3-Bjf7LFHD.png" class="w-full">
+                                </div>
+                            </transition>
+                        </div>
+                    </div>
+                    <div class="flex gap-3 text-2xl opacity-20">
+                        <i class="fab fa-cc-visa"></i><i class="fab fa-cc-mastercard"></i><i class="fab fa-cc-amex"></i>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="border-t border-gray-800 pt-8 flex flex-col md:flex-row justify-between items-center text-xs tracking-widest uppercase text-gray-600">
+                <p>&copy; 2026 Eurasia Tours. All Rights Reserved.</p>
+                <div class="flex gap-6 mt-4 md:mt-0">
+                    <a href="#" class="hover:text-white transition">Privacy Policy</a>
+                    <a href="#" class="hover:text-white transition">Terms of Service</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+</div>
+
+<script>
+    const { createApp, ref, reactive, computed, nextTick, onMounted } = Vue;
+
+    createApp({
+        setup() {
+            // Header Logic
+            const isMobileMenuOpen = ref(false);
+            const isDestDropdownOpen = ref(false);
+            const isLangDropdownOpen = ref(false);
+            const isWechatQR = ref(false);
+            const isFacebookQR = ref(false);
+            const currentLang = ref('English');
+
+            const switchLang = (lang) => {
+                const urlMap = {
+                    '中文': 'destination-main-cn.html',
+                    'English': 'the-3-pearls-of-the-mekong-laos-cambodia-vietnam-en.html',
+                    'Française': 'les-3-perles-du-mekong-laos-cambodge-vietnam.html'
+                };
+                const targetUrl = urlMap[lang];
+                if (targetUrl) window.location.href = targetUrl;
+            };
+            
+            const navLinks = [
+                { name: 'Home', url: 'index-en.html' },
+                { 
+                    name: 'Destinations', 
+                    url: 'destination-europe-en.html', 
+                    subLinks: [
+                        { name: 'Asia', url: 'destination-asia-en.html' },
+                        { name: 'Europe', url: 'destination-europe-en.html' }
+                    ] 
+                },
+                { name: 'Tailor-made', url: 'custom-en.html' },
+                { name: 'Flight Services', url: 'flight-tickets-en.html' },
+                { name: 'About Us', url: 'about-en.html' },
+                { name: 'Contact Us', url: 'contact-en.html' },
+                { name: 'Blog', url: 'blog-en.html' }
+            ];
+
+            // Page Logic
+            const activeSection = ref('dates');
+            const subMenu = [
+                { name: 'Dates & Prices', id: 'dates' },
+                { name: 'Overview', id: 'overview' },
+                { name: 'Map', id: 'map' },
+                { name: 'Itinerary', id: 'itinerary' },
+                { name: 'Included / Not Included', id: 'includes' },
+            ];
+            
+            // Carousel Logic
+            const currentHeroIndex = ref(0);
+            const heroImages = [
+                'images/les-3-perles-du-mekong-laos-cambodge-vietnam/header.jpg'
+            ];
+
+            const nextSlide = () => { currentHeroIndex.value = (currentHeroIndex.value + 1) % heroImages.length; };
+
+            // ============ Data Logic (The 3 Pearls of the Mekong) ============
+            const tour = reactive({
+                title: 'The 3 Pearls of the Mekong: Laos, Cambodia & Vietnam',
+                route: 'Vientiane - Luang Prabang - Angkor - Hanoi - Halong Bay - Hue - Hoi An - Saigon',
+                highlights: [
+                    'Vientiane and Kuang Si Falls', 
+                    'Luang Prabang (UNESCO World Heritage)', 
+                    'The temples of Angkor', 
+                    'Hanoi and Halong Bay', 
+                    'Hoi An and Hue', 
+                    'The Mekong Delta'
+                ],
+                singleSupplement: '610 €',
+                
+                dates: [
+                    { start: '05/03/2026', end: '25/03/2026', price: '2,500 €' },
+                    { start: '02/04/2026', end: '22/04/2026', price: '2,500 €' },
+                    { start: '30/04/2026', end: '20/05/2026', price: '2,500 €' },
+                    { start: '15/10/2026', end: '04/11/2026', price: '2,500 €' },
+                    { start: '29/10/2026', end: '18/11/2026', price: '2,500 €' },
+                    { start: '12/11/2026', end: '02/12/2026', price: '2,500 €' }
+                ],
+                
+                includes: [
+                    'Transfers, excursions, and visits as mentioned',
+                    '3 regional and domestic flights, 1 night train, 1 night on a junk in Halong Bay',
+                    'Accommodation in double/twin room with breakfast',
+                    'Meals as mentioned',
+                    'One refillable bottle per person',
+                    'English-speaking guides'
+                ],
+                excludes: [
+                    'Meals not mentioned',
+                    'International flights (estimate: 1250 €/person)',
+                    'Drinks consumed during meals',
+                    'Personal expenses and travel insurance',
+                    'Tips',
+                    'All services not mentioned',
+                    'Visa fees for Laos and Cambodia'
+                ],
+
+                // Itinerary Data (Translated)
+                daysData: [
+                    { 
+                        day: 1, 
+                        title: 'Departure from France – Flight to Vientiane', 
+                        transport: 'Plane', 
+                        content: 'Departure flight, night on board.', 
+                        image: 'images/les-3-perles-du-mekong-laos-cambodge-vietnam/jour-01.jpg', 
+                        hotel: 'Night on board', 
+                        meals: 'On board',
+                        isOpen: true 
+                    },
+                    { 
+                        day: 2, 
+                        title: 'Arrival in Vientiane', 
+                        transport: 'Coach', 
+                        content: 'Arrival in Vientiane. Welcome by a transfer driver then transfer without guide to the city center.<br>Room available from 2:00 PM. Possibility to leave your luggage in storage while waiting for your check-in time.<br>Lunch on your own.<br>Rest time to recover from jet lag. Free afternoon.<br>7:00 PM: Meeting in the lobby with your English-speaking guide.<br>Dinner in a local restaurant for a first discovery of Lao cuisine.', 
+                        image: 'images/les-3-perles-du-mekong-laos-cambodge-vietnam/jour-02.jpg',
+                        hotel: 'Sabaidee Laos or similar',
+                        meals: 'Dinner',
+                        isOpen: false 
+                    },
+                    { 
+                        day: 3, 
+                        title: 'Vientiane – Vang Vieng', 
+                        transport: 'Coach', 
+                        content: 'Breakfast at the hotel. Check-out by 12:00 PM at the latest.<br>This morning, visit the capital with:<br>- Patuxai, a triumphal arch built in the 60s, rumored to be made with concrete provided by the Americans intended for airport runways.<br>It was built to honor those who died in pre-revolutionary conflicts.<br>- Vat Si Muang, the temple of the city pillar and home to the guardian spirit of Vientiane, is the most visited temple in the capital, where locals regularly come to make wishes and offerings, or to have their car or motorcycle blessed...<br>- Vat Sisaket which presents a unique architecture with its cloister walls pierced with thousands of small niches sheltering small Buddha statues.<br>Spared during the destruction of the city by the Siamese in the 19th century, it is the most beautiful and largest temple in Vientiane.<br>In the late morning, you hit the road to reach Vang Vieng, a small town located on the banks of the Nam Song River famous for its surrounding majestic karst landscapes.<br>(Count about 1h15 of travel by road)<br>Lunch in a local restaurant in Vang Vieng.<br>In the afternoon, discover the Tham Thiang cave located in a karst cliff after climbing some 150 stairs!<br>Then, you will board pirogues for a ride on the Nam Song River to discover the riverbanks of Vang Vieng.<br>In the late afternoon, check-in to your room marking the end of a relaxing day.<br>Dinner in a restaurant serving local specialties.', 
+                        image: 'images/les-3-perles-du-mekong-laos-cambodge-vietnam/jour-03.jpg',
+                        hotel: 'Saksiri Boutique hotel or similar',
+                        meals: 'Breakfast, Lunch, Dinner',
+                        isOpen: false 
+                    },
+                    { 
+                        day: 4, 
+                        title: 'Vang Vieng – Luang Prabang', 
+                        transport: 'Train', 
+                        content: 'Breakfast at the hotel. Check-out.<br>Transfer to Vang Vieng railway station located a few kilometers outside the city to take a train with your guide to Luang Prabang.<br>The railway line, built as part of China\'s New Silk Roads project and commissioned in December 2021, crosses Laos from the Chinese border in the north to Vientiane and the Thai border.<br>Crossing one of the most mountainous regions of Laos, this line, which has many tunnels and bridges, significantly shortens travel times.<br>You will reach Luang Prabang in less than an hour compared to about 4h30 by road.<br>Luang Prabang is a small town nestled amidst mountains covered with lush vegetation, at the confluence of the Mekong and Nam Khan rivers in a preserved natural environment.<br>The very rich architectural heritage, where traditional Lao wooden houses, colonial brick urban constructions, and monasteries among the most sophisticated and richly decorated in Southeast Asia mix harmoniously, and its exceptional state of conservation, make this small town a true jewel that was inscribed on the UNESCO World Heritage List in 1995. You will discover sumptuous traditional wooden houses, centuries-old pagodas, the former Royal Palace, or beautiful colonial administrative buildings in its alleys...<br>A special atmosphere emanates from this former royal capital which remains the cultural and religious center of the country.<br>Arrival in Luang Prabang in the middle of the morning and private transfer to the city center.<br>Room available from 2:00 PM. Free time at your convenience.<br>Lunch in a local restaurant.<br>In the afternoon, departure for a first discovery by Tuk-Tuk with:<br>- Vat Visoun: It is one of the oldest monasteries in Luang Prabang.<br>Destroyed by Chinese pirates in 1887, it was rebuilt in the early 20th century.<br>In Tai Lue style with baluster windows, inspired by Khmer architecture, it houses the largest Buddha in Luang Prabang...<br>- The TAEC: Small museum opened since 2007 in the heart of Luang Prabang in a listed building, it allows, through its rich collections, to discover the very great ethnic and cultural diversity that characterizes Laos.<br>- Mount Phousi: Hill in the middle of the peninsula culminating at about 150 m above the city.<br>A staircase of 328 steps allows you to reach the summit from where you can enjoy a panoramic view of the city, the Mekong, and the surrounding mountains.<br>Return to your hotel for relaxation and rest.<br>Sindad Dinner (Korean-style BBQ) in a restaurant on the banks of the Nam Khan river.', 
+                        image: 'images/les-3-perles-du-mekong-laos-cambodge-vietnam/jour-04.jpg',
+                        hotel: 'The Sanctuary Luang Prabang or similar',
+                        meals: 'Breakfast, Lunch, Dinner',
+                        isOpen: false 
+                    },
+                    { 
+                        day: 5, 
+                        title: 'Luang Prabang', 
+                        transport: 'Tuk-Tuk / Boat', 
+                        content: 'Suggestion (without guide/without driver): Early risers can go at dawn to observe Tak Bat: a ritual of offerings made every day by the faithful to the monks who leave their pagodas and walk the streets of the city in long silent processions.<br>This religious ceremony, particularly important for Buddhist faithful, is unfortunately often disrupted by tourists. We thank you for attending in silence and at a distance out of respect for the monks and the faithful who keep this ritual alive in Luang Prabang.<br>Breakfast at the hotel.<br>In the early morning, departure with your guide for a day tour of the main attractions of the city by Tuk-Tuk.<br>- The morning market of Ban Pakham, held daily in a small street near the Mekong for a small immersion in the daily life of the local population<br>- The Royal Palace, now a National Museum, mixing French and Lao architectural elements, was the first palace built in durable materials in Laos for the king and his family in the early 20th century.<br>A recent chapel built in the gardens houses the Prabang, the most sacred Buddha statue in Laos.<br>(Please note that the site is closed every last Thursday of the month)<br>- Vat Mai, built in the early 19th century.<br>With its 5-tiered roof descending very low, it is in Luang Prabang style.<br>Its façade covered with gold leaf bas-reliefs tells the story of one of Buddha\'s past lives incorporating elements of local life.<br>- Vat Xieng Thong, a royal monastery from its foundation in the 16th century until 1975, it is the most beautiful in the city and considered a masterpiece of Buddhist architecture in Laos, especially the main chapel whose roof descends almost to the ground.<br>- Heuan Chan House. This former princely residence built in the 19th century was renovated by UNESCO when the city was listed.<br>It is one of the few traditional Lao stilt houses that can be found in Luang Prabang.<br>Lunch in a local restaurant.<br>In the afternoon, transfer to the city pier. You will board a private traditional boat for a small cruise and, after about 1h30 of navigation, make a stop at the confluence of the Mekong and Nam Ou rivers to discover the sacred caves of Pak Ou.<br>Tham Thing, overlooking the Mekong, and Tham Phoum, set back a bit, have sheltered hundreds of Buddha statuettes deposited over the years by pilgrims for centuries.<br>Return by boat to Luang Prabang and relaxation time.<br>Dinner on your own according to your preference and potential advice from your guide.<br>Suggestion: You can stroll through the night market which is set up daily from 5:00 PM on the main street.', 
+                        image: 'images/les-3-perles-du-mekong-laos-cambodge-vietnam/jour-05.jpg',
+                        hotel: 'The Sanctuary Luang Prabang or similar',
+                        meals: 'Breakfast, Lunch',
+                        isOpen: false 
+                    },
+                    { 
+                        day: 6, 
+                        title: 'Luang Prabang', 
+                        transport: 'Coach', 
+                        content: 'Breakfast at the hotel.<br>This morning, transfer with guide towards the Kuang Si Falls via a beautiful country road (about 40 minutes and 60km per trip) between villages and rice fields.<br>On the way, make a slight stop at Lao Buffalo Dairy, a farm where buffaloes from surrounding villagers have been welcomed and whose milk is now used, among other things, to make local cheeses... The visit, guided, is all the more interesting as buffaloes, clearly visible in the rice fields for plowing work a few years ago, are becoming increasingly rare today, replaced by tractors and other motorized machines.<br>This social enterprise also allows the owning farmers to have additional income as well as better veterinary follow-up for the animals.<br>Then, discover the magnificent falls. Nestled in the forest, the falls flow into several turquoise water pools in cascades.<br>You can stroll by the waterfall and even swim there.<br>The path leading to the waterfall takes you past large enclosures housing Asian black bears, a species endemic to Laos that has escaped poachers.<br>Lunch at Carpe Diem restaurant located below the site, away from the crowd.<br>This restaurant offers flavorful fusion cuisine in a dream setting... You will be surrounded by small turquoise pools and can swim between two courses!<br>Moreover, Carpe Diem donates 5% of profits to the ASAS association whose social object is to build access to drinking water and participate in the rehabilitation of schools in isolated villages of Northern Laos.<br>After enjoying the waterfalls, return by road to the center of Luang Prabang and continue to Ban Xang Khong and Ban Xieng Lek, villages of weavers for generations where mulberry paper manufacturers have also settled more recently.<br>You can discover the workshops of these artisans and do some shopping.<br>Free evening and dinner.', 
+                        image: 'images/les-3-perles-du-mekong-laos-cambodge-vietnam/jour-06.jpg',
+                        hotel: 'The Sanctuary Luang Prabang or similar',
+                        meals: 'Breakfast, Lunch',
+                        isOpen: false 
+                    },
+                    { 
+                        day: 7, 
+                        title: 'Luang Prabang - Siem Reap', 
+                        transport: 'Plane', 
+                        content: 'Early breakfast at the hotel. Check-out by 12:00 PM at the latest.<br>Free morning to enjoy the calm of this enchanting city... Lunch on your own.<br>12:15 PM: Transfer from the hotel reception without guide to Luang Prabang airport.<br>2:40 PM: Takeoff of your flight VN 931 to Siem Reap.<br>4:10 PM: Arrival and welcome at Siem Reap airport. Your English-speaking Cambodian local guide will be waiting for you at the exit.<br>Transfer to your hotel for the presentation of your stay and its Cambodian organization.<br>Room available upon arrival.<br>Siem Reap, or the defeat of the Siamese, resonates as revenge taken by the Khmer people against their powerful neighbors.<br>This small village nestled in the meanders of the river bearing its name is the symbol of a rebirth and a better future for new generations of Cambodians.<br>Located a few kilometers from the archaeological site of Angkor, Siem Reap fully benefits from the tourist windfall and its development has transformed a small village into an attractive and welcoming city, with its many infrastructures growing each year (hotels, restaurants, hospitals, night markets, pedestrian and shopping areas, etc...), now rivaling the best world destinations.<br>Dinner in a local restaurant.', 
+                        image: 'images/les-3-perles-du-mekong-laos-cambodge-vietnam/jour-07.jpg',
+                        hotel: 'Pandora suite d’Angkor or similar',
+                        meals: 'Breakfast, Dinner',
+                        isOpen: false 
+                    },
+                    { 
+                        day: 8, 
+                        title: 'Siem Reap', 
+                        transport: 'Coach', 
+                        content: 'Breakfast at the hotel.<br>This morning, cross the countryside in a vehicle on a road lined with traditional houses and coconut trees to reach the temple of Banteay Samre, citadel of the Samre ethnic group.<br>It was built by Hindus in the same period as the Angkor Wat temple.<br>You continue with the visit of the Banteay Srei temple, the "citadel of women", renowned as one of the jewels of Khmer art of the 10th century for its finely carved decorations in pink sandstone.<br>Stop on the way to discover the making of palm sugar collected from Thnot, the iconic sugar palm bordering Cambodian rice fields.<br>We invite you to a special lunch today.<br>Go to a traditional house located in the heart of the temple complex.<br>During the meal, a member of the host family will present the various utensils of daily life found in these houses, starting with the different traps Cambodians use to catch fish in the surrounding ponds, but not only... A rare moment of sharing and discovery.<br>You continue your visit with the Ta Som, Neak Poan, and Preah Khan temples. You then enjoy a sunset over the moats of Angkor Thom.<br>In a small typical village of Cambodia on the Angkor site, we propose a dinner at Sovan and Ké Samy\'s.<br>You will spend an evening in a timeless setting, in a traditional wooden house.<br>After a welcome cocktail, you will dine on Khmer specialties in the garden lit by torches as well as the surrounding countryside.<br>An unforgettable memory!', 
+                        image: 'images/les-3-perles-du-mekong-laos-cambodge-vietnam/jour-08.jpg',
+                        hotel: 'Pandora suite d’Angkor or similar',
+                        meals: 'Breakfast, Lunch, Dinner',
+                        isOpen: false 
+                    },
+                    { 
+                        day: 9, 
+                        title: 'Siem Reap', 
+                        transport: 'Tuk-Tuk', 
+                        content: 'Breakfast at the hotel.<br>Today, departure by Tuk-Tuk from your hotel. You start the visits with the most famous of them, Angkor Wat, where King Suryavarman II reigned over the Kingdom of Cambodia from 1113 to 1152. Angkor Wat is a masterpiece of realization and architecture whose dimensions are comparable to the Forbidden City in Beijing.<br>You continue to reach the Preah Khan temple. Walk through the maze of doors and corridors to discover some beautiful high reliefs and notably the only building with round columns which may have served to house the king\'s sacred sword.<br>Lunch in a local restaurant on the site.<br>In the afternoon, discovery of the royal city of Angkor Thom... After admiring the enigmatic gates of this city, you reach the Bayon, central temple of this fortified city.<br>You continue on foot to enter the enclosure of the royal palace with the Phimeanakas temple, exiting you arrive on the Terrace of the Elephants from where the king and his court watched the games.<br>In the late afternoon, you enter Ta Prohm, "the ancestor Brahma", to enjoy magical moments in this temple which has been left, partly, in a natural state to preserve the memory of the visions of the discoverers who revealed Angkor to the West.<br>Dinner with Apsara dance show (non-private venue). Formerly reserved for Khmer kings and their courts, the origin of this enchanting dance and these mythical dancers is said to be found in India.<br>This practice dates back more than 1000 years...', 
+                        image: 'images/les-3-perles-du-mekong-laos-cambodge-vietnam/jour-09.jpg',
+                        hotel: 'Pandora suite d’Angkor or similar',
+                        meals: 'Breakfast, Lunch, Dinner',
+                        isOpen: false 
+                    },
+                    { 
+                        day: 10, 
+                        title: 'Siem Reap', 
+                        transport: 'Scooter / Boat', 
+                        content: 'Breakfast at the hotel.<br>Your morning will be devoted to discovering the countryside on small electric scooters.<br>After training on safety rules and bike usage (no need to pedal), you will gradually leave the city to join the laterite tracks lined with coconut trees and bamboo that crisscross the countryside.<br>Stops along the way to discover traditional habitat and Khmer lifestyle.<br>At the end of a sandy track, you will discover a pagoda and its small Angkorian temple.<br>Before lunch, a Cambodian chef will present some typical dishes such as green mango salad, Amok, or Kokor soup.<br>At noon you will taste the prepared dishes.<br>The afternoon will be devoted to discovering Tonle Sap by boat, located 15 km south of Siem Reap.<br>A major asset for the development of the Angkor site, Tonle Sap Lake now supports more than a million inhabitants.<br>You will discover the floating village of Metchrey (depending on the season, possibility to modify the location with Chong Kneas) to admire its organization with its fishing techniques, fish ponds, and crocodile farms.<br>Return to Siem Reap city center in the late afternoon.<br>"Siem Reap by night" evening: Through this evening, we invite you on a colorful journey to the heart of Siem Reap.<br>Located along the river, around the old market, it is the favorite place for Cambodians in the evening after work.<br>This is where they go with family to have a good time, taste some dishes as an aperitif.<br>You will stroll amidst the stalls, taste whatever tempts you before going to the night markets, numerous in this district, and why not, cross the famous Pub Street, as known in Siem Reap as the temples of Angkor!', 
+                        image: 'images/les-3-perles-du-mekong-laos-cambodge-vietnam/jour-10.jpg',
+                        hotel: 'Pandora suite d’Angkor or similar',
+                        meals: 'Breakfast, Lunch, Dinner',
+                        isOpen: false 
+                    },
+                    { 
+                        day: 11, 
+                        title: 'Siem Reap - Flight to Hanoi', 
+                        transport: 'Plane', 
+                        content: 'Breakfast at the hotel. Room available until 12:00 PM.<br>Today, visit the workshops of Artisans d\'Angkor to admire sculpture, lacquer, and silk painting techniques.<br>Depending on time, you can also visit Senteurs d\'Angkor.<br>Depending on your flight schedule, transfer with driver only without English-speaking guide to Siem Reap airport, for the flight to Hanoi.<br>Welcome at Hanoi airport by a driver only who will wait for you in the exit hall with a sign with your name then transfer without guide to the city center.<br>Rooms available from 2:00 PM.<br>Hanoi is a true museum of colonial architecture on the banks of the Red River.<br>Capital of unified Vietnam, Hanoi has retained the old-fashioned charm of the French colonial era.<br>The modernization of the city undertaken by the French from 1882 continued until 1955 and the face of Hanoi today has not changed much.<br>Lunch on your own.<br>Rest time to recover from the flight and jet lag. Personal discovery of Hanoi according to your desires.<br>7:00 PM: Meeting with your guide in the hotel lobby.<br>Typical dinner of Hanoi specialties in a local restaurant tasting the tasty Cha Ca dish based on grilled fish served with fresh noodles, dill, and aromatic herbs, symbol of Vietnamese cuisine (or alternative).', 
+                        image: 'images/les-3-perles-du-mekong-laos-cambodge-vietnam/jour-11.jpg',
+                        hotel: 'Hong Ngoc Dynastie hotel & spa or similar',
+                        meals: 'Breakfast, Dinner',
+                        isOpen: false 
+                    },
+                    { 
+                        day: 12, 
+                        title: 'Hanoi', 
+                        transport: 'Coach', 
+                        content: 'Early wake up, around 6:00 AM, for a unique discovery of local life at dawn.<br>Walking tour with your guide from your hotel to the Lake of the Returned Sword.<br>Typical breakfast in a street restaurant for a tasting of the famous Pho, rice vermicelli soup based on beef or chicken broth, then finish your walk with another must-try tasting, Cafe Trung (hot coffee mixed with an egg)<br>Then, transfer to Long Bien district, located on the other side of the Red River.<br>You will leave for a unique meeting with Mr. PHAN Thanh Liem, artisan and manufacturer of lacquered puppets used for the famous water puppet shows.<br>You will then be invited to attend a private show of about 30 minutes performed by Mr. Liem and his team.<br>Followed by an initiation course in manipulating puppets and making your own puppet.<br>Lunch of local specialties in a restaurant in the capital.<br>In the afternoon, orientation tour of the city, including the must-sees: Ba Dinh Square, Ho Chi Minh Mausoleum (outside), the Presidential Palace, the diplomatic quarter, the Opera, Long Bien Bridge (formerly Paul Doumer Bridge), the flag tower, and the remains of the ancient Citadel...<br>Then, discovery of the Temple of Literature dedicated to Confucius and scholars, which was Vietnam\'s first university.<br>Return to the hotel.<br>Dinner in a restaurant of local specialties.', 
+                        image: 'images/les-3-perles-du-mekong-laos-cambodge-vietnam/jour-12.jpg',
+                        hotel: 'Hong Ngoc Dynastie hotel & spa or similar',
+                        meals: 'Breakfast, Lunch, Dinner',
+                        isOpen: false 
+                    },
+                    { 
+                        day: 13, 
+                        title: 'Hanoi – Halong Bay', 
+                        transport: 'Coach / Junk', 
+                        content: 'Breakfast at the hotel and check-out.<br>This morning, departure with your English-speaking guide in a private vehicle for Halong Bay, made famous by the film "Indochine".<br>Its landscape is marked by the 1969 karst islands which earned the site a place on the UNESCO World Heritage List.<br>Ha Long Bay covers more than 1,500 km2, it has nearly 2,000 islands and islets, karst reefs riddled with caverns rising from the sea like strange sculptures.<br>Ha Long means "descending dragon" in Vietnamese.<br>Legend has it that a great dragon once left its lair in the mountains to throw itself into the sea, digging deep crevices in the ground with its tail.<br>When it plunged into the ocean, the water submerged the crevices, creating a multitude of islands.<br>Boarding around noon on your junk without your English-speaking guide and installation in your cabin.<br>Welcome drink followed by lunch on board. We invite you to learn about the activities via the website of your shared junk (non-private) – See hotel table.<br>Dinner and night on board your junk.<br>Note: Visits and explanations on board the junk will be provided in English by the boat\'s guide.', 
+                        image: 'images/les-3-perles-du-mekong-laos-cambodge-vietnam/jour-13.jpg',
+                        hotel: 'Junk Mila Cruise or similar',
+                        meals: 'Breakfast, Lunch, Dinner',
+                        isOpen: false 
+                    },
+                    { 
+                        day: 14, 
+                        title: 'Halong – Hanoi – Hue', 
+                        transport: 'Junk / Train', 
+                        content: 'Possibility of Tai Chi initiation on board at sunrise, a Chinese martial art that increases strength and muscle tone and reduces stress.<br>Continuation of the cruise and brunch on board.<br>Note: The itinerary and visits on the bay may be modified according to the program of each confirmed junk, depending on the tide and weather of the day.<br>Disembarkation around 12:00 PM, meeting again with your English-speaking guide then return transfer by private vehicle to Hanoi.<br>Transfer to Hanoi station at the scheduled time by your guide.<br>Dinner in a local restaurant near the station OR packed dinner.<br>Night on board the train in air-conditioned sleepers (4 people/compartment, basic comfort to local standards) with your English-speaking guide accompanying.<br>We invite you to bring earplugs. Toilets and sinks are "local" style shared with the rest of the passengers in your car.<br>No shower(s) on board.', 
+                        image: 'images/les-3-perles-du-mekong-laos-cambodge-vietnam/jour-14.jpg',
+                        hotel: 'Night on board the train',
+                        meals: 'Brunch, Dinner',
+                        isOpen: false 
+                    },
+                    { 
+                        day: 15, 
+                        title: 'Hue', 
+                        transport: 'Coach', 
+                        content: 'Early arrival at Hue station. Transfer to city center for a DAY USE (about 3 hours) at the hotel with 1 breakfast served per person.<br>The opportunity to take a shower after the train and visit the city in the best conditions.<br>Hue, former imperial capital from 1802 to 1945 under the Nguyen dynasty.<br>The city of Hue represents nowadays the cultural and intellectual center of the country.<br>It was classified as World Heritage by Unesco in 1993.<br>Then, visit the Citadel and its Imperial City to discover its impressive architecture and the beauty of the buildings.<br>Lunch in a local restaurant. Visit the Pagoda of the Celestial Lady (Thien Mu) and end your day with a stroll at Dong Ba market, the largest in the central region located in the heart of Hue city center.<br>Rest and free time at your convenience.<br>"Street food" evening by cyclo-rickshaw tasting Hue specialties such as rice pancakes with shrimp and minced pork (banh beo, banh nam, banh bot loc, banh khoai... and dessert with sweet soups (chè hue). Possibility of an alternative vegetarian menu meal; Hue delight.', 
+                        image: 'images/les-3-perles-du-mekong-laos-cambodge-vietnam/jour-15.jpg',
+                        hotel: 'Thanh Lich 2 hotel or similar',
+                        meals: 'Breakfast, Lunch, Dinner',
+                        isOpen: false 
+                    },
+                    { 
+                        day: 16, 
+                        title: 'Hue – Hoi An', 
+                        transport: 'Coach', 
+                        content: 'Breakfast at the hotel.<br>Route to Hoi An (about 3h30). Stop on the way to Danang via the cloudy pass to visit the Cham Museum, which houses one of the most beautiful collections of sculptures from the Kingdom of Champa in the world.<br>Arrival in Hoi An and lunch in a local restaurant.<br>Check-in to your room.<br>In the afternoon, walking tour of the old town: The Fujian Sanctuary, Phuc Thanh Pagoda, Phuoc Kien communal house, ancient wooden houses, and the famous Japanese bridge.<br>At the end of the day, you will enjoy free time at your leisure in the lively districts on both banks of the Thu Bon river where entertainment begins when the sun goes down.<br>Dinner on your own at your convenience.', 
+                        image: 'images/les-3-perles-du-mekong-laos-cambodge-vietnam/jour-16.jpg',
+                        hotel: 'Emarald Hoi An Riverside resort or similar',
+                        meals: 'Breakfast, Lunch',
+                        isOpen: false 
+                    },
+                    { 
+                        day: 17, 
+                        title: 'Hoi An – Danang – Saigon (HCM City)', 
+                        transport: 'Plane', 
+                        content: 'Breakfast at the hotel. Room available until 12:00 PM.<br>Free morning to enjoy the last moments in Hoi An (shopping, bike ride).<br>Lunch in a local restaurant.<br>Transfer to Da Nang airport for your flight with English-speaking guide to Saigon.<br>(Flight issued by you or with supplement ASEV TRAVEL)<br>Transfer to city center and installation.<br>Saigon was nicknamed, when it was still only called Saigon, the "Pearl of the Orient" and the "Paris of Asia".<br>Founded under the Second Empire, Saigon was the capital of Cochinchina (today Nam Bo), the only territory constituted as a French colony (the other two, Tonkin and Annam, being protectorates).<br>Walk in the city center on Nguyen Hue pedestrian street to see its animation and the life of Saigonese after their work day.<br>Dinner in a local restaurant.', 
+                        image: 'images/les-3-perles-du-mekong-laos-cambodge-vietnam/jour-17.jpg',
+                        hotel: 'Sen Viet hotel or similar',
+                        meals: 'Breakfast, Lunch, Dinner',
+                        isOpen: false 
+                    },
+                    { 
+                        day: 18, 
+                        title: 'Saigon (HCM City)', 
+                        transport: 'Coach', 
+                        content: 'Breakfast at the hotel.<br>This morning, leave for a beautiful walking tour in the city center to see the main iconic monuments of Saigon: the Reunification Palace (outside), the Post Office, the Cathedral (outside), the Opera (outside), Dong Khoi Street (ex-Catinat Street)<br>Lunch in a local restaurant.<br>In the afternoon, visit the famous Chinese district Cho Lon with Thien Hau temple.<br>Then return to the city center for the discovery of Ben Thanh central market.<br>Dinner in a local restaurant.', 
+                        image: 'images/les-3-perles-du-mekong-laos-cambodge-vietnam/jour-18.jpg',
+                        hotel: 'Sen Viet hotel or similar',
+                        meals: 'Breakfast, Lunch, Dinner',
+                        isOpen: false 
+                    },
+                    { 
+                        day: 19, 
+                        title: 'Saigon – Mekong – Saigon', 
+                        transport: 'Coach / Boat', 
+                        content: 'Breakfast at the hotel.<br>Today, departure south to Ben Tre province in the Mekong Delta.<br>The Mekong is the great south of the country, exoticism, but also a huge field of rice paddies (depending on the season of course), a checkerboard of orchards crossed by arroyos<br>Arrival in Ben Tre: The land of coconut trees, located between 2 large arms of the Mekong: Trans-Bassac (Tien Giang) and Cis-Bassac (Hau Giang).<br>Boat trip on the Ben Tre river, visit a brick factory.<br>Crossing arroyos then discovering a workshop working with coconut such as: coconut peeling, coconut milk extraction.<br>Visit a traditional coconut candy workshop.<br>Meeting with a war veteran, tasting seasonal fruits and tea.<br>Then bike ride OR motorized cart to reach your restaurant.<br>Lunch of local specialties with tasting of "elephant ear" fish.<br>Navigation in small rowing sampan in the narrower canals of the delta to join your boat and return to the quay.<br>Disembarkation and return to Saigon.<br>Dinner in a local restaurant.', 
+                        image: 'images/les-3-perles-du-mekong-laos-cambodge-vietnam/jour-19.jpg',
+                        hotel: 'Sen Viet hotel or similar',
+                        meals: 'Breakfast, Lunch, Dinner',
+                        isOpen: false 
+                    },
+                    { 
+                        day: 20, 
+                        title: 'Saigon – Departure flight', 
+                        transport: 'Coach / Plane', 
+                        content: 'Breakfast at the hotel. Room available by 12:00 PM at the latest.<br>Last free moment in Vietnam to make complementary discoveries on your own, your purchases or simply relax.<br>Then, depending on your return flight schedule, meeting with your private driver and transfer without guide to Saigon airport.', 
+                        image: 'images/les-3-perles-du-mekong-laos-cambodge-vietnam/jour-20.jpg',
+                        hotel: '',
+                        meals: 'Breakfast',
+                        isOpen: false 
+                    },
+                    { 
+                        day: 21, 
+                        title: 'Arrival', 
+                        transport: '', 
+                        content: 'Arrival at your destination.', 
+                        image: 'images/les-3-perles-du-mekong-laos-cambodge-vietnam/jour-21.jpg',
+                        hotel: '',
+                        meals: '',
+                        isOpen: false 
+                    }
+                ]
+            });
+
+            // ============ Form Logic ============
+            const formHighlight = ref(false);
+            const isSubmitted = ref(false);
+            const attemptedSubmit = ref(false);
+            const isSending = ref(false);
+
+            const formData = reactive({
+                name: '',
+                countryCode: '+33',
+                phone: '',
+                email: '',
+                date: '',
+                passengers: 2,
+                remarks: ''
+            });
+
+            const phoneError = computed(() => {
+                if (!formData.phone) return null;
+                const lengths = { '+33': 10, '+86': 11, '+852': 8, '+44': 10, '+1': 10 };
+                const required = lengths[formData.countryCode] || 10;
+                return formData.phone.length !== required ? `Must contain ${required} digits` : null;
+            });
+
+            const calculatedPrice = computed(() => {
+                if (!formData.date || !formData.passengers) return 0;
+                const dateObj = tour.dates.find(d => d.start === formData.date);
+                if (!dateObj) return 0;
+                
+                // Extract price numbers (removing € and spaces/commas)
+                const pricePerPerson = parseInt(dateObj.price.replace(/[^\d]/g, ''));
+                let total = pricePerPerson * formData.passengers;
+
+                const singleSupplement = parseInt(tour.singleSupplement.replace(/[^\d]/g, ''));
+                if (formData.passengers % 2 !== 0) {
+                    total += singleSupplement;
+                }
+
+                return total;
+            });
+
+            const hasSingleSupplement = computed(() => formData.passengers % 2 !== 0);
+
+            const handleBookingScroll = (date = '') => {
+                if (date) formData.date = date;
+                const element = document.getElementById('contact');
+                if (element) {
+                    const offset = 180;
+                    const bodyRect = document.body.getBoundingClientRect().top;
+                    const elementRect = element.getBoundingClientRect().top;
+                    const elementPosition = elementRect - bodyRect;
+                    const offsetPosition = elementPosition - offset;
+                    window.scrollTo({ top: offsetPosition, behavior: 'smooth' });
+                    
+                    formHighlight.value = true;
+                    setTimeout(() => { formHighlight.value = false; }, 3000);
+                }
+            };
+
+            const handleFormSubmit = async () => {
+                attemptedSubmit.value = true;
+                
+                // 1. Validation
+                const hasEmpty = !formData.name || !formData.phone || !formData.email || !formData.date || !formData.passengers;
+                if (hasEmpty || phoneError.value) {
+                    nextTick(() => {
+                        const firstError = document.querySelector('.input-error');
+                        if (firstError) firstError.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                    });
+                    return;
+                }
+
+                // 2. Sending state
+                isSending.value = true;
+                
+                // 3. Payload (Kept compatible with server)
+                const payload = {
+                    tourName: tour.title,
+                    name: formData.name,
+                    email: formData.email,
+                    phone: formData.countryCode + " " + formData.phone,
+                    travelDate: formData.date,
+                    passengers: formData.passengers,
+                    totalPrice: calculatedPrice.value,
+                    remarks: formData.remarks || ""
+                };
+
+                try {
+                    // 4. POST Request
+                    const response = await fetch('/api/submit-inquiry', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json',
+                            'Accept': 'application/json'
+                        },
+                        body: JSON.stringify(payload)
+                    });
+
+                    // 5. Response Handling
+                    if (response.ok) {
+                        isSending.value = false;
+                        isSubmitted.value = true;
+                    } else {
+                        throw new Error('Server responded with error');
+                    }
+                } catch (error) {
+                    console.error('Submission error:', error);
+                    isSending.value = false;
+                    alert("Sending failed, please try again later or contact us directly.");
+                }
+            };
+
+            const resetForm = () => {
+                isSubmitted.value = false;
+                attemptedSubmit.value = false;
+                formData.date = '';
+                formData.passengers = 2;
+                formData.remarks = '';
+            };
+
+            // Toggle Logic
+            const isAllExpanded = ref(false);
+            const toggleDay = (index) => {
+                tour.daysData[index].isOpen = !tour.daysData[index].isOpen;
+            };
+            const toggleAllDays = () => {
+                isAllExpanded.value = !isAllExpanded.value;
+                tour.daysData.forEach(day => {
+                    day.isOpen = isAllExpanded.value;
+                });
+            };
+
+            // Scroll Handling
+            const handleScroll = () => {
+                const scrollPosition = window.scrollY + 250;
+                subMenu.forEach(section => {
+                    const element = document.getElementById(section.id);
+                    if (element && element.offsetTop <= scrollPosition) {
+                        activeSection.value = section.id;
+                    }
+                });
+            };
+
+            onMounted(() => {
+                setInterval(nextSlide, 5000);
+                let isScrolling = false;
+                window.addEventListener('scroll', () => {
+                    if (!isScrolling) {
+                        window.requestAnimationFrame(() => {
+                            handleScroll();
+                            isScrolling = false;
+                        });
+                        isScrolling = true;
+                    }
+                });
+            });
+
+            return {
+                isMobileMenuOpen, isDestDropdownOpen, isLangDropdownOpen, currentLang, switchLang,
+                isWechatQR, isFacebookQR,
+                navLinks, subMenu, activeSection, 
+                heroImages, currentHeroIndex, nextSlide,
+                tour, 
+                toggleDay, toggleAllDays, isAllExpanded,
+                formData, formHighlight, handleBookingScroll, handleFormSubmit, 
+                phoneError, attemptedSubmit, isSubmitted, resetForm, calculatedPrice, hasSingleSupplement,
+                isSending
+            };
+        }
+    }).mount('#app');
+</script>
+</body>
+</html>

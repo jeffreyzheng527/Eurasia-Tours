@@ -1,0 +1,1289 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>2026 Italy, Switzerland & France Luxury Tour (12 Days) - Eurasia Tours</title>
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/vue@3/dist/vue.global.prod.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;500;700&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
+    
+    <style>
+        body { font-family: 'Noto Sans SC', sans-serif; }
+        h1, h2, h3, h4, h5 { font-family: 'Playfair Display', serif; }
+        
+        .text-brand { color: #b91c1c; }
+        .bg-brand { background-color: #b91c1c; }
+        .border-brand { border-color: #b91c1c; }
+        .hover\:bg-brand:hover { background-color: #991b1b; }
+        
+        .nav-item {
+            font-family: 'Noto Sans SC', sans-serif;
+            font-size: 13px;
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 0.15em;
+            color: #374151;
+        }
+
+        /* Animations */
+        .mobile-menu-enter-active, .mobile-menu-leave-active { transition: opacity 0.3s ease, transform 0.3s ease; }
+        .mobile-menu-enter-from, .mobile-menu-leave-to { opacity: 0; transform: translateY(-10px); }
+        
+        .dropdown-enter-active { transition: opacity 0.2s ease-out, transform 0.2s ease-out; }
+        .dropdown-leave-active { transition: opacity 0.15s ease-in, transform 0.15s ease-in; }
+        .dropdown-enter-from, .dropdown-leave-to { opacity: 0; transform: translateY(10px) scale(0.98); }
+        
+        /* Modal Animations */
+        .modal-enter-active, .modal-leave-active { transition: opacity 0.3s ease; }
+        .modal-enter-from, .modal-leave-to { opacity: 0; }
+        .modal-content-enter-active { transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1); } 
+        .modal-content-leave-active { transition: all 0.2s ease-in; }
+        .modal-content-enter-from, .modal-content-leave-to { transform: scale(0.95); opacity: 0; }
+
+        .qr-fade-enter-active, .qr-fade-leave-active { transition: opacity 0.3s ease, transform 0.3s ease; }
+        .qr-fade-enter-from, .qr-fade-leave-to { opacity: 0; transform: translateY(10px); }
+        
+        /* Carousel */
+        .carousel-enter-active, .carousel-leave-active { transition: opacity 1s ease; }
+        .carousel-enter-from, .carousel-leave-to { opacity: 0; }
+
+        /* Timeline */
+        .timeline-line {
+            position: absolute;
+            left: 15px;
+            top: 40px;
+            bottom: 0;
+            width: 2px;
+            background-color: #e5e7eb;
+        }
+        .last-item .timeline-line { display: none; }
+        
+        /* Form Highlight */
+        @keyframes highlightPulse {
+            0% { box-shadow: 0 0 0 0 rgba(185, 28, 28, 0); border-color: #e5e7eb; }
+            50% { box-shadow: 0 0 20px 0 rgba(185, 28, 28, 0.3); border-color: #b91c1c; background-color: #fff1f2; }
+            100% { box-shadow: 0 0 0 0 rgba(185, 28, 28, 0); border-color: #e5e7eb; background-color: white; }
+        }
+        .highlight-active { animation: highlightPulse 1.5s ease-in-out 2; }
+        
+        .input-error { 
+            border-color: #ef4444 !important;
+            background-color: #fef2f2 !important; 
+            animation: shake 0.5s cubic-bezier(.36,.07,.19,.97) both;
+        }
+        
+        @keyframes shake {
+            10%, 90% { transform: translate3d(-1px, 0, 0); }
+            20%, 80% { transform: translate3d(2px, 0, 0); }
+            30%, 50%, 70% { transform: translate3d(-4px, 0, 0); }
+            40%, 60% { transform: translate3d(4px, 0, 0); }
+        }
+
+        .fade-in { animation: fadeIn 0.8s ease-out forwards; }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+        
+        /* Custom Scrollbar */
+        .custom-scrollbar {
+            scrollbar-width: thin;
+            scrollbar-color: #d1d5db transparent;
+        }
+        .custom-scrollbar::-webkit-scrollbar { width: 4px; }
+        .custom-scrollbar::-webkit-scrollbar-track { background: transparent; }
+        .custom-scrollbar::-webkit-scrollbar-thumb { background-color: #d1d5db; border-radius: 20px; }
+        .custom-scrollbar::-webkit-scrollbar-thumb:hover { background-color: #9ca3af; }
+        
+        /* Accordion */
+        .accordion-enter-active, .accordion-leave-active { transition: all 0.3s ease-in-out; max-height: 500px; opacity: 1; overflow: hidden; }
+        .accordion-enter-from, .accordion-leave-to { max-height: 0; opacity: 0; }
+
+        [v-cloak] { display: none; }
+    </style>
+</head>
+<body class="bg-gray-50 text-gray-800 antialiased">
+
+<div id="app" v-cloak>
+    <header class="fixed w-full top-0 z-[100] bg-white/95 backdrop-blur-md shadow-[0_2px_15px_rgba(0,0,0,0.05)] border-b border-gray-100 transition-all duration-300">
+        <div class="container mx-auto px-6 lg:px-12">
+            <div class="flex flex-col lg:flex-row items-center justify-between h-auto lg:h-24 py-3 lg:py-0">
+                
+                <div class="flex items-center justify-between w-full lg:w-auto">
+                    <a href="index-en.html" class="flex items-center group">
+                        <img src="https://www.eurasia-tours.fr/assets/logo-word-rNz8dsz6.jpg" 
+                             alt="Eurasia Tours Logo" class="h-10 lg:h-12 w-auto object-contain transition-transform group-hover:scale-105 mix-blend-multiply">
+                    </a>
+                    <button class="lg:hidden relative z-50 text-2xl p-2 text-gray-700 focus:outline-none cursor-pointer hover:text-brand transition" @click="isMobileMenuOpen = !isMobileMenuOpen">
+                        <i class="fas" :class="isMobileMenuOpen ? 'fa-times' : 'fa-bars'"></i>
+                    </button>
+                </div>
+
+                <nav class="hidden lg:flex flex-1 items-center justify-end pl-12 gap-10">
+                    <div v-for="link in navLinks" :key="link.name" class="relative group h-24 flex items-center"
+                         @mouseenter="link.name === 'Destinations' ? isDestDropdownOpen = true : null"
+                         @mouseleave="isDestDropdownOpen = false">
+                        
+                        <a :href="link.url" class="nav-item relative py-2 hover:text-brand transition-colors flex items-center gap-1 group" :class="{'text-brand': link.name === 'Destinations'}">
+                            {{ link.name }}
+                            <i v-if="link.subLinks" class="fas fa-chevron-down text-[9px] opacity-50 transition-transform duration-300 ml-1" :class="{'rotate-180': link.name === 'Destinations' && isDestDropdownOpen}"></i>
+                            <span class="absolute bottom-0 left-0 h-[2px] bg-brand transition-all duration-300 opacity-0 group-hover:opacity-100" :class="link.name === 'Destinations' ? 'w-full opacity-100' : 'w-0 group-hover:w-full'"></span>
+                        </a>
+
+                        <transition name="dropdown">
+                            <div v-if="link.name === 'Destinations' && isDestDropdownOpen" 
+                                 class="absolute top-[80%] left-1/2 -translate-x-1/2 w-[240px] bg-white shadow-[0_10px_40px_rgba(0,0,0,0.1)] rounded-sm border-t-2 border-brand p-0 overflow-hidden">
+                                <div class="px-6 py-3 bg-gray-50 border-b border-gray-100 text-[10px] uppercase tracking-[0.2em] text-gray-400 font-bold">Select Region</div>
+                                <ul class="py-2">
+                                    <li v-for="sub in link.subLinks" :key="sub.name">
+                                        <a :href="sub.url" class="flex items-center justify-between px-6 py-3 text-sm font-medium text-gray-600 hover:bg-gray-50 hover:text-brand transition-all group/item">
+                                            <span>{{ sub.name }}</span>
+                                            <i class="fas fa-arrow-right text-[10px] opacity-0 -translate-x-2 group-hover/item:opacity-100 group-hover/item:translate-x-0 transition-all text-brand"></i>
+                                        </a>
+                                    </li>
+                                </ul>
+                                <div class="bg-gray-50 p-3 text-center border-t border-gray-100">
+                                    <a href="destination-europe-en.html" class="text-[11px] font-bold uppercase tracking-widest text-brand hover:underline">All Destinations</a>
+                                </div>
+                            </div>
+                        </transition>
+                    </div>
+
+                    <div class="relative group h-24 flex items-center pl-6 ml-4 border-l border-gray-200"
+                         @mouseenter="isLangDropdownOpen = true"
+                         @mouseleave="isLangDropdownOpen = false">
+                        
+                        <a href="#" class="nav-item hover:text-brand transition-colors flex items-center gap-2">
+                            <i class="fas fa-globe text-gray-400 text-lg"></i>
+                            {{ currentLang }}
+                        </a>
+                        
+                        <transition name="dropdown">
+                            <div v-if="isLangDropdownOpen" 
+                                 class="absolute top-[80%] right-0 w-[160px] bg-white shadow-[0_10px_40px_rgba(0,0,0,0.1)] rounded-sm border-t-2 border-brand p-1">
+                                <ul class="space-y-0.5">
+                                    <li v-for="lang in ['中文', 'English', 'Française']" :key="lang">
+                                        <a href="#" @click.prevent="switchLang(lang)" 
+                                           class="flex items-center justify-between px-4 py-2.5 text-xs font-medium text-gray-600 hover:bg-gray-50 hover:text-brand transition-all"
+                                           :class="{'text-brand bg-red-50/50': currentLang === lang}">
+                                            {{ lang }}
+                                            <i v-if="currentLang === lang" class="fas fa-check text-[10px]"></i>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </transition>
+                    </div>
+                </nav>
+            </div>
+        </div>
+
+        <transition name="mobile-menu">
+            <nav v-if="isMobileMenuOpen" class="lg:hidden absolute top-full left-0 w-full bg-white border-t border-gray-100 py-8 shadow-2xl h-screen overflow-y-auto">
+                <div class="flex flex-col items-center gap-8 px-6">
+                    <a v-for="link in navLinks" :key="link.name" :href="link.url"
+                       class="text-lg font-medium uppercase tracking-[0.2em] text-gray-800 hover:text-brand transition"
+                       @click="isMobileMenuOpen = false">
+                       {{ link.name }}
+                    </a>
+                    
+                    <div class="w-16 h-px bg-gray-200 my-2"></div>
+
+                    <div class="flex flex-col items-center gap-4 w-full">
+                        <span class="text-xs text-gray-400 uppercase tracking-widest">Select Language</span>
+                        <div class="flex gap-3">
+                            <button @click="switchLang('中文')" class="px-5 py-2 rounded-full text-xs font-bold transition border" :class="currentLang === '中文' ? 'bg-brand text-white border-brand' : 'bg-white text-gray-600 border-gray-200'">中文</button>
+                            <button @click="switchLang('English')" class="px-5 py-2 rounded-full text-xs font-bold transition border" :class="currentLang === 'English' ? 'bg-brand text-white border-brand' : 'bg-white text-gray-600 border-gray-200'">EN</button>
+                            <button @click="switchLang('Française')" class="px-5 py-2 rounded-full text-xs font-bold transition border" :class="currentLang === 'Française' ? 'bg-brand text-white border-brand' : 'bg-white text-gray-600 border-gray-200'">FR</button>
+                        </div>
+                    </div>
+                </div>
+            </nav>
+        </header>
+
+    <main class="pt-24 min-h-screen">
+        
+        <section class="relative h-[60vh] min-h-[500px] w-full overflow-hidden bg-gray-900 group">
+            <transition-group name="carousel">
+                <div v-for="(img, index) in heroImages" :key="img" 
+                     v-show="currentHeroIndex === index"
+                     class="absolute inset-0 w-full h-full will-change-opacity">
+                    <img :src="img" 
+                         alt="Hero Background" 
+                         class="w-full h-full object-cover opacity-90 transition-transform duration-[5000ms] ease-linear transform scale-105">
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-transparent"></div>
+                </div>
+            </transition-group>
+            
+            <button @click="prevSlide" class="absolute left-4 top-1/2 -translate-y-1/2 z-30 w-12 h-12 rounded-full bg-black/30 hover:bg-brand text-white backdrop-blur-sm flex items-center justify-center transition-all opacity-0 group-hover:opacity-100 border border-white/20">
+                <i class="fas fa-chevron-left"></i>
+            </button>
+            <button @click="nextSlide" class="absolute right-4 top-1/2 -translate-y-1/2 z-30 w-12 h-12 rounded-full bg-black/30 hover:bg-brand text-white backdrop-blur-sm flex items-center justify-center transition-all opacity-0 group-hover:opacity-100 border border-white/20">
+                <i class="fas fa-chevron-right"></i>
+            </button>
+
+            <div class="absolute bottom-8 right-8 z-30 flex gap-2">
+                <button v-for="(img, index) in heroImages" :key="index" 
+                        @click="currentHeroIndex = index"
+                        :class="['h-1.5 rounded-full transition-all', currentHeroIndex === index ? 'bg-brand w-8' : 'bg-white/50 w-2 hover:bg-white']">
+                </button>
+            </div>
+
+            <div class="absolute bottom-0 left-0 w-full z-20 pt-20 pb-10">
+                <div class="container mx-auto px-4 flex flex-col md:flex-row items-end justify-between gap-6">
+                    <div class="text-white max-w-3xl">
+                        <div class="flex items-center gap-3 mb-3">
+                            <span class="bg-brand text-white text-xs font-bold px-3 py-1 rounded-full uppercase tracking-widest">Luxury Tour</span>
+                            <span class="bg-white/20 backdrop-blur text-white text-xs font-bold px-3 py-1 rounded-full"><i class="far fa-clock mr-1"></i> 12 Days / 11 Nights</span>
+                        </div>
+                        <h1 class="text-4xl md:text-5xl lg:text-6xl font-bold font-serif mb-2 leading-tight">
+                            {{ tour.title }}
+                        </h1>
+                        <p class="text-xl md:text-2xl font-light opacity-90 font-serif italic">{{ tour.subTitle }}</p>
+                    </div>
+                    
+                    <div class="hidden md:block text-right pb-2">
+                        <div class="text-gray-300 text-sm mb-1 font-medium uppercase tracking-widest">Price / Person (Double Room)</div>
+                        <div class="flex items-baseline justify-end gap-1 mb-4">
+                            <span class="text-2xl font-bold text-brand">€</span>
+                            <span class="text-5xl font-bold text-white shadow-black drop-shadow-lg">2 458</span>
+                        </div>
+                        <button @click="handleBookingScroll()" class="bg-brand text-white text-lg px-10 py-4 rounded-full font-bold shadow-[0_10px_20px_rgba(185,28,28,0.4)] hover:-translate-y-1 hover:shadow-2xl transition-all flex items-center gap-2">
+                            <span>Get Quote / Book Now</span>
+                            <i class="fas fa-arrow-right"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <div id="sticky-nav" class="sticky top-[80px] lg:top-[96px] z-40 bg-white/95 backdrop-blur shadow-md border-b border-gray-100 transition-all">
+            <div class="container mx-auto px-4">
+                <div class="flex items-center justify-between overflow-x-auto scrollbar-hide">
+                    <ul class="flex items-center gap-6 md:gap-8 h-14 whitespace-nowrap">
+                        <li v-for="item in subMenu" :key="item.id">
+                            <a :href="'#' + item.id" 
+                               v-if="!item.hidden"
+                               class="text-sm font-bold uppercase tracking-wider py-4 border-b-2 border-transparent hover:text-brand hover:border-brand transition-colors block"
+                               :class="activeSection === item.id ? 'text-brand border-brand' : 'text-gray-500'">
+                                {{ item.name }}
+                            </a>
+                        </li>
+                    </ul>
+                    <div class="md:hidden pl-4 border-l border-gray-100 ml-4 py-2">
+                        <button @click="handleBookingScroll()" class="bg-brand text-white text-xs px-4 py-2 rounded-full font-bold whitespace-nowrap">
+                            Book Now
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="container mx-auto px-4 py-12">
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-12">
+                
+                <div class="lg:col-span-8 space-y-12">
+                    
+                    <section id="dates" class="scroll-mt-40">
+                        <div class="flex items-center gap-3 mb-6">
+                            <h2 class="text-3xl font-bold text-gray-800">Dates & Prices</h2>
+                            <span class="bg-brand text-white text-xs font-bold px-2 py-1 rounded">2026 Selection</span>
+                        </div>
+                        
+                        <div class="bg-white border border-gray-200 rounded-2xl shadow-lg overflow-hidden">
+                            <div class="overflow-x-auto">
+                                <table class="w-full text-left">
+                                    <thead class="bg-gray-50 border-b border-gray-200">
+                                        <tr>
+                                            <th class="p-5 font-bold text-gray-600 uppercase text-xs tracking-wider">Departure</th>
+                                            <th class="p-5 font-bold text-gray-600 uppercase text-xs tracking-wider">Price (Double Room)</th>
+                                            <th class="p-5 font-bold text-brand uppercase text-xs tracking-wider text-right">Single Supp.</th>
+                                            <th class="p-5 font-bold text-gray-600 uppercase text-xs tracking-wider text-center">Status</th>
+                                            <th class="p-5"></th>
+                                        </tr>
+                                    </thead>
+                                    <tbody class="divide-y divide-gray-100">
+                                        <tr v-for="date in tour.dates" :key="date.start" class="hover:bg-red-50/30 transition-colors group">
+                                            <td class="p-5 font-medium text-gray-800">{{ date.start }}</td>
+                                            <td class="p-5 text-gray-600">{{ date.price }}</td>
+                                            <td class="p-5 text-right font-medium text-gray-500">{{ tour.singleSupplement }}</td>
+                                            <td class="p-5 text-center">
+                                                <span class="inline-flex items-center gap-1 bg-green-100 text-green-700 text-xs px-2 py-1 rounded-full font-bold">
+                                                    <i class="fas fa-check-circle"></i> Confirmed
+                                                </span>
+                                            </td>
+                                            <td class="p-5 text-right">
+                                                <button @click="handleBookingScroll(date.start)" class="bg-gray-800 text-white text-xs px-4 py-2 rounded-full font-bold group-hover:bg-brand transition-colors">
+                                                    Select
+                                                </button>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                            <div class="bg-gray-50 p-4 text-xs text-gray-500 border-t border-gray-200 flex flex-col md:flex-row justify-between items-center gap-2">
+                                <span><i class="fas fa-info-circle mr-1"></i> Single travelers must pay the single supplement (€1015).</span>
+                            </div>
+                        </div>
+                    </section>
+
+                    <section id="overview" class="scroll-mt-40 pt-8 border-t border-gray-100">
+                        <h2 class="text-2xl font-bold text-gray-800 mb-6 flex items-center gap-3">
+                            Highlights
+                        </h2>
+                        <div class="prose prose-lg text-gray-600 mb-8">
+                            <p class="italic text-gray-500 mb-6 border-l-4 border-brand pl-4">
+                                "From the Eternal City of Rome to the fashion capital Paris, enjoy 4-star+ accommodation throughout, and deeply explore the essence of Italy, Switzerland, and France."
+                            </p>
+                            <p class="text-sm">
+                                This is a luxurious journey through European history and nature. Feel the shock of the ancient empire at the Colosseum, trace the footsteps of the Renaissance in Florence, and experience the romance of Venice. Go deep into the colorful cliffs of Cinque Terre, and ascend Mount Titlis in Switzerland to overlook the Alps. The itinerary also includes the scenic Lucerne, the medieval charm of Bern, the wine culture of Dijon, and finally, enjoy French elegance and luxury in a 5-star hotel in Paris.
+                            </p>
+                        </div>
+                        
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                            <div v-for="(highlight, index) in tour.highlights" :key="index" class="bg-red-50 p-4 rounded-xl flex items-start gap-3 border border-transparent hover:border-red-100 transition-colors">
+                                <div class="w-8 h-8 rounded-full bg-white text-brand flex items-center justify-center flex-shrink-0 shadow-sm mt-1">
+                                    <i class="fas fa-check text-sm"></i>
+                                </div>
+                                <span class="font-medium text-gray-800">{{ highlight }}</span>
+                            </div>
+                        </div>
+                    </section>
+                    
+                    <section id="map" class="scroll-mt-40">
+                        <h2 class="text-2xl font-bold text-gray-800 mb-6 flex items-center gap-3">
+                            Route Map
+                        </h2>
+                        <div class="bg-white p-2 rounded-2xl shadow-lg border border-gray-100 overflow-hidden">
+                            <img src="images/italy-switzerland-france-luxury-tour-12-days/map.jpg" alt="Route Map" class="w-full h-auto object-cover rounded-xl hover:scale-[1.01] transition-transform duration-500">
+                        </div>
+                    </section>
+
+                    <section id="itinerary" class="scroll-mt-40">
+                        <div class="flex items-center justify-between mb-8">
+                            <h2 class="text-3xl font-bold text-gray-800">Itinerary</h2>
+                            <button @click="toggleAllDays" class="text-brand text-sm font-bold hover:underline px-3 py-1 rounded hover:bg-red-50 transition">
+                                {{ isAllExpanded ? 'Collapse All' : 'Expand All' }}
+                            </button>
+                        </div>
+
+                        <div class="relative space-y-8">
+                            <div v-for="(day, index) in tour.daysData" :key="index" 
+                                 class="relative pl-10 group" :class="{'last-item': index === tour.daysData.length - 1}">
+                                
+                                <div class="timeline-line"></div>
+                                
+                                <div class="absolute left-0 top-0 w-8 h-8 bg-brand text-white rounded-full flex items-center justify-center font-bold text-sm shadow-md z-10">
+                                    {{ day.day }}
+                                </div>
+
+                                <div class="bg-white border border-gray-100 rounded-2xl p-6 shadow-sm hover:shadow-md transition-shadow">
+                                    <div class="flex flex-col md:flex-row md:items-center justify-between gap-4 mb-4 cursor-pointer select-none" 
+                                         @click="toggleDay(index)">
+                                        <div>
+                                            <div class="text-xs font-bold text-gray-400 uppercase tracking-widest mb-1">
+                                                {{ day.transport }}
+                                            </div>
+                                            <h3 class="text-xl font-bold text-gray-800 group-hover:text-brand transition-colors">
+                                                {{ day.title }}
+                                            </h3>
+                                        </div>
+                                    
+                                        <i class="fas fa-chevron-down text-gray-300 transition-transform duration-300" 
+                                           :class="{'rotate-180': day.isOpen}"></i>
+                                    </div>
+
+                                    <div v-show="day.isOpen" class="space-y-4 text-gray-600 leading-relaxed border-t border-gray-50 pt-4">
+                                        <div v-html="day.content"></div>
+                                         
+                                        <div class="mt-4 rounded-xl overflow-hidden h-48 md:h-64 w-full relative bg-gray-100 flex items-center justify-center group/img">
+                                            <img :src="day.image" class="w-full h-full object-cover transition-transform duration-700 group-hover/img:scale-105" alt="Day Image">
+                                        </div>
+                                        
+                                        <div class="flex flex-wrap gap-2 mt-4">
+                                            <div v-if="day.hotel" class="flex items-center gap-2 text-xs text-gray-500 bg-gray-50 px-3 py-2 rounded-lg">
+                                                <i class="fas fa-bed text-brand"></i>
+                                                <span class="font-bold">Accommodation:</span> {{ day.hotel }}
+                                            </div>
+                                            <div v-if="day.meals" class="flex items-center gap-2 text-xs text-gray-500 bg-gray-50 px-3 py-2 rounded-lg">
+                                                <i class="fas fa-utensils text-brand"></i>
+                                                <span class="font-bold">Meals:</span> {{ day.meals }}
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+
+                    <section id="optionals" class="scroll-mt-40">
+                        <div class="bg-gradient-to-br from-gray-50 to-white rounded-2xl p-8 border border-gray-200 shadow-sm">
+                            <div class="mb-6">
+                                <h3 class="text-2xl font-bold text-gray-800 flex items-center gap-3">
+                                    <i class="fas fa-ticket-alt text-brand"></i> Optional Excursions
+                                </h3>
+                                <p class="text-sm text-gray-500 mt-2">Click cards for details. You can select these when booking, and the cost will be added to the estimate.</p>
+                            </div>
+                            
+                            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                                <div v-for="(item, index) in tour.optionalItems" :key="index" 
+                                     @click="openOptionalModal(item)"
+                                     class="bg-white rounded-xl border border-gray-200 overflow-hidden hover:shadow-md transition-all cursor-pointer group flex flex-col transform hover:-translate-y-1 relative">
+                                    
+                                     <div v-if="item.required" class="absolute top-0 left-0 z-20 bg-red-600 text-white text-[10px] font-bold px-3 py-1 rounded-br-lg shadow-md uppercase tracking-wider">
+                                        Mandatory
+                                    </div>
+
+                                    <div class="h-40 bg-gray-100 relative overflow-hidden">
+                                        <img :src="item.detailImage" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110">
+                                        <div class="absolute top-2 right-2 bg-brand text-white text-xs font-bold px-2 py-1 rounded shadow-lg">
+                                            <span v-if="item.price > 0">{{ item.price }} {{ item.unit }}</span>
+                                            <span v-else>Self-pay</span>
+                                        </div>
+                                        <div class="absolute inset-0 bg-black/10 group-hover:bg-transparent transition-colors"></div>
+                                        <div class="absolute bottom-2 left-2 text-white text-xs bg-black/50 px-2 py-1 rounded backdrop-blur-sm opacity-0 group-hover:opacity-100 transition-opacity">
+                                            Click for Details
+                                        </div>
+                                    </div>
+                                    <div class="p-4 flex-1 flex flex-col">
+                                        <h4 class="font-bold text-gray-800 mb-2 group-hover:text-brand transition-colors">{{ item.name }}</h4>
+                                        <p class="text-xs text-gray-500 flex-1 line-clamp-2">{{ item.shortDesc }}</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="mt-6 pt-4 border-t border-gray-100 text-xs text-gray-400 flex items-center gap-2">
+                                <i class="fas fa-info-circle"></i>
+                                <span>Note: Optional prices are for reference only, subject to actual local arrangements.</span>
+                            </div>
+                        </div>
+                    </section>
+
+                    <section id="includes" class="scroll-mt-40 grid grid-cols-1 md:grid-cols-2 gap-8">
+                        <div class="bg-green-50/50 p-6 rounded-2xl border border-green-100">
+                            <h3 class="font-bold text-green-800 mb-4 flex items-center gap-2">
+                                <i class="fas fa-check-circle"></i> Included
+                            </h3>
+                            <ul class="space-y-3">
+                                <li v-for="(item, i) in tour.includes" :key="i" class="flex items-start gap-3 text-sm text-gray-700">
+                                    <span class="w-1.5 h-1.5 bg-green-500 rounded-full mt-1.5 flex-shrink-0"></span>
+                                    <span>{{ item }}</span>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="bg-red-50/50 p-6 rounded-2xl border border-red-100">
+                            <h3 class="font-bold text-red-800 mb-4 flex items-center gap-2">
+                                <i class="fas fa-times-circle"></i> Not Included
+                            </h3>
+                            <ul class="space-y-3">
+                                <li v-for="(item, i) in tour.excludes" :key="i" class="flex items-start gap-3 text-sm text-gray-700">
+                                    <span class="w-1.5 h-1.5 bg-red-400 rounded-full mt-1.5 flex-shrink-0"></span>
+                                    <span>{{ item }}</span>
+                                </li>
+                            </ul>
+                        </div>
+                    </section>
+                </div>
+
+                <div class="lg:col-span-4 relative">
+                    <div class="sticky top-28 max-h-[calc(100vh-130px)] overflow-y-auto custom-scrollbar pr-2 pb-4">
+                        <div id="contact" 
+                             :class="['bg-white rounded-2xl shadow-[0_20px_50px_rgba(0,0,0,0.1)] border p-5 relative overflow-hidden transition-all duration-300', formHighlight ? 'highlight-active border-brand' : 'border-gray-100']">
+                            
+                            <div class="absolute top-0 left-0 w-full h-2 bg-brand"></div>
+                            
+                            <div v-if="isSubmitted" class="py-10 text-center fade-in">
+                                <div class="w-16 h-16 bg-green-100 text-green-600 rounded-full flex items-center justify-center text-3xl mx-auto mb-4 animate-bounce">
+                                    <i class="fas fa-check-circle"></i>
+                                </div>
+                                <h3 class="text-xl font-bold text-gray-800 mb-3">Inquiry Sent!</h3>
+                                <p class="text-xs text-gray-600 mb-6 leading-relaxed">
+                                    We will contact you within <span class="text-brand font-bold underline">24 hours</span>.
+                                </p>
+                                <button @click="resetForm" class="text-brand font-bold text-xs hover:underline flex items-center gap-2 mx-auto">
+                                    <i class="fas fa-redo-alt text-[10px]"></i> Submit New Inquiry
+                                </button>
+                            </div>
+
+                            <form v-else class="space-y-3" @submit.prevent="handleFormSubmit" novalidate>
+                                <div class="flex items-center justify-between">
+                                    <div>
+                                        <h3 class="text-xl font-bold font-serif mb-1">Start Your Journey</h3>
+                                        <p class="text-xs text-gray-400">Fill the form, we'll reply in 24h.</p>
+                                    </div>
+                                    <button type="button" @click="isTermsModalOpen = true" class="text-brand text-xs font-bold underline hover:text-red-800">
+                                        <i class="fas fa-info-circle"></i> Terms & Info
+                                    </button>
+                                </div>
+
+                                <div class="grid grid-cols-2 gap-3">
+                                    <div>
+                                        <label class="block text-[10px] font-bold text-gray-500 mb-1 ml-1 uppercase">Name *</label>
+                                        <input type="text" v-model="formData.name" required placeholder="Your Name"
+                                               :class="{'input-error': attemptedSubmit && !formData.name}"
+                                               class="w-full bg-gray-50 border border-gray-200 rounded-lg px-3 py-2 text-sm focus:outline-none focus:border-brand transition outline-none">
+                                    </div>
+                                    <div>
+                                        <label class="block text-[10px] font-bold text-gray-500 mb-1 ml-1 uppercase">Passengers *</label>
+                                        <input type="number" v-model.number="formData.passengers" min="1" required
+                                               :class="{'input-error': attemptedSubmit && !formData.passengers}"
+                                               class="w-full bg-gray-50 border border-gray-200 rounded-lg px-3 py-2 text-sm focus:outline-none focus:border-brand transition outline-none">
+                                    </div>
+                                </div>
+
+                                <div>
+                                    <label class="block text-[10px] font-bold text-gray-500 mb-1 ml-1 uppercase">Phone *</label>
+                                    <div class="flex gap-2">
+                                        <div class="relative w-24 shrink-0">
+                                            <select v-model="formData.countryCode" class="w-full pl-2 pr-5 py-2 bg-gray-50 border border-gray-200 rounded-lg focus:outline-none focus:border-brand transition text-xs appearance-none h-full">
+                                                <option value="+33">🇫🇷 +33</option>
+                                                <option value="+86">🇨🇳 +86</option>
+                                                <option value="+852">🇭🇰 +852</option>
+                                                <option value="+44">🇬🇧 +44</option>
+                                                <option value="+1">🇺🇸 +1</option>
+                                            </select>
+                                            <i class="fas fa-chevron-down absolute right-2 top-1/2 -translate-y-1/2 text-gray-400 pointer-events-none text-[10px]"></i>
+                                        </div>
+                                        <input type="tel" v-model="formData.phone" required placeholder="Number"
+                                               :class="{'input-error': attemptedSubmit && (phoneError || !formData.phone)}"
+                                               class="flex-1 w-full bg-gray-50 border border-gray-200 rounded-lg px-3 py-2 text-sm focus:outline-none focus:border-brand transition outline-none">
+                                    </div>
+                                    <p v-if="attemptedSubmit && phoneError" class="text-red-600 text-[10px] ml-1 mt-1">{{ phoneError }}</p>
+                                </div>
+
+                                <div>
+                                    <label class="block text-[10px] font-bold text-gray-500 mb-1 ml-1 uppercase">Email *</label>
+                                    <input type="email" v-model="formData.email" required placeholder="example@email.com"
+                                           :class="{'input-error': attemptedSubmit && !formData.email}"
+                                           class="w-full bg-gray-50 border border-gray-200 rounded-lg px-3 py-2 text-sm focus:outline-none focus:border-brand transition outline-none">
+                                </div>
+
+                                <div>
+                                    <label class="block text-[10px] font-bold text-gray-500 mb-1 ml-1 uppercase">Date *</label>
+                                    <div class="relative">
+                                        <select v-model="formData.date" required 
+                                                :class="{'input-error': attemptedSubmit && !formData.date}"
+                                                class="w-full bg-gray-50 border border-gray-200 rounded-lg px-3 py-2 focus:outline-none focus:border-brand transition text-gray-700 font-medium appearance-none text-sm">
+                                            <option value="" disabled>Select Date</option>
+                                            <option v-for="date in tour.dates" :key="date.start" :value="date.start">{{ date.start }} ({{ date.price }})</option>
+                                            <option value="other">Other Date / TBD</option>
+                                        </select>
+                                        <i class="fas fa-chevron-down absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 pointer-events-none text-xs"></i>
+                                    </div>
+                                </div>
+
+                                <div>
+                                    <label class="block text-[10px] font-bold text-gray-500 mb-1 ml-1 uppercase">Optional Extras (Per Person)</label>
+                                    <div class="border border-gray-200 rounded-lg overflow-hidden transition-all duration-300" :class="{'border-brand bg-red-50/30': isOptionalsOpen}">
+                                        <button type="button" @click="isOptionalsOpen = !isOptionalsOpen" 
+                                                class="w-full flex justify-between items-center p-3 bg-gray-50 hover:bg-gray-100 transition-colors focus:outline-none">
+                                            <span class="text-xs font-medium text-gray-700">
+                                                <span v-if="formData.selectedOptionals.length === 0">Click to Select</span>
+                                                <span v-else class="text-brand font-bold">{{ formData.selectedOptionals.length }} Item(s) Selected</span>
+                                            </span>
+                                            <i class="fas fa-chevron-down text-gray-400 text-xs transform transition-transform duration-300" 
+                                               :class="{'rotate-180 text-brand': isOptionalsOpen}"></i>
+                                        </button>
+                                        
+                                        <transition name="accordion">
+                                            <div v-show="isOptionalsOpen" class="bg-white border-t border-gray-100">
+                                                <div class="p-2 space-y-1">
+                                                    <div v-for="(item, index) in tour.optionalItems" :key="index" 
+                                                         class="flex items-center justify-between p-2 rounded hover:bg-gray-50 cursor-pointer transition-colors"
+                                                         :class="{'cursor-not-allowed opacity-80': item.required}"
+                                                         @click="toggleOptionalSelection(item)">
+                                                        <div class="flex items-center gap-3">
+                                                            <div class="w-4 h-4 border rounded flex items-center justify-center transition-colors" 
+                                                                 :class="[isOptionalSelected(item) ? 'bg-brand border-brand' : 'border-gray-300 bg-white', item.required ? 'opacity-60' : '']">
+                                                                <i v-if="isOptionalSelected(item)" class="fas fa-check text-white text-[10px]"></i>
+                                                            </div>
+                                                            <span class="text-xs text-gray-700 select-none">
+                                                                {{ item.name }}
+                                                                <span v-if="item.required" class="text-[9px] text-red-500 bg-red-50 px-1 py-0.5 rounded border border-red-100 ml-1"><i class="fas fa-lock"></i> Mandatory</span>
+                                                            </span>
+                                                        </div>
+                                                        <span v-if="item.price > 0" class="text-xs font-bold text-gray-500 select-none">+{{ item.price }} {{ item.unit }}</span>
+                                                        <span v-else class="text-xs font-bold text-gray-400 select-none">Self-pay</span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </transition>
+                                    </div>
+                                </div>
+
+                                <div v-if="calculatedPrice > 0" class="bg-red-50 p-3 rounded-lg border border-red-100 flex justify-between items-center">
+                                    <div class="flex flex-col">
+                                        <span class="text-[10px] text-red-600 font-bold uppercase">Estimated Total</span>
+                                        <div class="flex flex-col">
+                                            <span v-if="hasSingleSupplement" class="text-[9px] text-red-400 leading-tight">* Incl. Single Supp. {{ tour.singleSupplement }}</span>
+                                            <span class="text-[9px] text-red-400 leading-tight">* Incl. Optional Items</span>
+                                        </div>
+                                    </div>
+                                    <div class="text-right">
+                                        <span class="text-lg font-bold text-brand">{{ calculatedPrice.toLocaleString() }} €</span>
+                                    </div>
+                                </div>
+
+                                <div>
+                                    <label class="block text-[10px] font-bold text-gray-500 mb-1 ml-1 uppercase">Remarks</label>
+                                    <textarea v-model="formData.remarks" class="w-full bg-gray-50 border border-gray-200 rounded-lg px-3 py-2 text-sm focus:outline-none focus:border-brand transition h-16 outline-none resize-none" placeholder="Dietary requests, flight info, etc..."></textarea>
+                                </div>
+
+                                <button class="w-full bg-brand text-white font-bold py-3 rounded-lg hover:bg-[#991b1b] transition shadow-lg flex items-center justify-center gap-2 transform active:scale-95 text-sm">
+                                    <span v-if="isSending"><i class="fas fa-spinner fa-spin"></i> Sending...</span>
+                                    <span v-else>Submit Inquiry <i class="fas fa-paper-plane"></i></span>
+                                </button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </main>
+
+    <transition name="modal">
+        <div v-if="activeOptional" class="fixed inset-0 z-[200] flex items-center justify-center p-4 bg-black/60 backdrop-blur-sm" @click.self="closeOptionalModal">
+            <transition name="modal-content" appear>
+                <div class="bg-white rounded-2xl shadow-2xl max-w-lg w-full overflow-hidden relative">
+                    <button @click="closeOptionalModal" class="absolute top-4 right-4 z-10 w-8 h-8 bg-black/30 hover:bg-black/50 text-white rounded-full flex items-center justify-center transition-colors">
+                        <i class="fas fa-times"></i>
+                    </button>
+                    
+                    <div class="h-56 bg-gray-200 relative">
+                        <img :src="activeOptional.detailImage" class="w-full h-full object-cover">
+                        <div class="absolute bottom-0 left-0 w-full bg-gradient-to-t from-black/80 to-transparent p-6 pt-12">
+                            <h3 class="text-2xl font-bold text-white">{{ activeOptional.name }}</h3>
+                            <div class="text-brand font-bold text-lg mt-1">
+                                <span v-if="activeOptional.price > 0">{{ activeOptional.price }} {{ activeOptional.unit }} <span class="text-white/80 text-xs font-normal">/ Person</span></span>
+                                <span v-else>Self-pay</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="p-6">
+                        <p class="text-gray-600 text-sm leading-relaxed mb-6">{{ activeOptional.description }}</p>
+                        <button @click="closeOptionalModal" class="w-full bg-gray-100 hover:bg-gray-200 text-gray-800 font-bold py-3 rounded-xl transition-colors">
+                            Close
+                        </button>
+                    </div>
+                </div>
+            </transition>
+        </div>
+    </transition>
+
+    <transition name="modal">
+        <div v-if="isTermsModalOpen" class="fixed inset-0 z-[200] flex items-center justify-center p-4 bg-black/60 backdrop-blur-sm" @click.self="isTermsModalOpen = false">
+            <transition name="modal-content" appear>
+                <div class="bg-white rounded-2xl shadow-2xl max-w-lg w-full overflow-hidden relative flex flex-col max-h-[80vh]">
+                    <div class="p-4 border-b border-gray-100 flex justify-between items-center">
+                        <h3 class="text-xl font-bold text-gray-800">Terms & Conditions</h3>
+                        <button @click="isTermsModalOpen = false" class="w-8 h-8 hover:bg-gray-100 text-gray-500 rounded-full flex items-center justify-center transition-colors">
+                            <i class="fas fa-times"></i>
+                        </button>
+                    </div>
+                    
+                    <div class="p-6 overflow-y-auto custom-scrollbar">
+                        <div class="prose prose-sm text-gray-600 text-justify leading-relaxed">
+                            <p class="mb-4">
+                                To protect your interests to the greatest extent, please carefully read our "Registration Instructions and Responsibility Details". These terms are an important notice for outbound tour members and form part of the tourism contract. Eurasia Tours reserves the right to interpret the content of this website.
+                            </p>
+    
+                            <h4 class="font-bold text-gray-800 mt-6 mb-2">1. Booking Process & Precautions</h4>
+                            <div class="space-y-3">
+                                <p>1. When booking, please fill in the order form on the webpage first. Carefully verify that all information (name, gender, ID number, contact info, room type, etc.) is correct. The company is not responsible for any losses caused by incorrect information. After submission, you will receive an order confirmation. Due to limited bus seats, we prioritize seating based on payment arrival. We ensure one seat per person. Please arrange payment within the order validity period after verifying details. <span class="text-red-600 font-bold">Those who fail to pay the tour fee by the deadline will be considered as automatically withdrawing, and we have the right to cancel your order without further notice.</span></p>
+                
+                                <p>2. Members must ensure that 100% of the tour fee is paid within the order retention period upon confirmation of the group. Since hotel reservations often have time limits, members booking within 5 working days before departure must complete payment proactively and promptly. Otherwise, we reserve the right to retain or cancel such orders without prior consent. Transaction fees for payments are borne by the payer. After payment, please send the proof of payment (bank slip or screenshot) via email, noting the order number.</p>
+                
+                                <p>3. After confirming receipt of payment, we will confirm your participation. Members will receive a "Joining Notice" via email 3 days before departure, containing guide info, itinerary, and pick-up points. If you do not receive this 5 days before departure (check spam folders), please contact us immediately.</p>
+                
+                                <p>4. We default to same-gender room sharing. If a single traveler or an odd number of travelers (e.g., 3, 5, 7) register, we will arrange room sharing based on actual conditions. If you do not accept sharing, you may pay the single supplement. In special cases (e.g., peak season, insufficient rooms), room types may change, and members must cooperate. If incorrect gender/room requirements provided during booking lead to onsite discrepancies, we will coordinate based on remaining rooms, <span class="text-red-600 font-bold">and any extra costs will be borne by the member.</span><br>
+                                <span class="bg-red-50 text-red-700 px-2 py-1 rounded inline-block mt-1 text-xs">Note: For strangers sharing a room arranged by us, the company is not responsible for personal character or behavior. Disputes or habit differences are not the responsibility of the company or guide to mediate.</span></p>
+                
+                                <p>5. If a member needs to leave the group midway due to special circumstances, they must inform us before departure. Leaving early results in a €50 reduction per night not stayed (or €100 if a single room was booked for the whole trip). <span class="text-red-600 font-bold">No refund is given if the request to leave is made during the tour.</span> Members must assess their own health. Expenses arising from personal health issues during the trip are borne by the member. Those with serious illnesses must declare them during registration.</p>
+                
+                                <p>6. Members over 70 must be accompanied by a family member and sign a disclaimer. Pregnant women must declare their status; those over 24 weeks are generally advised not to join. Minors must be accompanied by at least one adult.</p>
+                                
+                                <p>7. Do not book any flight or train tickets associated with the itinerary before your order is confirmed. Losses incurred from booking transport before confirmation are borne by the applicant.</p>
+                            </div>
+    
+                            <h4 class="font-bold text-gray-800 mt-6 mb-2">2. Discounts & Usage</h4>
+                            <div class="space-y-3">
+                                <p>1. 35% off for children under 6! <span class="text-red-600">*Note: Children do not occupy a bed. If a bed is needed, please contact us. If one adult brings one child, the child pays full price.</span></p>
+                                <p>2. Single travelers can choose the room-sharing service. We will arrange same-gender sharing. Whether successful or not, we will not charge a single supplement. Note: For orders placed within 5 days of departure, we reserve the right to charge the full single supplement based on actual conditions.</p>
+                            </div>
+    
+                            <h4 class="font-bold text-gray-800 mt-6 mb-2">3. Cancellation Policy</h4>
+                            <div class="bg-gray-50 border border-gray-200 p-4 rounded-lg text-sm">
+                                <p class="font-bold mb-2">2026 Selection Tour Cancellation Rules:</p>
+                                <ul class="list-disc pl-5 space-y-1">
+                                    <li>Within <span class="font-bold text-red-600">31 days or more</span> before departure: <span class="font-bold">5% charge</span></li>
+                                    <li>Within <span class="font-bold text-red-600">30 to 15 days</span> before departure: <span class="font-bold">50% charge</span></li>
+                                    <li>Within <span class="font-bold text-red-600">14 to 8 days</span> before departure: <span class="font-bold">80% charge</span></li>
+                                    <li>Within <span class="font-bold text-red-600">7 days or less</span> before departure: <span class="font-bold">Non-refundable</span></li>
+                                </ul>
+                            </div>
+    
+                            <h4 class="font-bold text-gray-800 mt-6 mb-2">4. Member Obligations</h4>
+                            <div class="space-y-3">
+                                <p>1. Members must not engage in illegal activities during the tour.</p>
+                                <p>2. Respect local laws, customs, and other group members. No littering or defacing monuments.</p>
+                                <p>3. <span class="text-red-600">If members voluntarily participate in high-risk activities (hiking, diving, bungee jumping, etc.), any resulting disputes, property loss, or personal injury are the member's responsibility.</span></p>
+                            </div>
+    
+                            <h4 class="font-bold text-gray-800 mt-6 mb-2">5. Liability Details</h4>
+                            <div class="space-y-3">
+                                <p>1. We reserve the right to alter accommodation, routes, and attractions based on specific circumstances.</p>
+                                <p>2. If the tour is cancelled due to insufficient numbers or force majeure, we will refund the full amount or recommend alternatives, but <span class="text-red-600 font-bold">we are not liable for further compensation.</span></p>
+                                <p>3. In case of force majeure (natural disasters, war, strikes, etc.), we may cancel or alter the itinerary. <span class="text-red-600 font-bold">Any extra costs or losses incurred are not our responsibility.</span></p>
+                                <p>4. Please take care of personal property. We are not legally responsible for lost, stolen, or damaged items.</p>
+                                <p>5. Members must carry valid passports and visas. Losses caused by invalid documents are the member's responsibility.</p>
+                                <p>6. Times listed in the itinerary are references. Actual arrival times may vary due to weather or traffic. If you have connecting transport after the tour, please allow at least 3 hours buffer time.</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="p-4 border-t border-gray-100 bg-gray-50">
+                        <button @click="isTermsModalOpen = false" class="w-full bg-brand hover:bg-[#991b1b] text-white font-bold py-3 rounded-xl transition-colors">
+                            I Have Read and Understood
+                        </button>
+                    </div>
+                </div>
+            </transition>
+        </div>
+    </transition>
+
+    <footer class="bg-[#111] text-gray-400 pt-20 pb-10 border-t border-gray-800">
+        <div class="container mx-auto px-6 lg:px-12">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-16 mb-20">
+                <div class="space-y-8">
+                    <div class="inline-block bg-white p-3 rounded-md shadow-sm">
+                        <img src="https://www.eurasia-tours.fr/assets/logo-word-rNz8dsz6.jpg" alt="Eurasia Tours" class="h-10 w-auto object-contain">
+                    </div>
+                    <p class="text-sm leading-relaxed font-light">Since 2000, creating bespoke journeys that bridge cultures. Your trusted partner for authentic travel experiences across Europe and Asia.</p>
+                </div>
+                
+                <div>
+                    <h4 class="text-white font-serif text-lg mb-6">Accreditations</h4>
+                    <ul class="space-y-4 text-sm font-light">
+                        <li class="flex items-center gap-3"><i class="fas fa-certificate text-gray-600"></i> APST France Member</li>
+                        <li class="flex items-center gap-3"><i class="fas fa-plane text-gray-600"></i> IATA Accredited Agent</li>
+                        <li class="flex items-center gap-3"><i class="fas fa-shield-alt text-gray-600"></i> RCP Insurance Coverage</li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h4 class="text-white font-serif text-lg mb-6">Paris Headquarters</h4>
+                    <ul class="space-y-4 text-sm font-light">
+                        <li class="flex items-start gap-3"><i class="fas fa-map-marker-alt text-gray-600 mt-1"></i> 30 Rue Ernest Renan, 75015 Paris</li>
+                        <li class="flex items-center gap-3"><i class="fas fa-phone text-gray-600"></i> +33 (0)1 56 69 12 80</li>
+                        <li class="flex items-center gap-3"><i class="fas fa-envelope text-gray-600"></i> contact@eurasiatours.fr</li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h4 class="text-white font-serif text-lg mb-6">Connect</h4>
+                    <div class="flex gap-4 mb-8">
+                        <div class="relative group" @mouseenter="isWechatQR = true" @mouseleave="isWechatQR = false">
+                            <a href="#" class="w-10 h-10 border border-gray-700 rounded-full flex items-center justify-center hover:bg-[#07C160] hover:border-[#07C160] hover:text-white transition-all">
+                                <i class="fab fa-weixin"></i>
+                            </a>
+                            <transition name="qr-fade">
+                                <div v-if="isWechatQR" class="absolute bottom-14 left-1/2 -translate-x-1/2 bg-white p-2 rounded shadow-xl z-50 w-32">
+                                    <img src="https://www.eurasia-tours.fr/assets/wechat-account-VZcww6ek.jpg" class="w-full">
+                                </div>
+                            </transition>
+                        </div>
+                        <div class="relative group" @mouseenter="isFacebookQR = true" @mouseleave="isFacebookQR = false">
+                            <a href="#" class="w-10 h-10 border border-gray-700 rounded-full flex items-center justify-center hover:bg-[#1877F2] hover:border-[#1877F2] hover:text-white transition-all">
+                                <i class="fab fa-facebook-f"></i>
+                            </a>
+                            <transition name="qr-fade">
+                                <div v-if="isFacebookQR" class="absolute bottom-14 left-1/2 -translate-x-1/2 bg-white p-2 rounded shadow-xl z-50 w-32">
+                                    <img src="https://www.eurasia-tours.fr/assets/3-Bjf7LFHD.png" class="w-full">
+                                </div>
+                            </transition>
+                        </div>
+                    </div>
+                    <div class="flex gap-3 text-2xl opacity-20">
+                        <i class="fab fa-cc-visa"></i><i class="fab fa-cc-mastercard"></i><i class="fab fa-cc-amex"></i>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="border-t border-gray-800 pt-8 flex flex-col md:flex-row justify-between items-center text-xs tracking-widest uppercase text-gray-600">
+                <p>&copy; 2026 Eurasia Tours. All Rights Reserved.</p>
+                <div class="flex gap-6 mt-4 md:mt-0">
+                    <a href="#" class="hover:text-white transition">Privacy Policy</a>
+                    <a href="#" class="hover:text-white transition">Terms of Service</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+</div>
+
+<script>
+    const { createApp, ref, reactive, computed, nextTick, onMounted } = Vue;
+
+    createApp({
+        setup() {
+            onMounted(() => {
+                setInterval(nextSlide, 5000);
+                
+                let isScrolling = false;
+                window.addEventListener('scroll', () => {
+                    if (!isScrolling) {
+                        window.requestAnimationFrame(() => {
+                            handleScroll();
+                            isScrolling = false;
+                        });
+                        isScrolling = true;
+                    }
+                });
+            });
+
+            // HEADER STATE
+            const isMobileMenuOpen = ref(false);
+            const isDestDropdownOpen = ref(false);
+            const isLangDropdownOpen = ref(false);
+            const isWechatQR = ref(false);
+            const isFacebookQR = ref(false);
+            const currentLang = ref('English');
+
+            // Header Links
+            const navLinks = [
+                { name: 'Home', url: 'index-en.html' },
+                { 
+                    name: 'Destinations', 
+                    url: 'destination-europe-en.html', 
+                    subLinks: [
+                        { name: 'Asia', url: 'destination-asia-en.html' },
+                        { name: 'Europe', url: 'destination-europe-en.html' }
+                    ] 
+                },
+                { name: 'Tailor-made', url: 'custom-en.html' },
+                { name: 'Flight Services', url: 'flight-tickets-en.html' },
+                { name: 'About Us', url: 'about-en.html' },
+                { name: 'Contact Us', url: 'contact-en.html' },
+                { name: 'Blog', url: 'blog-en.html' }
+            ];
+
+            // LANGUAGE SWITCH LOGIC
+            const switchLang = (lang) => {
+                const urlMap = {
+                    '中文': 'italy-switzerland-france-luxury-tour-12-days.html',
+                    'English': 'italy-switzerland-france-luxury-tour-12-days-en.html',
+                    'Française': 'destination-main-fr.html'
+                };
+                const targetUrl = urlMap[lang];
+                if (targetUrl) {
+                    window.location.href = targetUrl;
+                }
+            };
+
+            // PAGE LOGIC
+            const activeSection = ref('dates');
+            const subMenu = [
+                { name: 'Dates & Prices', id: 'dates' },
+                { name: 'Highlights', id: 'overview' },
+                { name: 'Map', id: 'map' },
+                { name: 'Itinerary', id: 'itinerary' },
+                { name: 'Optionals', id: 'optionals' },
+                { name: 'Included', id: 'includes' },
+            ];
+
+            // CAROUSEL - Updated to Italy Tour Images
+            const currentHeroIndex = ref(0);
+            const heroImages = [
+                'images/italy-switzerland-france-luxury-tour-12-days/header-1.jpg', // Paris
+                'images/italy-switzerland-france-luxury-tour-12-days/header-2.jpg', // Venice
+                'images/italy-switzerland-france-luxury-tour-12-days/header-3.jpg', // Swiss Alps
+            ];
+            const nextSlide = () => {
+                currentHeroIndex.value = (currentHeroIndex.value + 1) % heroImages.length;
+            };
+            const prevSlide = () => {
+                currentHeroIndex.value = (currentHeroIndex.value - 1 + heroImages.length) % heroImages.length;
+            };
+
+            // MODALS
+            const activeOptional = ref(null);
+            const openOptionalModal = (item) => { activeOptional.value = item; };
+            const closeOptionalModal = () => { activeOptional.value = null; };
+            const isTermsModalOpen = ref(false);
+
+            // TOUR DATA (Translated from Italy-Swiss-France Luxury)
+            const tour = reactive({
+                title: '2026 Italy, Switzerland & France Luxury Tour',
+                subTitle: '12 Days / 11 Nights Luxury Experience',
+                highlights: [
+                    'Rome/Vatican: The splendor of the Eternal City',
+                    'Civita di Bagnoregio: The "City in the Sky"',
+                    'Florence: Cradle of the Renaissance',
+                    'Cinque Terre: Magnificent coastline and colorful houses',
+                    'Venice: Unique water city landscape',
+                    'Mt. Titlis: Unparalleled Alpine scenery (Optional)',
+                    'Paris: World fashion capital (5-star hotel stay)',
+                    'Tickets Included: Louvre, Versailles, Colosseum, Cinque Terre Train, Venice Boat, Lucerne Cruise'
+                ],
+                singleSupplement: '1015 €',
+                
+                // Translated Optional Items
+                optionalItems: [
+                    { 
+                        id: 1,
+                        name: 'Rome Deep Tour',
+                        price: 70, 
+                        unit: '€',
+                        currency: 'EUR',
+                        shortDesc: 'Incl. St. Peter\'s Basilica. Min 8 pax.',
+                        description: 'Deeply explore this open-air museum city, avoiding the rush. This itinerary takes you into the heart of the Vatican to visit St. Peter\'s Basilica, the largest Catholic church in the world. Admire Michelangelo\'s Pietà and Bernini\'s Baldachin up close. Then, follow the guide through ancient Roman streets to hear history echo and discover beauty beyond the standard tour.',
+                        detailImage: 'images/italy-switzerland-france-luxury-tour-12-days/extra-1.jpg'
+                    },
+                    { 
+                        id: 2,
+                        name: 'Mt. Titlis Cable Car',
+                        price: 135, 
+                        unit: '€',
+                        currency: 'EUR',
+                        shortDesc: '360-degree rotating cable car to the summit.',
+                        description: 'Located in Engelberg, Switzerland, Mt. Titlis is a top Alpine destination. Ride the world\'s first 360-degree rotating cable car (Rotair) for panoramic views. The summit offers glacier landscapes and a suspension bridge. A journey through the clouds to the roof of Europe.',
+                        detailImage: 'images/italy-switzerland-france-luxury-tour-12-days/extra-2.jpg'
+                    },
+                    { 
+                        id: 3,
+                        name: 'Venice Gondola',
+                        price: 40, 
+                        unit: '€',
+                        currency: 'EUR',
+                        shortDesc: 'Min 2 pax. Classic water city experience.',
+                        description: 'If Venice is a poem of water, the Gondola is its musical note. Ride this unique black boat through narrow, mysterious ancient canals. With the boatman\'s skilled rowing, look up at mottled old mansions and exquisite bridges. Avoid the crowds and feel the tranquility and romance of Venice.',
+                        detailImage: 'images/italy-switzerland-france-luxury-tour-12-days/extra-3.jpg'
+                    },
+                    { 
+                        id: 4,
+                        name: 'Venice Grand Canal',
+                        price: 40, 
+                        unit: '€',
+                        currency: 'EUR',
+                        shortDesc: 'Min 8 pax. Tour the main canal.',
+                        description: 'The Grand Canal runs through Venice in an inverted S-shape, known as the "Champs-Élysées of Venice". Unlike the quiet alleys of the Gondola ride, touring the Grand Canal shows the city\'s grandeur. Cruise the wide waters, flanked by hundreds of Byzantine, Gothic, and Baroque palaces.',
+                        detailImage: 'images/italy-switzerland-france-luxury-tour-12-days/extra-4.jpg'
+                    }
+                ],
+                
+                dates: [
+                    { start: '05/03/2026', price: '2458 €', guaranteed: true },
+                    { start: '07/05/2026', price: '2458 €', guaranteed: true },
+                    { start: '29/10/2026', price: '2458 €', guaranteed: true }
+                ],
+                
+                includes: [
+                    'Luxury private bus transport with professional Chinese/English speaking guide',
+                    'One Rome airport pick-up (8am-10pm), One Paris drop-off (8am)',
+                    '9 nights in 4-star hotels, 2 nights in 5-star hotels (Double Room)',
+                    'Western breakfast in hotels',
+                    'Tickets: Louvre, Versailles, Colosseum, Cinque Terre train, Venice boat, Lucerne cruise',
+                    'City entry fees, parking, fuel, highway tolls'
+                ],
+                excludes: [
+                    'Attraction tickets not mentioned & personal expenses',
+                    'International round-trip airfare, lunch & dinner',
+                    'Personal travel insurance & baggage insurance',
+                    'Single Room Supplement: 1015 €', 
+                    'Driver & Guide Tips (Mandatory): 10€/person/day, total 120€ (Same for adults/children)',
+                    'Optional: Extra Rome pick-up (1-3 pax: 180€, 4-6 pax: 200€). Extra Paris drop-off (1-3 pax: 150€, 4-6 pax: 180€).',
+                    'Meal Reference: Chinese group meal ~25€/p (Min 8 pax); Swiss Chinese meal 40€/p; FR/IT local meal 45€/p; Swiss local meal 60€/p',
+                    'Venice Grand Canal: 40€/p (Min 8 pax)',
+                    'Venice Gondola: 40€/p (Min 2 pax)',
+                    'Mt. Titlis Summit: 135€/p',
+                    'Rome Deep Tour: 70€/p (Min 8 pax)'
+                ],
+
+                // Translated Itinerary
+                daysData: [
+                    { 
+                        day: 1, 
+                        title: 'Origin ✈ Rome', 
+                        transport: 'Pick-up', 
+                        content: 'Pick-up from Rome Fiumicino (FCO) Airport to hotel. Free time for the rest of the day. As buses cannot enter Rome\'s restricted zone, the guide will lead a walking tour or use public transport.<br><br>Free pick-up time: 08:00 - 22:00.<br><br>Optional: Rome Outlet or Rome Deep Tour 70€/person (Min 8 pax, arrival before 12PM required).', 
+                        image: 'images/italy-switzerland-france-luxury-tour-12-days/day-1.jpg', 
+                        hotel: 'Hotel Midas Roma or similar 4*', 
+                        meals: 'Self-arranged',
+                        isOpen: true 
+                    },
+                    { 
+                        day: 2, 
+                        title: 'Rome - Vatican - Rome', 
+                        transport: 'Bus/Walk', 
+                        content: 'Tour Rome city center (walking/public transport due to restricted zones). Rome, capital of Italy, was the center of the Roman Empire.<br><br><b>Colosseum</b> (Entrance Included): The largest ancient amphitheater in the world, built 70-80 AD.<br><b>Trevi Fountain</b> (Exterior): Throwing a coin over your shoulder ensures a return to Rome.<br><b>Vatican City</b>: The center of the Catholic Church. <b>St. Peter\'s Basilica</b> (Exterior): The world\'s largest church.<br><b>Pantheon</b>: The best-preserved building from ancient Rome.<br><b>Spanish Steps</b>: Famous gathering place.', 
+                        image: 'images/italy-switzerland-france-luxury-tour-12-days/day-2.jpg',
+                        hotel: 'Hotel Midas Roma or similar 4*',
+                        meals: 'Breakfast',
+                        isOpen: false 
+                    },
+                    { 
+                        day: 3, 
+                        title: 'Rome - Civita - Florence', 
+                        transport: 'Bus', 
+                        content: '<b>Civita di Bagnoregio</b>: Known as the "Dying City" or the inspiration for Hayao Miyazaki\'s "Castle in the Sky". Located on a fragile volcanic plateau, accessible only by a pedestrian bridge.<br><br><b>Florence</b>: Capital of Tuscany and birthplace of the Renaissance. <br><b>Cathedral of Santa Maria del Fiore</b> (Exterior): Famous for its massive dome and magnificent facade.', 
+                        image: 'images/italy-switzerland-france-luxury-tour-12-days/day-3.jpg',
+                        hotel: 'The Social Hub Florence Lavagnini or similar 4*',
+                        meals: 'Breakfast',
+                        isOpen: false 
+                    },
+                    { 
+                        day: 4, 
+                        title: 'Florence - Pisa - Cinque Terre', 
+                        transport: 'Bus', 
+                        content: '<b>Pisa</b>: Famous for the <b>Leaning Tower</b> (Exterior), the bell tower of the cathedral, known worldwide for its unintended tilt.<br><br><b>Cinque Terre</b>: Five picturesque villages on the Ligurian coast. We will visit <b>Manarola</b>, famous for its colorful houses clinging to the cliffs.', 
+                        image: 'images/italy-switzerland-france-luxury-tour-12-days/day-4.jpg',
+                        hotel: 'The Sydney Hotel Bologne or similar 4*',
+                        meals: 'Breakfast',
+                        isOpen: false 
+                    },
+                    { 
+                        day: 5, 
+                        title: 'Venice', 
+                        transport: 'Bus/Boat', 
+                        content: '<b>Venice</b>: Built on 118 small islands connected by bridges. No cars, only boats.<br><b>St. Mark\'s Square</b>: The heart of the city.<br><b>St. Mark\'s Basilica</b> (Exterior): Byzantine architecture.<br><b>Bridge of Sighs</b>: Connecting the palace to the prison.', 
+                        image: 'images/italy-switzerland-france-luxury-tour-12-days/day-5.jpg',
+                        hotel: 'NH Padova or similar 4*',
+                        meals: 'Breakfast',
+                        isOpen: false
+                    },
+                    { 
+                        day: 6, 
+                        title: 'Venice - Milan', 
+                        transport: 'Bus', 
+                        content: '<b>Milan Cathedral (Duomo)</b> (Exterior): A masterpiece of Gothic architecture and the symbol of Milan.<br><b>Galleria Vittorio Emanuele II</b>: One of the world\'s oldest shopping malls, known as "Milan\'s Drawing Room".', 
+                        image: 'images/italy-switzerland-france-luxury-tour-12-days/day-6.jpg',
+                        hotel: 'IH HOTELS MILANO GIOIA or similar 4*', 
+                        meals: 'Breakfast',
+                        isOpen: false 
+                    },
+                    { 
+                        day: 7, 
+                        title: 'Milan - Lucerne', 
+                        transport: 'Bus', 
+                        content: '<b>Lucerne</b>: A picturesque city in central Switzerland.<br><b>Chapel Bridge</b>: The world\'s oldest covered wooden bridge.<br><b>Lion Monument</b>: Commemorating the Swiss Guards.<br><b>Lucerne Cruise</b> (Included): Enjoy the "Lake of Light" scenery by boat.', 
+                        image: 'images/italy-switzerland-france-luxury-tour-12-days/day-7.jpg',
+                        hotel: 'Romantik Hotel Wilden Mann Luzern or similar 4*',
+                        meals: 'Breakfast',
+                        isOpen: false 
+                    },
+                    { 
+                        day: 8, 
+                        title: 'Mt. Titlis - Bern', 
+                        transport: 'Bus', 
+                        content: '<b>Mt. Titlis</b> (Optional): Take the world\'s first 360-degree rotating cable car to the snowy summit.<br><b>Bern</b>: Swiss capital.<br><b>Clock Tower (Zytglogge)</b> (Exterior): Medieval landmark.<br><b>Federal Palace</b> (Exterior): Seat of the Swiss government.<br><b>Old Town</b>: UNESCO World Heritage site.', 
+                        image: 'images/italy-switzerland-france-luxury-tour-12-days/day-8.jpg',
+                        hotel: 'Novotel Mulhouse Bâle Fribourg or similar 4*',
+                        meals: 'Breakfast',
+                        isOpen: false 
+                    },
+                    { 
+                        day: 9, 
+                        title: 'Dijon - Versailles', 
+                        transport: 'Bus', 
+                        content: '<b>Dijon</b>: Capital of Burgundy, former seat of the Dukes.<br><b>Dijon Cathedral</b> & <b>Palace of the Dukes</b> (Exterior).<br><b>Palace of Versailles</b> (Entrance Included): Louis XIV\'s grand palace, symbol of absolute monarchy, famous for the Hall of Mirrors and vast gardens.', 
+                        image: 'images/italy-switzerland-france-luxury-tour-12-days/day-9.jpg',
+                        hotel: 'Best Western Plus Paris Velizy or similar 4*',
+                        meals: 'Breakfast',
+                        isOpen: false 
+                    },
+                    { 
+                        day: 10, 
+                        title: 'Versailles - Paris', 
+                        transport: 'Bus', 
+                        content: '<b>The Louvre Museum</b> (Entrance Included): World\'s largest art museum (Mona Lisa, Venus de Milo).<br><b>Eiffel Tower</b> (Exterior): Symbol of Paris.<br><b>Notre-Dame Cathedral</b> (Exterior).', 
+                        image: 'images/italy-switzerland-france-luxury-tour-12-days/day-10.jpg',
+                        hotel: 'Fraser Suites Paris La Défense or similar 5*',
+                        meals: 'Breakfast',
+                        isOpen: false 
+                    },
+                    { 
+                        day: 11, 
+                        title: 'Paris', 
+                        transport: 'Bus', 
+                        content: '<b>Arc de Triomphe</b> (Exterior): Monument to French military glory.<br><b>Montmartre</b>: Artistic district.<br>Free time for shopping.', 
+                        image: 'images/italy-switzerland-france-luxury-tour-12-days/day-11.jpg',
+                        hotel: 'Fraser Suites Paris La Défense or similar 5*',
+                        meals: 'Breakfast',
+                        isOpen: false 
+                    },
+                    { 
+                        day: 12, 
+                        title: 'Paris ✈ Departure', 
+                        transport: 'Drop-off', 
+                        content: 'Transfer to Charles de Gaulle (CDG) Airport (Drop-off time: 08:00).', 
+                        image: 'images/italy-switzerland-france-luxury-tour-12-days/day-12.jpg',
+                        hotel: 'None',
+                        meals: 'Breakfast',
+                        isOpen: false 
+                    }
+                ]
+            });
+
+            // FORM LOGIC
+            const formHighlight = ref(false);
+            const isSubmitted = ref(false);
+            const attemptedSubmit = ref(false);
+            const isOptionalsOpen = ref(false); 
+            const isSending = ref(false);
+            
+            // Initialize form
+            const requiredItems = tour.optionalItems.filter(item => item.required);
+
+            const formData = reactive({
+                name: '',
+                countryCode: '+33',
+                phone: '',
+                email: '',
+                date: '', 
+                passengers: 2,
+                selectedOptionals: [...requiredItems], 
+                remarks: ''
+            });
+
+            const phoneError = computed(() => {
+                if (!formData.phone) return null;
+                const lengths = { '+33': 10, '+86': 11, '+852': 8, '+44': 10, '+1': 10 };
+                const required = lengths[formData.countryCode] || 10;
+                return formData.phone.length !== required ? `Number must be ${required} digits` : null;
+            });
+
+            const calculatedPrice = computed(() => {
+                if (!formData.date || !formData.passengers) return 0;
+                const dateObj = tour.dates.find(d => d.start === formData.date);
+                if (!dateObj) return 0;
+                
+                const pricePerPerson = parseInt(dateObj.price.replace(/\D/g, ''));
+                let total = pricePerPerson * formData.passengers;
+
+                const singleSupplement = parseInt(tour.singleSupplement.replace(/\D/g, ''));
+                if (formData.passengers % 2 !== 0) {
+                    total += singleSupplement;
+                }
+
+                const optionalsTotal = formData.selectedOptionals
+                    .reduce((sum, item) => sum + item.price, 0) * formData.passengers;
+                
+                total += optionalsTotal;
+                return total;
+            });
+
+            const hasSingleSupplement = computed(() => formData.passengers % 2 !== 0);
+
+            const toggleOptionalSelection = (item) => {
+                if (item.required) return;
+                const index = formData.selectedOptionals.findIndex(opt => opt.id === item.id);
+                if (index > -1) formData.selectedOptionals.splice(index, 1);
+                else formData.selectedOptionals.push(item);
+            };
+            const isOptionalSelected = (item) => formData.selectedOptionals.some(opt => opt.id === item.id);
+
+            const handleBookingScroll = (date = '') => {
+                if (date) formData.date = date;
+                const element = document.getElementById('contact');
+                if (element) {
+                    const offset = 180;
+                    const bodyRect = document.body.getBoundingClientRect().top;
+                    const elementRect = element.getBoundingClientRect().top;
+                    const elementPosition = elementRect - bodyRect;
+                    const offsetPosition = elementPosition - offset;
+                    window.scrollTo({ top: offsetPosition, behavior: 'smooth' });
+                    
+                    formHighlight.value = true;
+                    setTimeout(() => { formHighlight.value = false; }, 3000);
+                }
+            };
+
+            const handleFormSubmit = async () => {
+                attemptedSubmit.value = true;
+                const hasEmpty = !formData.name || !formData.phone || !formData.email || !formData.date || !formData.passengers;
+                if (hasEmpty || phoneError.value) {
+                    nextTick(() => {
+                        const firstError = document.querySelector('.input-error');
+                        if (firstError) firstError.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                    });
+                    return;
+                }
+
+                isSending.value = true;
+                const payload = {
+                    tourName: tour.title,
+                    name: formData.name,
+                    email: formData.email,
+                    phone: formData.countryCode + " " + formData.phone,
+                    travelDate: formData.date,
+                    passengers: formData.passengers,
+                    selectedOptionals: formData.selectedOptionals.map(item => item.name),
+                    totalPrice: calculatedPrice.value, 
+                    remarks: formData.remarks || ""
+                };
+
+                try {
+                    const response = await fetch('/api/submit-inquiry', {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+                        body: JSON.stringify(payload)
+                    });
+
+                    if (response.ok) {
+                        isSending.value = false;
+                        isSubmitted.value = true;
+                    } else {
+                        throw new Error('Server responded with error');
+                    }
+                } catch (error) {
+                    console.error('Submission error:', error);
+                    isSending.value = false;
+                    alert("Submission failed, please try again later or contact us directly.");
+                }
+            };
+
+            const resetForm = () => {
+                isSubmitted.value = false;
+                attemptedSubmit.value = false;
+                formData.date = '';
+                formData.passengers = 2;
+                formData.selectedOptionals = tour.optionalItems.filter(item => item.required);
+                formData.remarks = '';
+            };
+
+            // Toggle Logic
+            const isAllExpanded = ref(false);
+            const toggleDay = (index) => { tour.daysData[index].isOpen = !tour.daysData[index].isOpen; };
+            const toggleAllDays = () => {
+                isAllExpanded.value = !isAllExpanded.value;
+                tour.daysData.forEach(day => { day.isOpen = isAllExpanded.value; });
+            };
+
+            const handleScroll = () => {
+                const scrollPosition = window.scrollY + 250;
+                subMenu.forEach(section => {
+                    const element = document.getElementById(section.id);
+                    if (element && element.offsetTop <= scrollPosition) {
+                        activeSection.value = section.id;
+                    }
+                });
+            };
+            
+            return {
+                isMobileMenuOpen, isDestDropdownOpen, isLangDropdownOpen, currentLang, switchLang,
+                isWechatQR, isFacebookQR,
+                navLinks, subMenu, activeSection, 
+                heroImages, currentHeroIndex, nextSlide, prevSlide,
+                tour, 
+                toggleDay, toggleAllDays, isAllExpanded,
+                formData, formHighlight, handleBookingScroll, handleFormSubmit, 
+                phoneError, attemptedSubmit, isSubmitted, resetForm, calculatedPrice, hasSingleSupplement,
+                activeOptional, openOptionalModal, closeOptionalModal,
+                isOptionalsOpen, toggleOptionalSelection, isOptionalSelected,
+                isSending, isTermsModalOpen
+            };
+        }
+    }).mount('#app');
+</script>
+</body>
+</html>

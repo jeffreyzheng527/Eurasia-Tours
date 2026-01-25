@@ -1,0 +1,1027 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nepal: Lands of Culture and Legends 11 Days - Eurasia Tours</title>
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/vue@3/dist/vue.global.prod.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;500;700&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
+    
+    <style>
+        body { font-family: 'Noto Sans SC', sans-serif; }
+        h1, h2, h3, h4, h5 { font-family: 'Playfair Display', serif; }
+        .text-brand { color: #b91c1c; }
+        .bg-brand { background-color: #b91c1c; }
+        .border-brand { border-color: #b91c1c; }
+        .hover-border-brand:hover { border-color: #b91c1c; }
+        .hover\:bg-brand:hover { background-color: #991b1b; }
+        
+        .nav-item {
+            font-family: 'Noto Sans SC', sans-serif;
+            font-size: 13px;
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 0.15em;
+            color: #374151;
+        }
+
+        /* Animations */
+        .mobile-menu-enter-active, .mobile-menu-leave-active { transition: opacity 0.3s ease, transform 0.3s ease; }
+        .mobile-menu-enter-from, .mobile-menu-leave-to { opacity: 0; transform: translateY(-10px); }
+        
+        .dropdown-enter-active { transition: all 0.3s ease-out; }
+        .dropdown-leave-active { transition: all 0.2s ease-in; }
+        .dropdown-enter-from, .dropdown-leave-to { opacity: 0; transform: translateY(10px); }
+        
+        .qr-fade-enter-active, .qr-fade-leave-active { transition: all 0.3s ease-out; }
+        .qr-fade-enter-from, .qr-fade-leave-to { opacity: 0; transform: translateY(10px); }
+
+        /* Carousel Fade */
+        .carousel-enter-active, .carousel-leave-active { transition: opacity 1s ease; }
+        .carousel-enter-from, .carousel-leave-to { opacity: 0; }
+
+        /* Timeline Line */
+        .timeline-line {
+            position: absolute;
+            left: 15px;
+            top: 40px;
+            bottom: 0;
+            width: 2px;
+            background-color: #e5e7eb;
+        }
+        .last-item .timeline-line { display: none; }
+        
+        /* Form Highlight Animation */
+        @keyframes highlightPulse {
+            0% { box-shadow: 0 0 0 0 rgba(185, 28, 28, 0); border-color: #e5e7eb; }
+            50% { box-shadow: 0 0 20px 0 rgba(185, 28, 28, 0.3); border-color: #b91c1c; background-color: #fff1f2; }
+            100% { box-shadow: 0 0 0 0 rgba(185, 28, 28, 0); border-color: #e5e7eb; background-color: white; }
+        }
+        .highlight-active { animation: highlightPulse 1.5s ease-in-out 2; }
+        
+        .input-error { 
+            border-color: #ef4444 !important; 
+            background-color: #fef2f2 !important; 
+            animation: shake 0.5s cubic-bezier(.36,.07,.19,.97) both;
+        }
+        
+        @keyframes shake {
+            10%, 90% { transform: translate3d(-1px, 0, 0); }
+            20%, 80% { transform: translate3d(2px, 0, 0); }
+            30%, 50%, 70% { transform: translate3d(-4px, 0, 0); }
+            40%, 60% { transform: translate3d(4px, 0, 0); }
+        }
+
+        .fade-in { animation: fadeIn 0.8s ease-out forwards; }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+        
+        /* Custom Scrollbar */
+        .custom-scrollbar {
+            scrollbar-width: thin;
+            scrollbar-color: #d1d5db transparent;
+        }
+        .custom-scrollbar::-webkit-scrollbar { width: 4px; }
+        .custom-scrollbar::-webkit-scrollbar-track { background: transparent; }
+        .custom-scrollbar::-webkit-scrollbar-thumb { background-color: #d1d5db; border-radius: 20px; }
+        .custom-scrollbar::-webkit-scrollbar-thumb:hover { background-color: #9ca3af; }
+
+        [v-cloak] { display: none; }
+    </style>
+</head>
+<body class="bg-gray-50 text-gray-800 antialiased">
+
+<div id="app" v-cloak>
+    <header class="fixed w-full top-0 z-[100] bg-white/95 backdrop-blur-md shadow-[0_2px_15px_rgba(0,0,0,0.05)] border-b border-gray-100 transition-all duration-300">
+        <div class="container mx-auto px-6 lg:px-12">
+            <div class="flex flex-col lg:flex-row items-center justify-between h-auto lg:h-24 py-3 lg:py-0">
+                
+                <div class="flex items-center justify-between w-full lg:w-auto">
+                    <a href="index-en.html" class="flex items-center group">
+                        <img src="https://www.eurasia-tours.fr/assets/logo-word-rNz8dsz6.jpg" 
+                             alt="Eurasia Tours Logo" class="h-10 lg:h-12 w-auto object-contain transition-transform group-hover:scale-105 mix-blend-multiply">
+                    </a>
+                    <button class="lg:hidden relative z-50 text-2xl p-2 text-gray-700 focus:outline-none cursor-pointer hover:text-brand transition" @click="isMobileMenuOpen = !isMobileMenuOpen">
+                        <i class="fas" :class="isMobileMenuOpen ? 'fa-times' : 'fa-bars'"></i>
+                    </button>
+                </div>
+
+                <nav class="hidden lg:flex flex-1 items-center justify-end pl-12 gap-10">
+                    <div v-for="link in navLinks" :key="link.name" class="relative group h-24 flex items-center"
+                         @mouseenter="link.name === 'Destinations' ? isDestDropdownOpen = true : null"
+                         @mouseleave="isDestDropdownOpen = false">
+                        
+                        <a :href="link.url" class="nav-item relative py-2 hover:text-brand transition-colors flex items-center gap-1 group" :class="{'text-brand': link.name === 'Destinations'}">
+                            {{ link.name }}
+                            <i v-if="link.subLinks" class="fas fa-chevron-down text-[9px] opacity-50 transition-transform duration-300 ml-1" :class="{'rotate-180': link.name === 'Destinations' && isDestDropdownOpen}"></i>
+                            <span class="absolute bottom-0 left-0 h-[2px] bg-brand transition-all duration-300 opacity-0 group-hover:opacity-100" :class="link.name === 'Destinations' ? 'w-full opacity-100' : 'w-0 group-hover:w-full'"></span>
+                        </a>
+
+                        <transition name="dropdown">
+                            <div v-if="link.name === 'Destinations' && isDestDropdownOpen" 
+                                 class="absolute top-[80%] left-1/2 -translate-x-1/2 w-[240px] bg-white shadow-[0_10px_40px_rgba(0,0,0,0.1)] rounded-sm border-t-2 border-brand p-0 overflow-hidden">
+                                <div class="px-6 py-3 bg-gray-50 border-b border-gray-100 text-[10px] uppercase tracking-[0.2em] text-gray-400 font-bold">Select Region</div>
+                                <ul class="py-2">
+                                    <li v-for="sub in link.subLinks" :key="sub.name">
+                                        <a :href="sub.url" class="flex items-center justify-between px-6 py-3 text-sm font-medium text-gray-600 hover:bg-gray-50 hover:text-brand transition-all group/item">
+                                            <span>{{ sub.name }}</span>
+                                            <i class="fas fa-arrow-right text-[10px] opacity-0 -translate-x-2 group-hover/item:opacity-100 group-hover/item:translate-x-0 transition-all text-brand"></i>
+                                        </a>
+                                    </li>
+                                </ul>
+                                <div class="bg-gray-50 p-3 text-center border-t border-gray-100">
+                                    <a href="destination-europe-en.html" class="text-[11px] font-bold uppercase tracking-widest text-brand hover:underline">All Destinations</a>
+                                </div>
+                            </div>
+                        </transition>
+                    </div>
+
+                    <div class="relative group h-24 flex items-center pl-6 ml-4 border-l border-gray-200"
+                         @mouseenter="isLangDropdownOpen = true"
+                         @mouseleave="isLangDropdownOpen = false">
+                        
+                        <a href="#" class="nav-item hover:text-brand transition-colors flex items-center gap-2">
+                            <i class="fas fa-globe text-gray-400 text-lg"></i>
+                            {{ currentLang }}
+                        </a>
+                        
+                        <transition name="dropdown">
+                            <div v-if="isLangDropdownOpen" 
+                                 class="absolute top-[80%] right-0 w-[160px] bg-white shadow-[0_10px_40px_rgba(0,0,0,0.1)] rounded-sm border-t-2 border-brand p-1">
+                                <ul class="space-y-0.5">
+                                    <li v-for="lang in ['中文', 'English', 'Français']" :key="lang">
+                                        <a href="#" @click.prevent="switchLang(lang)" 
+                                           class="flex items-center justify-between px-4 py-2.5 text-xs font-medium text-gray-600 hover:bg-gray-50 hover:text-brand transition-all"
+                                           :class="{'text-brand bg-red-50/50': currentLang === lang}">
+                                            {{ lang }}
+                                            <i v-if="currentLang === lang" class="fas fa-check text-[10px]"></i>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </transition>
+                    </div>
+                </nav>
+            </div>
+        </div>
+
+        <transition name="mobile-menu">
+            <nav v-if="isMobileMenuOpen" class="lg:hidden absolute top-full left-0 w-full bg-white border-t border-gray-100 py-8 shadow-2xl h-screen overflow-y-auto">
+                <div class="flex flex-col items-center gap-8 px-6">
+                    <a v-for="link in navLinks" :key="link.name" :href="link.url"
+                       class="text-lg font-medium uppercase tracking-[0.2em] text-gray-800 hover:text-brand transition"
+                       @click="isMobileMenuOpen = false">
+                       {{ link.name }}
+                    </a>
+                    
+                    <div class="w-16 h-px bg-gray-200 my-2"></div>
+
+                    <div class="flex flex-col items-center gap-4 w-full">
+                        <span class="text-xs text-gray-400 uppercase tracking-widest">Select Language</span>
+                        <div class="flex gap-3">
+                            <button @click="switchLang('中文')" class="px-5 py-2 rounded-full text-xs font-bold transition border" :class="currentLang === '中文' ? 'bg-brand text-white border-brand' : 'bg-white text-gray-600 border-gray-200'">中文</button>
+                            <button @click="switchLang('English')" class="px-5 py-2 rounded-full text-xs font-bold transition border" :class="currentLang === 'English' ? 'bg-brand text-white border-brand' : 'bg-white text-gray-600 border-gray-200'">EN</button>
+                            <button @click="switchLang('Français')" class="px-5 py-2 rounded-full text-xs font-bold transition border" :class="currentLang === 'Français' ? 'bg-brand text-white border-brand' : 'bg-white text-gray-600 border-gray-200'">FR</button>
+                        </div>
+                    </div>
+                </div>
+            </nav>
+        </transition>
+    </header>
+
+    <main class="pt-24 min-h-screen">
+        
+        <section class="relative h-[60vh] min-h-[500px] w-full overflow-hidden bg-gray-900 group">
+            <transition-group name="carousel">
+                <div v-for="(img, index) in heroImages" :key="img" 
+                     v-show="currentHeroIndex === index"
+                     class="absolute inset-0 w-full h-full will-change-opacity">
+                    <img :src="img" 
+                         alt="Hero Background" 
+                         class="w-full h-full object-cover opacity-90 transition-transform duration-[5000ms] ease-linear transform scale-105">
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-transparent"></div>
+                </div>
+            </transition-group>
+
+            <div class="absolute bottom-0 left-0 w-full z-20 pt-20 pb-10">
+                <div class="container mx-auto px-6 lg:px-12 flex flex-col md:flex-row items-end justify-between gap-6">
+                    <div class="text-white max-w-3xl">
+                        <div class="flex items-center gap-3 mb-3">
+                            <span class="bg-brand text-white text-xs font-bold px-3 py-1 rounded-full uppercase tracking-widest">Nepal</span>
+                            <span class="bg-white/20 backdrop-blur text-white text-xs font-bold px-3 py-1 rounded-full"><i class="far fa-clock mr-1"></i> 11 Days / 8 Nights</span>
+                        </div>
+                        <h1 class="text-4xl md:text-5xl lg:text-6xl font-bold font-serif mb-2 leading-tight">
+                            {{ tour.title }}
+                        </h1>
+                        <p class="text-xl md:text-2xl font-light opacity-90 font-serif italic">{{ tour.route }}</p>
+                    </div>
+                    
+                    <div class="hidden md:block text-right pb-2">
+                        <div class="text-gray-300 text-sm mb-1 font-medium uppercase tracking-widest">Price / Person (Double)</div>
+                        <div class="flex items-baseline justify-end gap-1 mb-4">
+                            <span class="text-xl font-bold text-white/80 mr-1">from</span>
+                            <span class="text-2xl font-bold text-brand">€</span>
+                            <span class="text-5xl font-bold text-white shadow-black drop-shadow-lg">970</span>
+                        </div>
+                        <button @click="handleBookingScroll()" class="bg-brand text-white text-lg px-10 py-4 rounded-full font-bold shadow-[0_10px_20px_rgba(185,28,28,0.4)] hover:-translate-y-1 hover:shadow-2xl transition-all flex items-center gap-2">
+                            <span>Quote / Pre-booking</span>
+                            <i class="fas fa-arrow-right"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <div id="sticky-nav" class="sticky top-[80px] lg:top-[96px] z-40 bg-white/95 backdrop-blur shadow-md border-b border-gray-100 transition-all">
+            <div class="container mx-auto px-6 lg:px-12">
+                <div class="flex items-center justify-between overflow-x-auto scrollbar-hide">
+                    <ul class="flex items-center gap-6 md:gap-8 h-14 whitespace-nowrap">
+                        <li v-for="item in subMenu" :key="item.id">
+                            <a :href="'#' + item.id" 
+                               v-if="!item.hidden"
+                               class="text-sm font-bold uppercase tracking-wider py-4 border-b-2 border-transparent hover:text-brand hover:border-brand transition-colors block"
+                               :class="activeSection === item.id ? 'text-brand border-brand' : 'text-gray-500'">
+                                {{ item.name }}
+                            </a>
+                        </li>
+                    </ul>
+                    <div class="md:hidden pl-4 border-l border-gray-100 ml-4 py-2">
+                        <button @click="handleBookingScroll()" class="bg-brand text-white text-xs px-4 py-2 rounded-full font-bold whitespace-nowrap">
+                            Book
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="container mx-auto px-6 lg:px-12 py-12">
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-12">
+                
+                <div class="lg:col-span-8 space-y-12">
+                    
+                    <section id="dates" class="scroll-mt-40">
+                         <div class="flex items-center gap-3 mb-6">
+                            <h2 class="text-3xl font-bold text-gray-800">Dates & Prices</h2>
+                            <span class="bg-brand text-white text-xs font-bold px-2 py-1 rounded">2026 Season</span>
+                        </div>
+                        
+                        <div class="bg-white rounded-2xl shadow-[0_8px_30px_rgba(0,0,0,0.04)] border border-gray-100 overflow-hidden">
+                            <div class="overflow-x-auto">
+                                <table class="w-full">
+                                    <thead class="bg-gray-50/50 border-b border-gray-100">
+                                        <tr>
+                                            <th class="py-5 pl-8 text-left text-xs font-bold text-gray-400 uppercase tracking-widest w-1/3">Number of Participants</th>
+                                            <th class="py-5 text-left text-xs font-bold text-gray-400 uppercase tracking-widest">Price / Person</th>
+                                            <th class="py-5 text-left text-xs font-bold text-gray-400 uppercase tracking-widest hidden md:table-cell">Single Supplement</th>
+                                            <th class="py-5 text-center text-xs font-bold text-gray-400 uppercase tracking-widest">Status</th>
+                                            <th class="py-5 pr-8 text-right"></th>
+                                        </tr>
+                                    </thead>
+                                    <tbody class="divide-y divide-gray-50">
+                                        <tr v-for="(tier, index) in tour.priceTiers" :key="index" class="group hover:bg-red-50/10 transition-colors duration-300">
+                                            <td class="py-6 pl-8">
+                                                <div class="flex items-center gap-3">
+                                                    <div class="w-10 h-10 rounded-full bg-red-50 text-brand flex items-center justify-center flex-shrink-0">
+                                                        <i class="fas fa-user-friends"></i>
+                                                    </div>
+                                                    <div class="flex flex-col">
+                                                        <span class="font-bold text-gray-800 text-sm md:text-base font-serif">{{ tier.range }}</span>
+                                                        <span class="text-xs text-gray-400 font-medium">Private Group / Family</span>
+                                                    </div>
+                                                </div>
+                                            </td>
+                                            
+                                            <td class="py-6 align-middle">
+                                                <div class="flex flex-col">
+                                                    <span class="text-xl font-bold text-brand font-serif">€ {{ tier.price }}</span>
+                                                    <span class="text-[10px] text-gray-400 uppercase tracking-wide">Double Basis</span>
+                                                </div>
+                                            </td>
+
+                                            <td class="py-6 align-middle hidden md:table-cell">
+                                                <span class="text-sm font-medium text-gray-500">+ {{ tour.singleSupplement }}</span>
+                                            </td>
+
+                                            <td class="py-6 align-middle text-center">
+                                                <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-bold bg-emerald-50 text-emerald-600 border border-emerald-100">
+                                                    <span class="w-1.5 h-1.5 rounded-full bg-emerald-500"></span>
+                                                    Guaranteed
+                                                </span>
+                                            </td>
+
+                                            <td class="py-6 pr-8 text-right align-middle">
+                                                <button @click="handleBookingScroll('2026 Season', tier.min)" 
+                                                        class="bg-gray-900 text-white text-sm px-6 py-2.5 rounded-full font-bold shadow-lg shadow-gray-200 hover:bg-brand hover:shadow-red-200 hover:-translate-y-0.5 transition-all duration-300">
+                                                    Book
+                                                </button>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                            <div class="bg-gray-50 px-6 py-3 text-[11px] text-gray-500 border-t border-gray-100 flex flex-wrap gap-4 items-center justify-between">
+                                <span class="flex items-center gap-2"><i class="fas fa-info-circle text-brand"></i> Estimated price per person based on group size.</span>
+                                <span class="hidden md:inline text-gray-400">* Price excludes international flights</span>
+                            </div>
+                        </div>
+                    </section>
+
+                    <section id="overview" class="scroll-mt-40 pt-8 border-t border-gray-100">
+                        <h2 class="text-2xl font-bold text-gray-800 mb-6 flex items-center gap-3">
+                            Tour Overview
+                        </h2>
+                        <div class="prose prose-lg text-gray-600 mb-8">
+                            <p class="italic text-gray-500 mb-6 border-l-4 border-brand pl-4">
+                                "This circuit offers a complete immersion into the heart of Nepal: a harmonious discovery blending culture, nature, Himalayan panoramas, and local life."
+                            </p>
+                            <p class="text-sm">
+                                Between historic cities, grandiose landscapes, and moments of adventure, it allows you to experience the essence of the country in a short time, while enjoying professional accompaniment and careful organization. Discover iconic UNESCO sites, experience exceptional panoramic moments facing the Himalayas, and dive into the wild nature of Chitwan.
+                            </p>
+                        </div>
+                        
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                            <div v-for="(highlight, index) in tour.highlights" :key="index" class="bg-red-50 p-4 rounded-xl flex items-start gap-3 border border-transparent hover:border-red-100 transition-colors">
+                                <div class="w-8 h-8 rounded-full bg-white text-brand flex items-center justify-center flex-shrink-0 shadow-sm mt-1">
+                                    <i class="fas fa-check text-sm"></i>
+                                </div>
+                                <span class="font-medium text-gray-800">{{ highlight }}</span>
+                            </div>
+                        </div>
+                    </section>
+
+                    <section id="map" class="scroll-mt-40">
+                        <h2 class="text-2xl font-bold text-gray-800 mb-6 flex items-center gap-3">
+                            Itinerary Map
+                        </h2>
+                        <div class="bg-white p-2 rounded-2xl shadow-lg border border-gray-100 overflow-hidden">
+                            <img src="images/nepal-terres-de-culture-et-de-legendes/map.jpg" alt="Route Map" class="w-full h-auto object-cover rounded-xl hover:scale-[1.01] transition-transform duration-500">
+                        </div>
+                    </section>
+
+                    <section id="itinerary" class="scroll-mt-40">
+                        <div class="flex items-center justify-between mb-8">
+                            <h2 class="text-3xl font-bold text-gray-800">Detailed Itinerary</h2>
+                            <button @click="toggleAllDays" class="text-brand text-sm font-bold hover:underline px-3 py-1 rounded hover:bg-red-50 transition">
+                                {{ isAllExpanded ? 'Collapse All' : 'Expand All' }}
+                            </button>
+                        </div>
+
+                        <div class="relative space-y-8">
+                            <div v-for="(day, index) in tour.daysData" :key="index" 
+                                 class="relative pl-10 group" :class="{'last-item': index === tour.daysData.length - 1}">
+                                
+                                <div class="timeline-line"></div>
+                                
+                                <div class="absolute left-0 top-0 w-8 h-8 bg-brand text-white rounded-full flex items-center justify-center font-bold text-sm shadow-md z-10">
+                                    {{ day.day }}
+                                </div>
+
+                                <div class="bg-white border border-gray-100 rounded-2xl p-6 shadow-sm hover:shadow-md transition-shadow">
+                                    <div class="flex flex-col md:flex-row md:items-center justify-between gap-4 mb-4 cursor-pointer select-none" 
+                                         @click="toggleDay(index)">
+                                        <div>
+                                            <div class="text-xs font-bold text-gray-400 uppercase tracking-widest mb-1">
+                                                {{ day.transport }}
+                                            </div>
+                                            <h3 class="text-xl font-bold text-gray-800 group-hover:text-brand transition-colors">
+                                                {{ day.title }}
+                                            </h3>
+                                        </div>
+                                        <i class="fas fa-chevron-down text-gray-300 transition-transform duration-300" 
+                                           :class="{'rotate-180': day.isOpen}"></i>
+                                    </div>
+
+                                    <div v-show="day.isOpen" class="space-y-4 text-gray-600 leading-relaxed border-t border-gray-50 pt-4">
+                                        <div v-html="day.content"></div>
+                                        
+                                        <div class="mt-4 rounded-xl overflow-hidden h-48 md:h-64 w-full relative bg-gray-100 flex items-center justify-center group/img">
+                                            <img :src="day.image" class="w-full h-full object-cover transition-transform duration-700 group-hover/img:scale-105" alt="Day Image">
+                                        </div>
+                                        
+                                        <div class="flex flex-wrap gap-2 mt-4">
+                                            <div v-if="day.hotel" class="flex items-center gap-2 text-xs text-gray-500 bg-gray-50 px-3 py-2 rounded-lg">
+                                                <i class="fas fa-bed text-brand"></i>
+                                                <span class="font-bold">Accommodation:</span> {{ day.hotel }}
+                                            </div>
+                                            <div v-if="day.meals" class="flex items-center gap-2 text-xs text-gray-500 bg-gray-50 px-3 py-2 rounded-lg">
+                                                <i class="fas fa-utensils text-brand"></i>
+                                                <span class="font-bold">Meals:</span> {{ day.meals }}
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+                    
+                    <section id="includes" class="scroll-mt-40 grid grid-cols-1 md:grid-cols-2 gap-8">
+                        <div class="bg-green-50/50 p-6 rounded-2xl border border-green-100">
+                            <h3 class="font-bold text-green-800 mb-4 flex items-center gap-2">
+                                <i class="fas fa-check-circle"></i> The price includes
+                            </h3>
+                            <ul class="space-y-3">
+                                <li v-for="(item, i) in tour.includes" :key="i" class="flex items-start gap-3 text-sm text-gray-700">
+                                    <span class="w-1.5 h-1.5 bg-green-500 rounded-full mt-1.5 flex-shrink-0"></span>
+                                    <span>{{ item }}</span>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="bg-red-50/50 p-6 rounded-2xl border border-red-100">
+                            <h3 class="font-bold text-red-800 mb-4 flex items-center gap-2">
+                                <i class="fas fa-times-circle"></i> The price does not include
+                            </h3>
+                            <ul class="space-y-3">
+                                <li v-for="(item, i) in tour.excludes" :key="i" class="flex items-start gap-3 text-sm text-gray-700">
+                                    <span class="w-1.5 h-1.5 bg-red-400 rounded-full mt-1.5 flex-shrink-0"></span>
+                                    <span>{{ item }}</span>
+                                </li>
+                            </ul>
+                        </div>
+                    </section>
+                </div>
+
+                <div class="lg:col-span-4 relative">
+                    <div class="sticky top-28 max-h-[calc(100vh-130px)] overflow-y-auto custom-scrollbar pr-2 pb-4">
+                        <div id="contact" 
+                             :class="['bg-white rounded-2xl shadow-[0_20px_50px_rgba(0,0,0,0.1)] border p-5 relative overflow-hidden transition-all duration-300', formHighlight ? 'highlight-active border-brand' : 'border-gray-100']">
+                            
+                            <div class="absolute top-0 left-0 w-full h-2 bg-brand"></div>
+                            
+                            <div v-if="isSubmitted" class="py-10 text-center fade-in">
+                                <div class="w-16 h-16 bg-green-100 text-green-600 rounded-full flex items-center justify-center text-3xl mx-auto mb-4 animate-bounce">
+                                    <i class="fas fa-check-circle"></i>
+                                </div>
+                                <h3 class="text-xl font-bold text-gray-800 mb-3">Request Sent!</h3>
+                                <p class="text-xs text-gray-600 mb-6 leading-relaxed">
+                                    We will contact you within <span class="text-brand font-bold underline">24 hours</span>.
+                                </p>
+                                <button @click="resetForm" class="text-brand font-bold text-xs hover:underline flex items-center gap-2 mx-auto">
+                                    <i class="fas fa-redo-alt text-[10px]"></i> New Request
+                                </button>
+                            </div>
+
+                            <form v-else class="space-y-3" @submit.prevent="handleFormSubmit" novalidate>
+                                <div class="flex items-center justify-between">
+                                    <div>
+                                        <h3 class="text-xl font-bold font-serif mb-1">Start the Adventure</h3>
+                                        <p class="text-xs text-gray-400">Fill out the form, we will reply within 24h.</p>
+                                    </div>
+                                </div>
+
+                                <div class="grid grid-cols-2 gap-3">
+                                    <div>
+                                        <label class="block text-[10px] font-bold text-gray-500 mb-1 ml-1 uppercase">Name *</label>
+                                        <input type="text" v-model="formData.name" required placeholder="Your name"
+                                               :class="{'input-error': attemptedSubmit && !formData.name}"
+                                               class="w-full bg-gray-50 border border-gray-200 rounded-lg px-3 py-2 text-sm focus:outline-none focus:border-brand transition outline-none">
+                                    </div>
+                                    <div>
+                                        <label class="block text-[10px] font-bold text-gray-500 mb-1 ml-1 uppercase">Participants *</label>
+                                        <input type="number" v-model.number="formData.passengers" min="1" required
+                                               :class="{'input-error': attemptedSubmit && !formData.passengers}"
+                                               class="w-full bg-gray-50 border border-gray-200 rounded-lg px-3 py-2 text-sm focus:outline-none focus:border-brand transition outline-none">
+                                    </div>
+                                </div>
+
+                                <div>
+                                    <label class="block text-[10px] font-bold text-gray-500 mb-1 ml-1 uppercase">Phone *</label>
+                                    <div class="flex gap-2">
+                                        <div class="relative w-24 shrink-0">
+                                            <select v-model="formData.countryCode" class="w-full pl-2 pr-5 py-2 bg-gray-50 border border-gray-200 rounded-lg focus:outline-none focus:border-brand transition text-xs appearance-none h-full">
+                                                <option value="+33">🇫🇷 +33</option>
+                                                <option value="+86">🇨🇳 +86</option>
+                                                <option value="+852">🇭🇰 +852</option>
+                                                <option value="+44">🇬🇧 +44</option>
+                                                <option value="+1">🇺🇸 +1</option>
+                                            </select>
+                                            <i class="fas fa-chevron-down absolute right-2 top-1/2 -translate-y-1/2 text-gray-400 pointer-events-none text-[10px]"></i>
+                                        </div>
+                                        <input type="tel" v-model="formData.phone" required placeholder="Number"
+                                               :class="{'input-error': attemptedSubmit && (phoneError || !formData.phone)}"
+                                               class="flex-1 w-full bg-gray-50 border border-gray-200 rounded-lg px-3 py-2 text-sm focus:outline-none focus:border-brand transition outline-none">
+                                    </div>
+                                    <p v-if="attemptedSubmit && phoneError" class="text-red-600 text-[10px] ml-1 mt-1">{{ phoneError }}</p>
+                                </div>
+
+                                <div>
+                                    <label class="block text-[10px] font-bold text-gray-500 mb-1 ml-1 uppercase">Email *</label>
+                                    <input type="email" v-model="formData.email" required placeholder="example@email.com"
+                                           :class="{'input-error': attemptedSubmit && !formData.email}"
+                                           class="w-full bg-gray-50 border border-gray-200 rounded-lg px-3 py-2 text-sm focus:outline-none focus:border-brand transition outline-none">
+                                </div>
+
+                                <div>
+                                    <label class="block text-[10px] font-bold text-gray-500 mb-1 ml-1 uppercase">Preferred Date *</label>
+                                    <div class="relative">
+                                        <select v-model="formData.date" required 
+                                                :class="{'input-error': attemptedSubmit && !formData.date}"
+                                                class="w-full bg-gray-50 border border-gray-200 rounded-lg px-3 py-2 focus:outline-none focus:border-brand transition text-gray-700 font-medium appearance-none text-sm">
+                                            <option value="" disabled>Choose a date</option>
+                                            <option v-for="date in tour.dates" :key="date.start" :value="date.start">{{ date.start }}</option>
+                                            <option value="other">Other date / TBC</option>
+                                        </select>
+                                        <i class="fas fa-chevron-down absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 pointer-events-none text-xs"></i>
+                                    </div>
+                                </div>
+
+                                <div v-if="calculatedPrice > 0" class="bg-red-50 p-3 rounded-lg border border-red-100 flex justify-between items-center">
+                                    <div class="flex flex-col">
+                                        <span class="text-[10px] text-red-600 font-bold uppercase">Estimated Price</span>
+                                        <div class="flex flex-col">
+                                            <span v-if="hasSingleSupplement" class="text-[9px] text-red-400 leading-tight">* Includes single supplement {{ tour.singleSupplement }}</span>
+                                        </div>
+                                    </div>
+                                    <div class="text-right">
+                                        <span class="text-lg font-bold text-brand">€ {{ calculatedPrice.toLocaleString() }}</span>
+                                    </div>
+                                </div>
+
+                                <div>
+                                    <label class="block text-[10px] font-bold text-gray-500 mb-1 ml-1 uppercase">Remarks</label>
+                                    <textarea v-model="formData.remarks" class="w-full bg-gray-50 border border-gray-200 rounded-lg px-3 py-2 text-sm focus:outline-none focus:border-brand transition h-16 outline-none resize-none" placeholder="Special diets, flights, etc..."></textarea>
+                                </div>
+
+                                <button class="w-full bg-brand text-white font-bold py-3 rounded-lg hover:bg-[#991b1b] transition shadow-lg flex items-center justify-center gap-2 transform active:scale-95 text-sm">
+                                    <span v-if="isSending"><i class="fas fa-spinner fa-spin"></i> Sending...</span>
+                                    <span v-else>Send Inquiry <i class="fas fa-paper-plane"></i></span>
+                                </button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </main>
+
+    <footer class="bg-[#111] text-gray-400 pt-20 pb-10 border-t border-gray-800">
+        <div class="container mx-auto px-6 lg:px-12">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-16 mb-20">
+                <div class="space-y-8">
+                    <div class="inline-block bg-white p-3 rounded-md shadow-sm">
+                        <img src="https://www.eurasia-tours.fr/assets/logo-word-rNz8dsz6.jpg" alt="Eurasia Tours" class="h-10 w-auto object-contain">
+                    </div>
+                    <p class="text-sm leading-relaxed font-light">Since 2000, creating bespoke journeys that bridge cultures. Your trusted partner for authentic travel experiences across Europe and Asia.</p>
+                </div>
+                
+                <div>
+                    <h4 class="text-white font-serif text-lg mb-6">Accreditations</h4>
+                    <ul class="space-y-4 text-sm font-light">
+                        <li class="flex items-center gap-3"><i class="fas fa-certificate text-gray-600"></i> APST France Member</li>
+                        <li class="flex items-center gap-3"><i class="fas fa-plane text-gray-600"></i> IATA Accredited Agent</li>
+                        <li class="flex items-center gap-3"><i class="fas fa-shield-alt text-gray-600"></i> RCP Insurance Coverage</li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h4 class="text-white font-serif text-lg mb-6">Paris Headquarters</h4>
+                    <ul class="space-y-4 text-sm font-light">
+                        <li class="flex items-start gap-3"><i class="fas fa-map-marker-alt text-gray-600 mt-1"></i> 30 Rue Ernest Renan, 75015 Paris</li>
+                        <li class="flex items-center gap-3"><i class="fas fa-phone text-gray-600"></i> +33 (0)1 56 69 12 80</li>
+                        <li class="flex items-center gap-3"><i class="fas fa-envelope text-gray-600"></i> contact@eurasiatours.fr</li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h4 class="text-white font-serif text-lg mb-6">Connect</h4>
+                    <div class="flex gap-4 mb-8">
+                        <div class="relative group" @mouseenter="isWechatQR = true" @mouseleave="isWechatQR = false">
+                            <a href="#" class="w-10 h-10 border border-gray-700 rounded-full flex items-center justify-center hover:bg-[#07C160] hover:border-[#07C160] hover:text-white transition-all">
+                                <i class="fab fa-weixin"></i>
+                            </a>
+                            <transition name="qr-fade">
+                                <div v-if="isWechatQR" class="absolute bottom-14 left-1/2 -translate-x-1/2 bg-white p-2 rounded shadow-xl z-50 w-32">
+                                    <img src="https://www.eurasia-tours.fr/assets/wechat-account-VZcww6ek.jpg" class="w-full">
+                                </div>
+                            </transition>
+                        </div>
+                        <div class="relative group" @mouseenter="isFacebookQR = true" @mouseleave="isFacebookQR = false">
+                            <a href="#" class="w-10 h-10 border border-gray-700 rounded-full flex items-center justify-center hover:bg-[#1877F2] hover:border-[#1877F2] hover:text-white transition-all">
+                                <i class="fab fa-facebook-f"></i>
+                            </a>
+                            <transition name="qr-fade">
+                                <div v-if="isFacebookQR" class="absolute bottom-14 left-1/2 -translate-x-1/2 bg-white p-2 rounded shadow-xl z-50 w-32">
+                                    <img src="https://www.eurasia-tours.fr/assets/3-Bjf7LFHD.png" class="w-full">
+                                </div>
+                            </transition>
+                        </div>
+                    </div>
+                    <div class="flex gap-3 text-2xl opacity-20">
+                        <i class="fab fa-cc-visa"></i><i class="fab fa-cc-mastercard"></i><i class="fab fa-cc-amex"></i>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="border-t border-gray-800 pt-8 flex flex-col md:flex-row justify-between items-center text-xs tracking-widest uppercase text-gray-600">
+                <p>&copy; 2026 Eurasia Tours. All Rights Reserved.</p>
+                <div class="flex gap-6 mt-4 md:mt-0">
+                    <a href="#" class="hover:text-white transition">Privacy Policy</a>
+                    <a href="#" class="hover:text-white transition">Terms of Service</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+</div>
+
+<script>
+    const { createApp, ref, reactive, computed, nextTick, onMounted } = Vue;
+
+    createApp({
+        setup() {
+            // Header Logic (Standardized for English Pages)
+            const isMobileMenuOpen = ref(false);
+            const isDestDropdownOpen = ref(false);
+            const isLangDropdownOpen = ref(false);
+            const isWechatQR = ref(false);
+            const isFacebookQR = ref(false);
+            const currentLang = ref('English');
+
+            const switchLang = (lang) => {
+                const urlMap = {
+                    '中文': 'destination-main-cn.html',
+                    'English': 'nepal-lands-of-culture-and-legends-11-days-en.html',
+                    'Français': 'nepal-terres-de-culture-et-de-legendes.html'
+                };
+                const targetUrl = urlMap[lang];
+                if (targetUrl) window.location.href = targetUrl;
+            };
+            
+            const navLinks = [
+                { name: 'Home', url: 'index-en.html' },
+                { 
+                    name: 'Destinations', 
+                    url: 'destination-europe-en.html', 
+                    subLinks: [
+                        { name: 'Asia', url: 'destination-asia-en.html' },
+                        { name: 'Europe', url: 'destination-europe-en.html' }
+                    ] 
+                },
+                { name: 'Tailor-made', url: 'custom-en.html' },
+                { name: 'Flight Services', url: 'flight-tickets-en.html' },
+                { name: 'About Us', url: 'about-en.html' },
+                { name: 'Contact Us', url: 'contact-en.html' },
+                { name: 'Blog', url: 'blog-en.html' }
+            ];
+
+            // Page Logic
+            const activeSection = ref('dates');
+            const subMenu = [
+                { name: 'Dates & Prices', id: 'dates' },
+                { name: 'Overview', id: 'overview' },
+                { name: 'Map', id: 'map' },
+                { name: 'Itinerary', id: 'itinerary' },
+                { name: 'Included / Not Included', id: 'includes' },
+            ];
+            
+            // Carousel Logic
+            const currentHeroIndex = ref(0);
+            const heroImages = [
+                'images/nepal-terres-de-culture-et-de-legendes/header.jpg'
+            ];
+
+            // ============ Data Logic (Nepal Content - English) ============
+            const tour = reactive({
+                title: 'Nepal: Lands of Culture and Legends',
+                route: 'Kathmandu – Nagarkot – Bhaktapur – Chitwan – Pokhara – Sarangkot – Kathmandu',
+                highlights: [
+                    'Iconic UNESCO sites: Kathmandu, Patan, Bhaktapur, Boudhanath & Pashupatinath',
+                    'Exceptional panoramic moments: sunrise over the Himalayas',
+                    'Safari in Chitwan Jungle: rhinos, crocodiles, canoe and forest walk',
+                    'Stay in Pokhara: the adventure capital with Phewa Lake, Annapurna mountains and natural sites',
+                ],
+                singleSupplement: '180 €',
+                
+                // Tiered Price Data (From Nepal Source)
+                priceTiers: [
+                    { range: '2 - 3 People', min: 2, max: 3, price: '1,095' },
+                    { range: '4 - 5 People', min: 4, max: 5, price: '1,060' },
+                    { range: '6 - 7 People', min: 6, max: 7, price: '1,045' },
+                    { range: '8 - 9 People', min: 8, max: 9, price: '1,025' },
+                    { range: '10 - 14 People', min: 10, max: 14, price: '1,010' },
+                    { range: '15+ People', min: 15, max: 99, price: '970' }
+                ],
+                
+                // General Season info for the form dropdown
+                dates: [
+                    { start: '2026 Season', end: 'All year round', price: 'See table' }
+                ],
+                
+                includes: [
+                    'Accommodation in double room with breakfast',
+                    'Board as per itinerary',
+                    'Air-conditioned transport and transfers airport – hotel – airport',
+                    'Visits and excursions mentioned',
+                    'Entrance fees for visits and excursions mentioned',
+                    'English-speaking guides (or French if requested)',
+                    'Guided jungle safari with entry permit',
+                    'First aid kit',
+                    'Souvenir gift'
+                ],
+                excludes: [
+                    'International flights (estimate: 1350€ / person)',
+                    'Meals not mentioned in the program',
+                    'Drinks',
+                    'Personal expenses',
+                    'Travel insurance',
+                    'Tips',
+                    'Visa fees',
+                    'Tips for guide, driver and porters',
+                    'Visits and excursions not mentioned in the program'
+                ],
+
+                // Itinerary Data (Translated to English)
+                daysData: [
+                    { 
+                        day: 1, 
+                        title: 'France ✈ Kathmandu', 
+                        transport: 'Plane', 
+                        content: 'Flight to Kathmandu. Meals and overnight on board.', 
+                        image: 'images/nepal-terres-de-culture-et-de-legendes/jour-01.jpg', 
+                        hotel: 'Night on board', 
+                        meals: 'On board',
+                        isOpen: true 
+                    },
+                    { 
+                        day: 2, 
+                        title: 'Kathmandu', 
+                        transport: 'Private Vehicle', 
+                        content: 'Arrival in Kathmandu. Welcome and transfer to the hotel. Rooms available from 2 PM. Free time.', 
+                        image: 'images/nepal-terres-de-culture-et-de-legendes/jour-02.jpg',
+                        hotel: 'Hotel Dom Himalaya or similar',
+                        meals: 'Not mentioned',
+                        isOpen: false 
+                    },
+                    { 
+                        day: 3, 
+                        title: 'Kathmandu – Nagarkot', 
+                        transport: 'Private Vehicle', 
+                        content: 'Departure for a cultural heritage tour of the Kathmandu Valley. Visit UNESCO heritage monuments: Swayambhunath – known as the Monkey Temple offering a fascinating view of the valley; Patan Durbar Square – one of the three medieval palace squares; Pashupatinath – the most sacred Hindu temple area in the country; and Boudhanath – considered the largest stupa in the world. Then drive to Nagarkot. Meals on your own.', 
+                        image: 'images/nepal-terres-de-culture-et-de-legendes/jour-03.jpg',
+                        hotel: 'Hotel View Point or similar',
+                        meals: 'Meals on your own',
+                        isOpen: false 
+                    },
+                    { 
+                        day: 4, 
+                        title: 'Nagarkot – Bhaktapur – Kathmandu', 
+                        transport: 'Private Vehicle', 
+                        content: 'Wake up early to admire a breathtaking view of the Himalayan panorama and a magnificent sunrise over these mountains. Drive to Bhaktapur, a medieval city rich in temples, palaces, and traditional crafts. Drive back to Kathmandu. Meals on your own.', 
+                        image: 'images/nepal-terres-de-culture-et-de-legendes/jour-04.jpg',
+                        hotel: 'Hotel Dom Himalaya or similar',
+                        meals: 'Meals on your own',
+                        isOpen: false 
+                    },
+                    { 
+                        day: 5, 
+                        title: 'Kathmandu – Chitwan – Jungle Lodge', 
+                        transport: 'Private Vehicle', 
+                        content: 'Departure for Chitwan to discover wildlife in Chitwan National Park. Drive along the Trishuli River. Lunch. Arrival at the Jungle Lodge and check-in. First immersion in nature and preparation for safari activities. Dinner.', 
+                        image: 'images/nepal-terres-de-culture-et-de-legendes/jour-05.jpg',
+                        hotel: 'Hotel Parkland Jungle Safari or similar',
+                        meals: 'Lunch, Dinner',
+                        isOpen: false 
+                    },
+                    { 
+                        day: 6, 
+                        title: 'Jungle Lodge', 
+                        transport: 'Safari', 
+                        content: 'Safari day in the national park: elephant ride, canoe tour, jungle walk, bird watching. Visit to the elephant breeding center. Lunch. Possible observation of rhinos, deer, bears, tigers, leopards, and crocodiles. An exciting day full of adventures in the jungle. Dinner.', 
+                        image: 'images/nepal-terres-de-culture-et-de-legendes/jour-06.jpg',
+                        hotel: 'Hotel Parkland Jungle Safari or similar',
+                        meals: 'Breakfast, Lunch, Dinner',
+                        isOpen: false 
+                    },
+                    { 
+                        day: 7, 
+                        title: 'Jungle Lodge – Pokhara', 
+                        transport: 'Private Vehicle', 
+                        content: 'Drive to Pokhara, a lakeside city surrounded by mountains. Boat excursion on Phewa Lake. Free time at Lakeside to stroll and relax. Meals on your own.', 
+                        image: 'images/nepal-terres-de-culture-et-de-legendes/jour-07.jpg',
+                        hotel: 'Hotel Heaven OGanga or similar',
+                        meals: 'Breakfast, Meals on your own',
+                        isOpen: false 
+                    },
+                    { 
+                        day: 8, 
+                        title: 'Pokhara – Sarangkot', 
+                        transport: 'Private Vehicle', 
+                        content: 'Departure for Sarangkot to admire the sunrise with spectacular views of the Annapurna range. Free time to relax or walk by the lake. Visit Davis Falls, Gupteshwor Cave, and the Tibetan Refugee Camp. Then head to the World Peace Stupa for sunset. Return to Pokhara.', 
+                        image: 'images/nepal-terres-de-culture-et-de-legendes/jour-08.jpg',
+                        hotel: 'Hotel Heaven OGanga or similar',
+                        meals: 'Breakfast',
+                        isOpen: false 
+                    },
+                    { 
+                        day: 9, 
+                        title: 'Sarangkot – Kathmandu', 
+                        transport: 'Private Vehicle', 
+                        content: 'Drive back to Kathmandu. Check-in at the hotel. Free day to enjoy the city: shopping, massages, personal visits. Farewell dinner.', 
+                        image: 'images/nepal-terres-de-culture-et-de-legendes/jour-09.jpg',
+                        hotel: 'Hotel Dom Himalaya or similar',
+                        meals: 'Breakfast, Farewell Dinner',
+                        isOpen: false 
+                    },
+                    { 
+                        day: 10, 
+                        title: 'Kathmandu – Flight Home', 
+                        transport: 'Plane', 
+                        content: 'Transfer to the airport. Flight back home.', 
+                        image: 'images/nepal-terres-de-culture-et-de-legendes/jour-10.jpg',
+                        hotel: 'Night on board',
+                        meals: 'Breakfast',
+                        isOpen: false 
+                    },
+                    { 
+                        day: 11, 
+                        title: 'Arrival', 
+                        transport: '', 
+                        content: 'Arrival at your destination.', 
+                        image: 'images/nepal-terres-de-culture-et-de-legendes/jour-11.jpg',
+                        hotel: '',
+                        meals: '',
+                        isOpen: false 
+                    }
+                ]
+            });
+
+            // ============ Form Logic ============
+            const formHighlight = ref(false);
+            const isSubmitted = ref(false);
+            const attemptedSubmit = ref(false);
+            const isSending = ref(false);
+
+            const formData = reactive({
+                name: '',
+                countryCode: '+33',
+                phone: '',
+                email: '',
+                date: '',
+                passengers: 2,
+                remarks: ''
+            });
+
+            const phoneError = computed(() => {
+                if (!formData.phone) return null;
+                const lengths = { '+33': 10, '+86': 11, '+852': 8, '+44': 10, '+1': 10 };
+                const required = lengths[formData.countryCode] || 10;
+                return formData.phone.length !== required ? `Must contain ${required} digits` : null;
+            });
+
+            const calculatedPrice = computed(() => {
+                if (!formData.passengers) return 0;
+                
+                const pax = formData.passengers;
+                let pricePerPerson = 0;
+
+                // Logic: Find matching Tier (Same as original Nepal logic)
+                const tier = tour.priceTiers.find(t => pax >= t.min && pax <= t.max);
+                
+                if (tier) {
+                    pricePerPerson = parseInt(tier.price.replace(/\D/g, ''));
+                } else if (pax > 15) {
+                     pricePerPerson = 970; 
+                } else {
+                    return 0; 
+                }
+
+                let total = pricePerPerson * pax;
+
+                // Single supplement logic
+                const singleSupplement = parseInt(tour.singleSupplement.replace(/\D/g, ''));
+                if (formData.passengers % 2 !== 0) {
+                    total += singleSupplement;
+                }
+
+                return total;
+            });
+
+            const hasSingleSupplement = computed(() => formData.passengers % 2 !== 0);
+
+            const handleBookingScroll = (date = '', pax = 0) => {
+                if (date) formData.date = date;
+                if (pax > 0) formData.passengers = pax;
+                
+                const element = document.getElementById('contact');
+                if (element) {
+                    const offset = 180;
+                    const bodyRect = document.body.getBoundingClientRect().top;
+                    const elementRect = element.getBoundingClientRect().top;
+                    const elementPosition = elementRect - bodyRect;
+                    const offsetPosition = elementPosition - offset;
+                    window.scrollTo({ top: offsetPosition, behavior: 'smooth' });
+                    
+                    formHighlight.value = true;
+                    setTimeout(() => { formHighlight.value = false; }, 3000);
+                }
+            };
+
+            const handleFormSubmit = async () => {
+                attemptedSubmit.value = true;
+                const hasEmpty = !formData.name || !formData.phone || !formData.email || !formData.date || !formData.passengers;
+                if (hasEmpty || phoneError.value) {
+                    nextTick(() => {
+                        const firstError = document.querySelector('.input-error');
+                        if (firstError) firstError.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                    });
+                    return;
+                }
+
+                isSending.value = true;
+
+                // Payload matches Server Expectation
+                const payload = {
+                    tourName: tour.title,
+                    name: formData.name,
+                    email: formData.email,
+                    phone: formData.countryCode + " " + formData.phone,
+                    travelDate: formData.date,
+                    passengers: formData.passengers,
+                    totalPrice: calculatedPrice.value,
+                    remarks: formData.remarks || ""
+                };
+
+                try {
+                    const response = await fetch('/api/submit-inquiry', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json',
+                            'Accept': 'application/json'
+                        },
+                        body: JSON.stringify(payload)
+                    });
+
+                    if (response.ok) {
+                        isSending.value = false;
+                        isSubmitted.value = true;
+                    } else {
+                        throw new Error('Server responded with error');
+                    }
+                } catch (error) {
+                    console.error('Submission error:', error);
+                    isSending.value = false;
+                    alert("Sending failed, please try again later or contact us directly.");
+                }
+            };
+
+            const resetForm = () => {
+                isSubmitted.value = false;
+                attemptedSubmit.value = false;
+                formData.date = '';
+                formData.passengers = 2;
+                formData.remarks = '';
+            };
+
+            // Toggle Logic
+            const isAllExpanded = ref(false);
+            const toggleDay = (index) => {
+                tour.daysData[index].isOpen = !tour.daysData[index].isOpen;
+            };
+            const toggleAllDays = () => {
+                isAllExpanded.value = !isAllExpanded.value;
+                tour.daysData.forEach(day => {
+                    day.isOpen = isAllExpanded.value;
+                });
+            };
+
+            // Scroll Handling
+            const handleScroll = () => {
+                const scrollPosition = window.scrollY + 250;
+                subMenu.forEach(section => {
+                    const element = document.getElementById(section.id);
+                    if (element && element.offsetTop <= scrollPosition) {
+                        activeSection.value = section.id;
+                    }
+                });
+            };
+
+            onMounted(() => {
+                let isScrolling = false;
+                window.addEventListener('scroll', () => {
+                    if (!isScrolling) {
+                        window.requestAnimationFrame(() => {
+                            handleScroll();
+                            isScrolling = false;
+                        });
+                        isScrolling = true;
+                    }
+                });
+            });
+
+            return {
+                isMobileMenuOpen, isDestDropdownOpen, isLangDropdownOpen, currentLang, switchLang,
+                isWechatQR, isFacebookQR,
+                navLinks, subMenu, activeSection, 
+                heroImages, currentHeroIndex,
+                tour, 
+                toggleDay, toggleAllDays, isAllExpanded,
+                formData, formHighlight, handleBookingScroll, handleFormSubmit, 
+                phoneError, attemptedSubmit, isSubmitted, resetForm, calculatedPrice, hasSingleSupplement,
+                isSending
+            };
+        }
+    }).mount('#app');
+</script>
+</body>
+</html>

@@ -3,8 +3,27 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>关于我们 - Eurasia Tours 欧美亚旅游</title>
     
+    <title>关于我们 - 欧美亚旅游 Eurasia Tours | 专注欧洲高端定制游与商务考察 | 巴黎旅行社</title>
+    
+    <meta name="description" content="欧美亚旅游(Eurasia Tours)成立于2000年，总部位于巴黎，是法国旅游局指定的地接社。作为GTT集团欧洲子公司，我们提供欧洲高端定制游、商务考察、研学旅行及全球机票服务。拥有IATA及APST资质，专注服务全球华人。">
+    
+    <meta name="keywords" content="欧美亚旅游, Eurasia Tours, 巴黎旅行社, 欧洲定制游, 法国地接社, 欧洲商务考察, 欧洲研学, GTT Global, 欧洲机票, 华人旅行社">
+    
+    <meta name="author" content="Eurasia Tours">
+    <link rel="canonical" href="https://www.eurasia-tours.fr/about-cn.html">
+
+    <link rel="alternate" hreflang="zh-CN" href="https://www.eurasia-tours.fr/about-cn.html" />
+    <link rel="alternate" hreflang="en" href="https://www.eurasia-tours.fr/about-en.html" />
+    <link rel="alternate" hreflang="fr" href="https://www.eurasia-tours.fr/about-fr.html" />
+    <link rel="alternate" hreflang="x-default" href="https://www.eurasia-tours.fr/about-en.html" />
+
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="关于我们 - 欧美亚旅游 Eurasia Tours">
+    <meta property="og:description" content="20年专注欧洲旅游，法国旅游局官方授权，为您提供最专业的欧洲出行解决方案。">
+    <meta property="og:image" content="https://www.eurasia-tours.fr/assets/logo-word-rNz8dsz6.jpg">
+    <meta property="og:url" content="https://www.eurasia-tours.fr/about-cn.html">
+
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://unpkg.com/vue@3/dist/vue.global.prod.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
@@ -15,7 +34,6 @@
         h1, h2, h3 { font-family: 'Playfair Display', 'Noto Sans SC', serif; }
         .text-brand { color: #b91c1c; }
         .bg-brand { background-color: #b91c1c; }
-        /* 新增：来自 Tickets 页面的样式 */
         .hover\:bg-brand:hover { background-color: #991b1b; }
         
         .hero-text-shadow { text-shadow: 0 4px 20px rgba(0, 0, 0, 0.6); }
@@ -28,7 +46,6 @@
         .qr-fade-enter-active, .qr-fade-leave-active { transition: all 0.3s ease-out; }
         .qr-fade-enter-from, .qr-fade-leave-to { opacity: 0; transform: translateY(10px); }
 
-        /* 手机菜单动画 */
         .mobile-menu-enter-active, .mobile-menu-leave-active { transition: all 0.3s ease; }
         .mobile-menu-enter-from, .mobile-menu-leave-to { opacity: 0; transform: translateY(-10px); }
 
@@ -62,7 +79,7 @@
                 <div class="flex items-center justify-between w-full lg:w-auto">
                     <a href="index-cn.html" class="flex items-center group">
                         <img src="https://www.eurasia-tours.fr/assets/logo-word-rNz8dsz6.jpg" 
-                             alt="Logo" class="h-10 md:h-12 w-auto object-contain transition-transform group-hover:scale-105 mix-blend-multiply">
+                             alt="欧美亚旅游 Eurasia Tours Logo" class="h-10 md:h-12 w-auto object-contain transition-transform group-hover:scale-105 mix-blend-multiply">
                     </a>
                     <button class="lg:hidden relative z-50 text-2xl p-2 text-gray-700 focus:outline-none cursor-pointer" @click="isMobileMenuOpen = !isMobileMenuOpen">
                         <i class="fas" :class="isMobileMenuOpen ? 'fa-times' : 'fa-bars'"></i>
@@ -79,7 +96,6 @@
                            :class="link.current ? 'text-brand' : 'text-gray-700 hover:text-brand'">
                             {{ link.name }}
                             <i v-if="link.subLinks" class="fas fa-angle-down text-xs transition-transform duration-300" :class="{'rotate-180': link.name === '目的地' && isDestDropdownOpen}"></i>
-                            
                             <span class="absolute bottom-1 left-0 h-0.5 bg-brand transition-all duration-300"
                                   :class="link.current ? 'w-full' : 'w-0 group-hover:w-full'"></span>
                         </a>
@@ -103,42 +119,17 @@
                         </transition>
                     </div>
 
-                    <div class="relative group py-8 pl-8 ml-2"
-                         @mouseenter="isLangDropdownOpen = true"
-                         @mouseleave="isLangDropdownOpen = false">
-                        
+                    <div class="relative group py-8 pl-8 ml-2" @mouseenter="isLangDropdownOpen = true" @mouseleave="isLangDropdownOpen = false">
                         <span class="absolute left-0 top-1/2 -translate-y-1/2 h-5 w-px bg-gray-200"></span>
-
                         <a href="#" class="nav-link-spacing relative py-3 px-1 text-sm xl:text-[15px] font-bold uppercase text-gray-700 hover:text-brand transition-all flex items-center gap-2">
-                            <i class="fas fa-globe text-lg"></i>
-                            {{ currentLang }}
-                            <i class="fas fa-angle-down text-xs transition-transform duration-300" :class="{'rotate-180': isLangDropdownOpen}"></i>
+                            <i class="fas fa-globe text-lg"></i> {{ currentLang }} <i class="fas fa-angle-down text-xs transition-transform duration-300" :class="{'rotate-180': isLangDropdownOpen}"></i>
                         </a>
                         <transition name="dropdown">
-                            <div v-if="isLangDropdownOpen" 
-                                 class="absolute top-full right-0 w-[140px] bg-white shadow-[0_20px_50px_rgba(0,0,0,0.15)] rounded-xl border border-gray-100 p-2 overflow-hidden mt-[-5px]">
+                            <div v-if="isLangDropdownOpen" class="absolute top-full right-0 w-[140px] bg-white shadow-[0_20px_50px_rgba(0,0,0,0.15)] rounded-xl border border-gray-100 p-2 overflow-hidden mt-[-5px]">
                                 <ul class="space-y-1">
-                                    <li>
-                                        <a href="#" @click.prevent="switchLang('中文')" 
-                                           class="flex items-center justify-between px-4 py-2 text-sm font-medium text-gray-700 hover:bg-red-50 hover:text-brand rounded-lg transition-all"
-                                           :class="{'bg-red-50 text-brand': currentLang === '中文'}">
-                                            中文 <i v-if="currentLang === '中文'" class="fas fa-check text-xs"></i>
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="#" @click.prevent="switchLang('English')" 
-                                           class="flex items-center justify-between px-4 py-2 text-sm font-medium text-gray-700 hover:bg-red-50 hover:text-brand rounded-lg transition-all"
-                                           :class="{'bg-red-50 text-brand': currentLang === 'English'}">
-                                            English <i v-if="currentLang === 'English'" class="fas fa-check text-xs"></i>
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="#" @click.prevent="switchLang('Française')" 
-                                           class="flex items-center justify-between px-4 py-2 text-sm font-medium text-gray-700 hover:bg-red-50 hover:text-brand rounded-lg transition-all"
-                                           :class="{'bg-red-50 text-brand': currentLang === 'Française'}">
-                                            Française <i v-if="currentLang === 'Française'" class="fas fa-check text-xs"></i>
-                                        </a>
-                                    </li>
+                                    <li><a href="#" @click.prevent="switchLang('中文')" class="flex items-center justify-between px-4 py-2 text-sm font-medium transition-all rounded-lg" :class="currentLang === '中文' ? 'bg-red-50 text-brand' : 'text-gray-700 hover:bg-red-50 hover:text-brand'">中文 <i v-if="currentLang === '中文'" class="fas fa-check text-xs"></i></a></li>
+                                    <li><a href="#" @click.prevent="switchLang('English')" class="flex items-center justify-between px-4 py-2 text-sm font-medium transition-all rounded-lg" :class="currentLang === 'English' ? 'bg-red-50 text-brand' : 'text-gray-700 hover:bg-red-50 hover:text-brand'">English <i v-if="currentLang === 'English'" class="fas fa-check text-xs"></i></a></li>
+                                    <li><a href="#" @click.prevent="switchLang('Française')" class="flex items-center justify-between px-4 py-2 text-sm font-medium transition-all rounded-lg" :class="currentLang === 'Française' ? 'bg-red-50 text-brand' : 'text-gray-700 hover:bg-red-50 hover:text-brand'">Française <i v-if="currentLang === 'Française'" class="fas fa-check text-xs"></i></a></li>
                                 </ul>
                             </div>
                         </transition>
@@ -156,23 +147,38 @@
                        @click="isMobileMenuOpen = false">
                        {{ link.name }}
                     </a>
-                    
                     <div class="flex items-center gap-4 mt-2 border-t border-gray-100 pt-6 w-full justify-center flex-wrap px-4">
                         <button @click="switchLang('中文')" class="px-4 py-1 rounded-full text-sm font-bold transition" :class="currentLang === '中文' ? 'bg-brand text-white' : 'bg-gray-100 text-gray-600'">中文</button>
                         <button @click="switchLang('English')" class="px-4 py-1 rounded-full text-sm font-bold transition" :class="currentLang === 'English' ? 'bg-brand text-white' : 'bg-gray-100 text-gray-600'">English</button>
                         <button @click="switchLang('Française')" class="px-4 py-1 rounded-full text-sm font-bold transition" :class="currentLang === 'Française' ? 'bg-brand text-white' : 'bg-gray-100 text-gray-600'">Française</button>
                     </div>
-
                     <a href="contact.html" class="bg-brand text-white px-10 py-3 rounded-full font-bold shadow-lg mt-4" @click="isMobileMenuOpen = false">立即咨询</a>
                 </div>
             </nav>
         </transition>
     </header>
+
     <main class="pt-24">
-        <section class="relative h-[60vh] min-h-[500px] flex items-center justify-center bg-gray-900 overflow-hidden cover-img">
-            <img src="https://www.eurasia-tours.fr/assets/banner-B36M69Yx.jpg" class="absolute inset-0 w-full h-full opacity-60">
+        <section class="relative h-[60vh] min-h-[500px] flex flex-col items-center justify-center bg-gray-900 overflow-hidden cover-img">
+            <img src="https://www.eurasia-tours.fr/assets/banner-B36M69Yx.jpg" alt="欧美亚旅游团队在欧洲地标前合影 - 欧洲定制游专家" class="absolute inset-0 w-full h-full opacity-60">
             <div class="absolute inset-0 bg-black/30 z-10"></div>
+            
             <div class="relative z-20 text-center px-4">
+                <nav aria-label="Breadcrumb" class="mb-6 opacity-90">
+                    <ol class="flex items-center justify-center space-x-3 text-sm font-medium tracking-wide uppercase">
+                        <li>
+                            <a href="index-cn.html" class="text-gray-300 hover:text-white transition-colors flex items-center gap-2">
+                                <i class="fas fa-home text-xs"></i> 首页
+                            </a>
+                        </li>
+                        <li>
+                            <span class="text-brand/80">/</span>
+                        </li>
+                        <li class="text-white" aria-current="page">
+                            关于我们
+                        </li>
+                    </ol>
+                </nav>
                 <h1 class="text-6xl md:text-8xl font-bold text-white mb-4 hero-text-shadow tracking-tight">关于我们</h1>
                 <div class="h-2 w-24 bg-brand mx-auto mt-6 shadow-lg"></div>
             </div>
@@ -182,14 +188,14 @@
             <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
                 <div class="space-y-8">
                     <div class="inline-block px-4 py-1 bg-red-50 text-brand text-sm font-bold rounded-full tracking-widest uppercase">History</div>
-                    <h2 class="text-4xl font-bold text-gray-900 leading-tight italic">欧美亚集团历史</h2>
+                    <h2 class="text-4xl font-bold text-gray-900 leading-tight italic">欧美亚集团历史与发展</h2>
                     <div class="text-lg text-gray-600 leading-relaxed space-y-6 text-justify">
                         <p>欧美亚旅游公司成立于2000年，是由法国旅游局（Atout France）指定的接待全球游客的专业旅行社之一。我们持有法国旅游局的授权许可证，并由GROUPAMA法国保险公司（保险编号N'AA145293）承保，拥有法国国家旅游许可证（IM075120157）。</p>
                         <p>我们公司运用欧洲旅游专业知识，充分利用中国和欧洲丰富的旅游资源，提供卓越的旅行体验。我们全年提供高端、个性化的旅游服务，包括欧洲游览、商务旅行、研学旅行、邮轮游、国际机票预订等多种服务！</p>
                     </div>
                 </div>
                 <div class="img-container h-[500px] rounded-2xl shadow-2xl cover-img">
-                    <img src="https://www.eurasia-tours.fr/assets/image%20files-CWcbulXw.jpg">
+                    <img src="https://www.eurasia-tours.fr/assets/image%20files-CWcbulXw.jpg" alt="欧美亚旅游公司发展历史与团队介绍">
                 </div>
             </div>
         </section>
@@ -213,7 +219,7 @@
                         </div>
                     </div>
                     <div class="lg:w-1/2 w-full h-[450px] img-container rounded-2xl cover-img">
-                        <img src="https://www.eurasia-tours.fr/assets/2-GO12BKkz.jpg">
+                        <img src="https://www.eurasia-tours.fr/assets/2-GO12BKkz.jpg" alt="欧美亚旅游提供的欧洲深度游体验">
                     </div>
                 </div>
             </div>
@@ -222,7 +228,7 @@
         <section class="py-24 bg-white">
             <div class="container mx-auto px-4 max-w-7xl">
                 <div class="text-center mb-16 space-y-6">
-                    <h2 class="text-3xl font-bold italic tracking-widest uppercase">奖项与成就</h2>
+                    <h2 class="text-3xl font-bold italic tracking-widest uppercase">奖项与资质认证</h2>
                     <p class="text-gray-600 text-center max-w-4xl mx-auto leading-relaxed text-lg font-light">
                         欧美亚旅游公司多年获得Petit Futé旅游指南（成立于1976年，相当于餐饮业的米其林指南）的认证。作为旅游业专业协会（APST）的成员，我们也得到了业内专业人士和客户的支持和鼓励。
                     </p>
@@ -230,36 +236,36 @@
                 </div>
                 
                 <div class="grid grid-cols-2 md:grid-cols-5 gap-6 mb-16">
-                    <div v-for="(img, idx) in ['afr.png', 'groupama.png', 'petit.png', 'apst.jpg', 'atout.jfif']" :key="idx" class="aspect-square img-container p-4 border border-gray-100 rounded-xl shadow-sm">
-                        <img :src="'https://www.eurasia-tours.fr/static/aboutus2/images/' + img">
+                    <div v-for="(img, idx) in awardsImages" :key="idx" class="aspect-square img-container p-4 border border-gray-100 rounded-xl shadow-sm">
+                        <img :src="'https://www.eurasia-tours.fr/static/aboutus2/images/' + img.src" :alt="img.alt" loading="lazy">
                     </div>
                 </div>
 
                 <div class="grid grid-cols-1 md:grid-cols-5 gap-8 items-start">
                     <div class="space-y-4">
-                        <div class="aspect-video img-container rounded-xl shadow-sm cover-img"><img src="https://www.eurasia-tours.fr/static/aboutus2/images/3.jpg"></div>
+                        <div class="aspect-video img-container rounded-xl shadow-sm cover-img"><img src="https://www.eurasia-tours.fr/static/aboutus2/images/3.jpg" alt="亚洲文化旅游" loading="lazy"></div>
                         <h4 class="font-bold text-brand border-b border-red-100 pb-2">多样化的旅游服务</h4>
-                        <p class="text-[13px] text-gray-500 leading-relaxed desc-box">我们为法国游客组织定期和特别的团体旅游，目的地涵盖日本、越南、柬埔寨和乌兹别克斯坦等多个亚洲国家。我们专注于文化、商务、骑行、徒步旅行和学生交流活动。我们的中国旅游线路包括北京、西安、桂林和上海等标志性景点，以及云南、成都、西藏、山西、安徽、贵州和丝绸之路等地区的深度游，深受法国游客的好评。</p>
+                        <p class="text-[13px] text-gray-500 leading-relaxed desc-box">我们为法国游客组织定期和特别的团体旅游，目的地涵盖日本、越南、柬埔寨和乌兹别克斯坦等多个亚洲国家。我们专注于文化、商务、骑行、徒步旅行和学生交流活动。</p>
                     </div>
                     <div class="space-y-4">
-                        <div class="aspect-video img-container rounded-xl shadow-sm cover-img"><img src="https://www.eurasia-tours.fr/static/aboutus2/images/4.jpg"></div>
+                        <div class="aspect-video img-container rounded-xl shadow-sm cover-img"><img src="https://www.eurasia-tours.fr/static/aboutus2/images/4.jpg" alt="GTT国际旅行集团战略合作" loading="lazy"></div>
                         <h4 class="font-bold text-brand border-b border-red-100 pb-2">战略扩展</h4>
-                        <p class="text-[13px] text-gray-500 leading-relaxed desc-box">在2024年，欧美亚旅游公司获得了GTT国际旅行集团的战略投资，成为其首个欧洲子公司。GTT国际旅行集团成立于1984年，位于德克萨斯州达拉斯，在美国主要城市运营超过45个分支机构，拥有600多名多语言专业人士。作为北美最大的批发整合商，GTT在市场上占有35%的份额，年售出航空票务达175万张，年销售额超过20亿美元。</p>
+                        <p class="text-[13px] text-gray-500 leading-relaxed desc-box">在2024年，欧美亚旅游公司获得了GTT国际旅行集团的战略投资，成为其首个欧洲子公司。GTT国际旅行集团是北美最大的批发整合商，年销售额超过20亿美元。</p>
                     </div>
                     <div class="space-y-4">
-                        <div class="aspect-video img-container rounded-xl shadow-sm cover-img"><img src="https://www.eurasia-tours.fr/static/aboutus2/images/5.jpg"></div>
+                        <div class="aspect-video img-container rounded-xl shadow-sm cover-img"><img src="https://www.eurasia-tours.fr/static/aboutus2/images/5.jpg" alt="欧美亚旅游美国市场扩展" loading="lazy"></div>
                         <h4 class="font-bold text-brand border-b border-red-100 pb-2">在美国市场的增长</h4>
-                        <p class="text-[13px] text-gray-500 leading-relaxed desc-box">凭借与GTT国际旅行集团的战略合作，欧美亚旅游公司在美国市场的扩展已具备良好基础。通过利用GTT广泛的网络和市场份额，我们旨在为北美更广泛的受众提供卓越的旅游服务。这一增长将帮助我们将更多的旅行者与欧美亚旅游公司所提供的独特体验相连接，增强我们在全球旅游行业的影响力。</p>
+                        <p class="text-[13px] text-gray-500 leading-relaxed desc-box">凭借与GTT国际旅行集团的战略合作，欧美亚旅游公司在美国市场的扩展已具备良好基础。旨在为北美更广泛的受众提供卓越的旅游服务。</p>
                     </div>
                     <div class="space-y-4">
-                        <div class="aspect-video img-container rounded-xl shadow-sm cover-img"><img src="https://www.eurasia-tours.fr/static/aboutus2/images/6.jpg"></div>
+                        <div class="aspect-video img-container rounded-xl shadow-sm cover-img"><img src="https://www.eurasia-tours.fr/static/aboutus2/images/6.jpg" alt="全球机票与邮轮服务" loading="lazy"></div>
                         <h4 class="font-bold text-brand border-b border-red-100 pb-2">全球旅游服务</h4>
-                        <p class="text-[13px] text-gray-500 leading-relaxed desc-box">我们机构为出境和入境游客提供全面服务。通过我们定制的观光、商务和休闲旅游，探索亚洲、北美、欧洲和北非的各大目的地。我们提供从学习和体育旅游到文化体验和季节性营地的各种服务。从2024年底开始，我们还将提供机票和邮轮的在线预订，进一步提升我们的无缝全球旅游解决方案。</p>
+                        <p class="text-[13px] text-gray-500 leading-relaxed desc-box">我们机构为出境和入境游客提供全面服务。从2024年底开始，我们还将提供机票和邮轮的在线预订，进一步提升我们的无缝全球旅游解决方案。</p>
                     </div>
                     <div class="space-y-4">
-                        <div class="aspect-video img-container rounded-xl shadow-sm cover-img"><img src="https://www.eurasia-tours.fr/static/aboutus2/images/7.jpg"></div>
+                        <div class="aspect-video img-container rounded-xl shadow-sm cover-img"><img src="https://www.eurasia-tours.fr/static/aboutus2/images/7.jpg" alt="高端酒店与邮轮合作伙伴" loading="lazy"></div>
                         <h4 class="font-bold text-brand border-b border-red-100 pb-2">长期稳定的合作伙伴</h4>
-                        <p class="text-[13px] text-gray-500 leading-relaxed desc-box">自成立以来，欧美亚旅游公司与酒店、票务、邮轮和交通领域的知名企业建立了合作伙伴网络。这些合作关系使我们能够为客户提供高品质的酒店、可靠的票务服务、卓越的邮轮公司和便捷的汽车租赁服务。通过这一网络，我们能够提供量身定制的旅行体验，优先考虑便利性和客户满意度，确保每位旅行者的旅程无缝愉快。</p>
+                        <p class="text-[13px] text-gray-500 leading-relaxed desc-box">自成立以来，欧美亚旅游公司与酒店、票务、邮轮和交通领域的知名企业建立了合作伙伴网络。确保每位旅行者的旅程无缝愉快。</p>
                     </div>
                 </div>
             </div>
@@ -267,12 +273,16 @@
 
         <section class="py-24 bg-white border-t border-gray-100">
             <div class="container mx-auto px-4 max-w-7xl text-center">
-                <h2 class="text-3xl font-bold italic tracking-widest uppercase text-brand mb-16">我们的合作伙伴</h2>
+                <h2 class="text-3xl font-bold italic tracking-widest uppercase text-brand mb-16">我们的全球合作伙伴</h2>
                 <div class="grid grid-cols-2 sm:grid-cols-5 lg:grid-cols-10 gap-4 mb-8">
-                    <div v-for="img in partnerRow1" class="aspect-video img-container p-2 border border-gray-50 rounded-lg shadow-sm"><img :src="img"></div>
+                    <div v-for="partner in partnerRow1" :key="partner.name" class="aspect-video img-container p-2 border border-gray-50 rounded-lg shadow-sm">
+                        <img :src="partner.url" :alt="partner.name + ' - 欧美亚旅游合作伙伴'" loading="lazy">
+                    </div>
                 </div>
                 <div class="grid grid-cols-2 sm:grid-cols-5 lg:grid-cols-10 gap-4">
-                    <div v-for="img in partnerRow2" class="aspect-video img-container p-2 border border-gray-50 rounded-lg shadow-sm"><img :src="img"></div>
+                    <div v-for="partner in partnerRow2" :key="partner.name" class="aspect-video img-container p-2 border border-gray-50 rounded-lg shadow-sm">
+                        <img :src="partner.url" :alt="partner.name + ' - 欧美亚旅游合作伙伴'" loading="lazy">
+                    </div>
                 </div>
             </div>
         </section>
@@ -282,7 +292,7 @@
         <div class="container mx-auto px-4">
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-16 mb-20">
                 <div class="space-y-6">
-                    <img src="https://www.eurasia-tours.fr/assets/logo-word-rNz8dsz6.jpg" alt="Logo" class="h-10 w-auto object-contain opacity-90">
+                    <img src="https://www.eurasia-tours.fr/assets/logo-word-rNz8dsz6.jpg" alt="Eurasia Tours Logo" class="h-10 w-auto object-contain opacity-90">
                     <p class="text-sm leading-relaxed">自2000年起，欧美亚旅游致力为全球旅客提供最纯正的亚洲深度旅行体验。我们不仅是旅行社，更是您探索东方的文化向导。</p>
                 </div>
                 <div>
@@ -341,24 +351,19 @@
     const { createApp, ref } = Vue;
     createApp({
         setup() {
-            // Header Logic (Updated to match Tickets CN)
+            // Header Logic
             const isDestDropdownOpen = ref(false);
-            const isLangDropdownOpen = ref(false); // 新增
+            const isLangDropdownOpen = ref(false);
             const isMobileMenuOpen = ref(false);
-            const currentLang = ref('中文'); // 新增
+            const currentLang = ref('中文');
 
             const switchLang = (lang) => {
-                // 1. 定义语言和文件名的对应关系
                 const urlMap = {
-                    '中文': 'index-cn.html',
-                    'English': 'index-en.html',
-                    'Française': 'index-fr.html'
+                    '中文': 'about-cn.html',
+                    'English': 'about-en.html',
+                    'Française': 'about-fr.html'
                 };
-
-                // 2.以此查找目标文件的 URL
                 const targetUrl = urlMap[lang];
-
-                // 3. 执行跳转
                 if (targetUrl) {
                     window.location.href = targetUrl;
                 }
@@ -368,7 +373,7 @@
             const isWechatQR = ref(false);
             const isFacebookQR = ref(false);
             
-            // 导航数据 - 更新为 Tickets CN 的结构，并将高亮(current: true)移至“关于我们”
+            // 导航数据
             const navLinks = [
                 { name: '首页', url: 'index-cn.html' },
                 { 
@@ -388,43 +393,69 @@
                 { name: '博客', url: 'blog-cn.html' }
             ];
 
-            // 保持原页面的合作伙伴数据
-            const partnerRow1 = [
-                'https://www.eurasia-tours.fr/static/aboutus2/images/Four-Seasons-Logo.png',
-                'https://www.eurasia-tours.fr/static/aboutus2/images/Marriott-logo.png',
-                'https://www.eurasia-tours.fr/static/aboutus2/images/hilton-logo.png',
-                'https://www.eurasia-tours.fr/static/aboutus2/images/Hyatt-Hotels-Logo.png',
-                'https://www.eurasia-tours.fr/static/aboutus2/images/Accor-logo.png',
-                'https://www.eurasia-tours.fr/static/aboutus2/images/InterContinental-logo.png',
-                'https://www.eurasia-tours.fr/static/aboutus2/images/wyndham-logo.png',
-                'https://www.eurasia-tours.fr/static/aboutus2/images/shangri_la_logo.png',
-                'https://www.eurasia-tours.fr/static/aboutus2/images/the-peninsula-hotels-logo.png',
-                'https://www.eurasia-tours.fr/static/aboutus2/images/Costa-Logo.jpg'
+            // 奖项图片数据 (带Alt)
+            const awardsImages = [
+                { src: 'afr.png', alt: 'Air France 合作伙伴' },
+                { src: 'groupama.png', alt: 'Groupama 保险认证' },
+                { src: 'petit.png', alt: 'Petit Futé 推荐' },
+                { src: 'apst.jpg', alt: 'APST 协会成员' },
+                { src: 'atout.jfif', alt: 'Atout France 法国旅游局认证' }
             ];
 
+            // 合作伙伴数据 - 第1行 (转换为对象结构以支持Alt标签)
+            const partnerRow1 = [
+                { url: 'https://www.eurasia-tours.fr/static/aboutus2/images/Four-Seasons-Logo.png', name: '四季酒店 Four Seasons' },
+                { url: 'https://www.eurasia-tours.fr/static/aboutus2/images/Marriott-logo.png', name: '万豪酒店 Marriott' },
+                { url: 'https://www.eurasia-tours.fr/static/aboutus2/images/hilton-logo.png', name: '希尔顿酒店 Hilton' },
+                { url: 'https://www.eurasia-tours.fr/static/aboutus2/images/Hyatt-Hotels-Logo.png', name: '凯悦酒店 Hyatt' },
+                { url: 'https://www.eurasia-tours.fr/static/aboutus2/images/Accor-logo.png', name: '雅高酒店 Accor' },
+                { url: 'https://www.eurasia-tours.fr/static/aboutus2/images/InterContinental-logo.png', name: '洲际酒店 IHG' },
+                { url: 'https://www.eurasia-tours.fr/static/aboutus2/images/wyndham-logo.png', name: '温德姆酒店 Wyndham' },
+                { url: 'https://www.eurasia-tours.fr/static/aboutus2/images/shangri_la_logo.png', name: '香格里拉酒店 Shangri-La' },
+                { url: 'https://www.eurasia-tours.fr/static/aboutus2/images/the-peninsula-hotels-logo.png', name: '半岛酒店 Peninsula' },
+                { url: 'https://www.eurasia-tours.fr/static/aboutus2/images/Costa-Logo.jpg', name: '歌诗达邮轮 Costa' }
+            ];
+
+            // 合作伙伴数据 - 第2行
             const partnerRow2 = [
-                'https://www.eurasia-tours.fr/static/aboutus2/images/MSC-Cruise-Logo.png',
-                'https://www.eurasia-tours.fr/static/aboutus2/images/royal_caribbean_group_logo.png',
-                'https://www.eurasia-tours.fr/static/aboutus2/images/Princess_Cruises_logo.png',
-                'https://www.eurasia-tours.fr/static/aboutus2/images/R-C.png',
-                'https://www.eurasia-tours.fr/static/aboutus2/images/R-C%20(1).png',
-                'https://www.eurasia-tours.fr/static/aboutus2/images/AirFrance-logo.png',
-                'https://www.eurasia-tours.fr/static/aboutus2/images/KLM-logo.jpg',
-                'https://www.eurasia-tours.fr/static/aboutus2/images/Air_China_logo.png',
-                'https://www.eurasia-tours.fr/static/aboutus2/images/china-southern.jfif',
-                'https://www.eurasia-tours.fr/static/aboutus2/images/china-eastern.png'
+                { url: 'https://www.eurasia-tours.fr/static/aboutus2/images/MSC-Cruise-Logo.png', name: 'MSC 地中海邮轮' },
+                { url: 'https://www.eurasia-tours.fr/static/aboutus2/images/royal_caribbean_group_logo.png', name: '皇家加勒比邮轮' },
+                { url: 'https://www.eurasia-tours.fr/static/aboutus2/images/Princess_Cruises_logo.png', name: '公主邮轮 Princess' },
+                { url: 'https://www.eurasia-tours.fr/static/aboutus2/images/R-C.png', name: '丽思卡尔顿酒店' },
+                { url: 'https://www.eurasia-tours.fr/static/aboutus2/images/R-C%20(1).png', name: '丽思卡尔顿游轮' },
+                { url: 'https://www.eurasia-tours.fr/static/aboutus2/images/AirFrance-logo.png', name: '法国航空 Air France' },
+                { url: 'https://www.eurasia-tours.fr/static/aboutus2/images/KLM-logo.jpg', name: '荷兰皇家航空 KLM' },
+                { url: 'https://www.eurasia-tours.fr/static/aboutus2/images/Air_China_logo.png', name: '中国国际航空 Air China' },
+                { url: 'https://www.eurasia-tours.fr/static/aboutus2/images/china-southern.jfif', name: '中国南方航空' },
+                { url: 'https://www.eurasia-tours.fr/static/aboutus2/images/china-eastern.png', name: '中国东方航空' }
             ];
 
             return { 
-                // Header exports
                 isDestDropdownOpen, isLangDropdownOpen, isMobileMenuOpen, currentLang, switchLang, navLinks,
-                // Footer exports
                 isWechatQR, isFacebookQR,
-                // Content exports
-                partnerRow1, partnerRow2
+                awardsImages, partnerRow1, partnerRow2
             }
         }
     }).mount('#app');
 </script>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [{
+    "@type": "ListItem",
+    "position": 1,
+    "name": "首页",
+    "item": "https://www.eurasia-tours.fr/index-cn.html"
+  },{
+    "@type": "ListItem",
+    "position": 2,
+    "name": "关于我们",
+    "item": "https://www.eurasia-tours.fr/about-cn.html"
+  }]
+}
+</script>
+
 </body>
 </html>

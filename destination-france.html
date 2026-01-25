@@ -3,8 +3,70 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>法国深度游 - Eurasia Tours 欧美亚旅游</title>
     
+    <title>法国旅游团_法国深度游_巴黎/南法普罗旺斯/古堡精品线路 - Eurasia Tours 欧美亚旅游</title>
+    
+    <meta name="description" content="欧美亚旅游提供法国深度游精品线路。从浪漫巴黎到南法普罗旺斯薰衣草花海，从卢瓦尔河谷古堡到蔚蓝海岸。提供10-12天经典游、薰衣草限定团及定制旅行服务，包含机票、酒店及中文导游。立即预订，探索法兰西艺术与生活。">
+    
+    <meta name="keywords" content="法国旅游, 法国深度游, 巴黎旅游, 普罗旺斯薰衣草, 南法旅游, 法意瑞旅行团, 欧洲定制游, 欧美亚旅游">
+    
+    <link rel="canonical" href="https://www.eurasia-tours.fr/destination-france.html" />
+
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement": [{
+        "@type": "ListItem",
+        "position": 1,
+        "name": "首页",
+        "item": "https://www.eurasia-tours.fr/index-cn.html"
+      },{
+        "@type": "ListItem",
+        "position": 2,
+        "name": "目的地",
+        "item": "https://www.eurasia-tours.fr/destination-main-cn.html"
+      },{
+        "@type": "ListItem",
+        "position": 3,
+        "name": "法国",
+        "item": "https://www.eurasia-tours.fr/destination-france.html"
+      }]
+    }
+    </script>
+
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "ItemList",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "url": "https://www.eurasia-tours.fr/tulip-season-netherland-belgium-luxembourg-germany-france-10-days.html",
+          "name": "荷比卢德法郁金香花季深度游 (10天)"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "url": "https://www.eurasia-tours.fr/south-france-lavender-tour-11-days.html",
+          "name": "南法深度薰衣草限定团 (11天)"
+        },
+        {
+          "@type": "ListItem",
+          "position": 3,
+          "url": "https://www.eurasia-tours.fr/france-switzerland-italy-classic-tour-10-days.html",
+          "name": "2026法意瑞10天9晚经典线路"
+        },
+        {
+          "@type": "ListItem",
+          "position": 4,
+          "url": "https://www.eurasia-tours.fr/italy-switzerland-france-luxury-tour-12-days.html",
+          "name": "意瑞法12天11晚轻奢游"
+        }
+      ]
+    }
+    </script>
 
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://unpkg.com/vue@3/dist/vue.global.prod.js"></script>
@@ -56,7 +118,7 @@
                 <div class="flex items-center justify-between w-full lg:w-auto">
                     <a href="index-cn.html" class="flex items-center group">
                         <img src="https://www.eurasia-tours.fr/assets/logo-word-rNz8dsz6.jpg" 
-                             alt="Logo" class="h-10 md:h-12 w-auto object-contain transition-transform group-hover:scale-105 mix-blend-multiply">
+                             alt="Eurasia Tours 欧美亚旅游 Logo" class="h-10 md:h-12 w-auto object-contain transition-transform group-hover:scale-105 mix-blend-multiply">
                     </a>
                     <button class="lg:hidden relative z-50 text-2xl p-2 text-gray-700 focus:outline-none cursor-pointer" @click="isMobileMenuOpen = !isMobileMenuOpen">
                         <i class="fas" :class="isMobileMenuOpen ? 'fa-times' : 'fa-bars'"></i>
@@ -165,24 +227,43 @@
 
     <main class="pt-24 min-h-screen">
         <section class="relative h-[50vh] min-h-[400px] flex items-center justify-center overflow-hidden">
-            <img src="images/destination/france-header.jpg" class="absolute inset-0 w-full h-full object-cover">
+            <img src="images/destination/france-header.jpg" 
+                 alt="法国巴黎埃菲尔铁塔与城市风光 - 欧美亚旅游" 
+                 class="absolute inset-0 w-full h-full object-cover"
+                 fetchpriority="high">
             <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-black/30"></div>
-            <div class="relative z-10 container mx-auto px-4 text-center md:text-left mt-10">
-                <div class="inline-flex items-center gap-2 text-white/80 text-sm mb-4 bg-black/30 px-4 py-1 rounded-full backdrop-blur-sm">
-                    <a href="index-cn.html" class="hover:text-white transition">首页</a> <i class="fas fa-chevron-right text-[10px]"></i>
-                    <a href="destination-main-cn.html" class="hover:text-white transition">目的地</a> <i class="fas fa-chevron-right text-[10px]"></i>
-                    <span class="text-white font-bold">法国</span>
-                </div>
+            
+            <nav aria-label="Breadcrumb" class="relative z-10 container mx-auto px-4 text-center md:text-left mt-10">
+                <ol class="inline-flex items-center gap-2 text-white/80 text-sm mb-4 bg-black/30 px-4 py-1 rounded-full backdrop-blur-sm">
+                    <li>
+                        <a href="index-cn.html" class="hover:text-white transition">首页</a> 
+                    </li>
+                    <li class="text-[10px] opacity-60"><i class="fas fa-chevron-right"></i></li>
+                    <li>
+                        <a href="destination-main-cn.html" class="hover:text-white transition">目的地</a>
+                    </li>
+                    <li class="text-[10px] opacity-60"><i class="fas fa-chevron-right"></i></li>
+                    <li>
+                        <span class="text-white font-bold" aria-current="page">法国</span>
+                    </li>
+                </ol>
                 <h1 class="text-5xl lg:text-7xl font-bold text-white mb-4 font-serif">法国 <span class="text-2xl lg:text-3xl font-light opacity-80 block md:inline md:ml-4">France</span></h1>
                 <p class="text-lg lg:text-xl text-gray-200 max-w-2xl font-light leading-relaxed">
                     从浪漫巴黎到蔚蓝海岸，从古堡美酒到普罗旺斯花海，<br>体验法兰西的优雅、艺术与生活艺术。
                 </p>
-            </div>
+            </nav>
         </section>
 
         <section class="py-12 bg-gray-50" id="tour-list">
             <div class="container mx-auto px-4">
                 
+                <div class="mb-8">
+                    <h2 class="text-3xl font-bold text-gray-800 mb-2 font-serif">精选法国热门旅游线路</h2>
+                    <p class="text-gray-500 max-w-3xl">
+                        探索欧美亚为您精心策划的 2026 年度法国深度游行程。无论是寻找普罗旺斯薰衣草的浪漫，还是漫步卢瓦尔河谷的皇家古堡，或者是法意瑞三国经典连线，我们都有适合您的精品路线。
+                    </p>
+                </div>
+
                 <div class="sticky top-24 z-40 bg-white rounded-xl shadow-lg border border-gray-100 p-3 mb-10 transition-all duration-300">
                     <div class="flex flex-col md:flex-row items-center justify-between gap-4">
                         <div class="flex flex-wrap items-center gap-3 w-full md:w-auto justify-center md:justify-start">
@@ -273,6 +354,22 @@
 
             </div>
         </section>
+
+        <section class="py-12 bg-white border-t border-gray-100">
+            <div class="container mx-auto px-4 max-w-4xl text-center">
+                <h2 class="text-2xl font-bold text-gray-800 mb-6 font-serif">为什么选择欧美亚旅游的法国行程？</h2>
+                <div class="grid md:grid-cols-2 gap-8 text-left text-gray-600 text-sm leading-relaxed">
+                    <div>
+                        <h3 class="font-bold text-gray-800 mb-2 text-base">深度体验与独家资源</h3>
+                        <p>不同于走马观花的打卡，我们深耕法国旅游20年。我们拥有卢瓦尔河谷私人酒庄的独家预约权，带您深入普罗旺斯瓦伦索勒最美的薰衣草花田，体验最纯正的法式生活。无论是巴黎卢浮宫还是凡尔赛宫，我们都为您提供专业的讲解。</p>
+                    </div>
+                    <div>
+                        <h3 class="font-bold text-gray-800 mb-2 text-base">专业中文导游与无忧出行</h3>
+                        <p>我们的法国旅游团提供全程中文导游服务，解决语言障碍。精选市中心或极具特色的四星级以上酒店，行程包含热门景点免排队门票。从接机到送机，Eurasia Tours 欧美亚旅游为您提供最贴心的法式管家服务。</p>
+                    </div>
+                </div>
+            </div>
+        </section>
     </main>
 
     <footer class="bg-gray-900 text-gray-400 pt-20 pb-10 border-t-8 border-brand">
@@ -280,7 +377,7 @@
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-16 mb-20">
                 <div class="space-y-6">
                     <img src="https://www.eurasia-tours.fr/assets/logo-word-rNz8dsz6.jpg" 
-                         alt="Logo" class="h-10 w-auto object-contain opacity-90 mix-blend-screen">
+                         alt="Eurasia Tours Logo" class="h-10 w-auto object-contain opacity-90 mix-blend-screen">
                     <p class="text-sm leading-relaxed">自2000年起，欧美亚旅游致力为全球旅客提供最纯正的亚洲深度旅行体验。我们不仅是旅行社，更是您探索东方的文化向导。</p>
                 </div>
                 <div>
@@ -303,7 +400,7 @@
                     <h4 class="text-white font-bold text-lg mb-8 flex items-center gap-3"><span class="w-1 h-5 bg-brand"></span> 关注 & 支付</h4>
                     <div class="flex gap-4 mb-8">
                         <div class="relative group" @mouseenter="isWechatQR = true" @mouseleave="isWechatQR = false">
-                            <a href="#" class="w-10 h-10 bg-gray-800 rounded-full flex items-center justify-center hover:bg-[#07C160] transition">
+                            <a href="#" class="w-10 h-10 bg-gray-800 rounded-full flex items-center justify-center hover:bg-[#07C160] transition" aria-label="微信公众号">
                                 <i class="fab fa-weixin text-white"></i>
                             </a>
                             <transition name="qr-fade">
@@ -314,7 +411,7 @@
                             </transition>
                         </div>
                         <div class="relative group" @mouseenter="isFacebookQR = true" @mouseleave="isFacebookQR = false">
-                            <a href="#" class="w-10 h-10 bg-gray-800 rounded-full flex items-center justify-center hover:bg-[#1877F2] transition">
+                            <a href="#" class="w-10 h-10 bg-gray-800 rounded-full flex items-center justify-center hover:bg-[#1877F2] transition" aria-label="Facebook">
                                 <i class="fab fa-facebook-f text-white"></i>
                             </a>
                             <transition name="qr-fade">
@@ -351,17 +448,12 @@
             const isFacebookQR = ref(false);
 
             const switchLang = (lang) => {
-                // 1. 定义语言和文件名的对应关系
                 const urlMap = {
-                    '中文': 'index-cn.html',
-                    'English': 'index-en.html',
+                    '中文': 'destination-france.html',
+                    'English': 'destination-france-en.html',
                     'Française': 'index-fr.html'
                 };
-
-                // 2.以此查找目标文件的 URL
                 const targetUrl = urlMap[lang];
-
-                // 3. 执行跳转
                 if (targetUrl) {
                     window.location.href = targetUrl;
                 }
@@ -387,7 +479,7 @@
                 { name: '博客', url: 'blog-cn.html' }
             ];
 
-            // Product Data with Highlights (Placeholder as requested)
+            // Product Data
             const rawTours = [
                 {
                     id: 1,
@@ -470,7 +562,7 @@
                     price: 1488,
                     days: 7,
                     image: "images/destination/normany-paris-indepth-tour-7-days.jpg",
-                    url: "normany-paris-indepth-tour-7-days.html",
+                    url: "normandy-paris-indepth-tour-7-days.html",
                     isHot: false,
                     sales: 70,
                     highlights: ["圣米歇尔山与象鼻山", "莫奈花园与梵高小镇", "含卢浮宫/凡尔赛门票"]
@@ -521,7 +613,6 @@
                     case 'days_desc':
                         return tours.sort((a, b) => b.days - a.days);
                     default:
-                        // Default sort: ID 1 & 2 first, then by sales
                         return tours.sort((a, b) => {
                              if(a.id === 1) return -1;
                              if(b.id === 1) return 1;
