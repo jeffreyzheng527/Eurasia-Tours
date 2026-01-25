@@ -1,0 +1,502 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Eurasia Tours - Official Website</title>
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/vue@3/dist/vue.global.prod.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;500;700&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
+    
+    <style>
+        body { font-family: 'Noto Sans SC', sans-serif; }
+        h1, h2, h3, h4 { font-family: 'Playfair Display', serif; }
+        
+        .text-brand { color: #b91c1c; }
+        .bg-brand { background-color: #b91c1c; }
+        .hover\:bg-brand:hover { background-color: #991b1b; }
+        
+        .nav-item {
+            font-family: 'Noto Sans SC', sans-serif;
+            font-size: 13px;
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 0.15em;
+            color: #374151;
+        }
+        
+        .hero-text-shadow { text-shadow: 0 4px 20px rgba(0, 0, 0, 0.5); }
+
+        .dropdown-enter-active { transition: all 0.3s ease-out; }
+        .dropdown-leave-active { transition: all 0.2s ease-in; }
+        .dropdown-enter-from, .dropdown-leave-to { opacity: 0; transform: translateY(10px); }
+
+        .fade-hero-enter-active, .fade-hero-leave-active { transition: opacity 1.5s ease-in-out; }
+        .fade-hero-enter-from, .fade-hero-leave-to { opacity: 0; }
+        
+        .brochure-card { perspective: 1000px; transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1); }
+        .brochure-card:hover { transform: translateY(-10px) rotateY(-5deg); }
+
+        .qr-fade-enter-active, .qr-fade-leave-active { transition: all 0.3s ease-out; }
+        .qr-fade-enter-from, .qr-fade-leave-to { opacity: 0; transform: translateY(10px); }
+
+        .mobile-menu-enter-active, .mobile-menu-leave-active { transition: all 0.3s ease; }
+        .mobile-menu-enter-from, .mobile-menu-leave-to { opacity: 0; transform: translateY(-10px); }
+    </style>
+</head>
+<body class="bg-gray-50 text-gray-800 antialiased">
+
+<div id="app">
+    <header class="fixed w-full top-0 z-[100] bg-white/95 backdrop-blur-md shadow-[0_2px_15px_rgba(0,0,0,0.05)] border-b border-gray-100 transition-all duration-300">
+        <div class="container mx-auto px-6 lg:px-12">
+            <div class="flex flex-col lg:flex-row items-center justify-between h-auto lg:h-24 py-3 lg:py-0">
+                
+                <div class="flex items-center justify-between w-full lg:w-auto">
+                    <a href="index-en.html" class="flex items-center group">
+                        <img src="https://www.eurasia-tours.fr/assets/logo-word-rNz8dsz6.jpg" 
+                             alt="Eurasia Tours Logo" class="h-10 lg:h-12 w-auto object-contain transition-transform group-hover:scale-105 mix-blend-multiply">
+                    </a>
+                    <button class="lg:hidden relative z-50 text-2xl p-2 text-gray-700 focus:outline-none cursor-pointer hover:text-brand transition" @click="isMobileMenuOpen = !isMobileMenuOpen">
+                        <i class="fas" :class="isMobileMenuOpen ? 'fa-times' : 'fa-bars'"></i>
+                    </button>
+                </div>
+
+                <nav class="hidden lg:flex flex-1 items-center justify-end pl-12 gap-10">
+                    <div v-for="link in navLinks" :key="link.name" class="relative group h-24 flex items-center"
+                         @mouseenter="link.name === 'Destinations' ? isDestDropdownOpen = true : null"
+                         @mouseleave="isDestDropdownOpen = false">
+                        
+                        <a :href="link.url" class="nav-item relative py-2 hover:text-brand transition-colors flex items-center gap-1 group">
+                            {{ link.name }}
+                            <i v-if="link.subLinks" class="fas fa-chevron-down text-[9px] opacity-50 transition-transform duration-300 ml-1" :class="{'rotate-180': link.name === 'Destinations' && isDestDropdownOpen}"></i>
+                            <span class="absolute bottom-0 left-0 w-0 h-[2px] bg-brand transition-all duration-300 group-hover:w-full opacity-0 group-hover:opacity-100"></span>
+                        </a>
+
+                        <transition name="dropdown">
+                            <div v-if="link.name === 'Destinations' && isDestDropdownOpen" 
+                                 class="absolute top-[80%] left-1/2 -translate-x-1/2 w-[240px] bg-white shadow-[0_10px_40px_rgba(0,0,0,0.1)] rounded-sm border-t-2 border-brand p-0 overflow-hidden">
+                                <div class="px-6 py-3 bg-gray-50 border-b border-gray-100 text-[10px] uppercase tracking-[0.2em] text-gray-400 font-bold">Select Region</div>
+                                <ul class="py-2">
+                                    <li v-for="sub in link.subLinks" :key="sub.name">
+                                        <a :href="sub.url" class="flex items-center justify-between px-6 py-3 text-sm font-medium text-gray-600 hover:bg-gray-50 hover:text-brand transition-all group/item">
+                                            <span>{{ sub.name }}</span>
+                                            <i class="fas fa-arrow-right text-[10px] opacity-0 -translate-x-2 group-hover/item:opacity-100 group-hover/item:translate-x-0 transition-all text-brand"></i>
+                                        </a>
+                                    </li>
+                                </ul>
+                                <div class="bg-gray-50 p-3 text-center border-t border-gray-100">
+                                    <a href="destination-main-en.html" class="text-[11px] font-bold uppercase tracking-widest text-brand hover:underline">All Destinations</a>
+                                </div>
+                            </div>
+                        </transition>
+                    </div>
+
+                    <div class="relative group h-24 flex items-center pl-6 ml-4 border-l border-gray-200"
+                         @mouseenter="isLangDropdownOpen = true"
+                         @mouseleave="isLangDropdownOpen = false">
+                        
+                        <a href="#" class="nav-item hover:text-brand transition-colors flex items-center gap-2">
+                            <i class="fas fa-globe text-gray-400 text-lg"></i>
+                            {{ currentLang }}
+                        </a>
+                        
+                        <transition name="dropdown">
+                            <div v-if="isLangDropdownOpen" 
+                                 class="absolute top-[80%] right-0 w-[160px] bg-white shadow-[0_10px_40px_rgba(0,0,0,0.1)] rounded-sm border-t-2 border-brand p-1">
+                                <ul class="space-y-0.5">
+                                    <li v-for="lang in ['中文', 'English', 'Française']" :key="lang">
+                                        <a href="#" @click.prevent="switchLang(lang)" 
+                                           class="flex items-center justify-between px-4 py-2.5 text-xs font-medium text-gray-600 hover:bg-gray-50 hover:text-brand transition-all"
+                                           :class="{'text-brand bg-red-50/50': currentLang === lang}">
+                                            {{ lang }}
+                                            <i v-if="currentLang === lang" class="fas fa-check text-[10px]"></i>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </transition>
+                    </div>
+                </nav>
+            </div>
+        </div>
+
+        <transition name="mobile-menu">
+            <nav v-if="isMobileMenuOpen" class="lg:hidden absolute top-full left-0 w-full bg-white border-t border-gray-100 py-8 shadow-2xl h-screen overflow-y-auto">
+                <div class="flex flex-col items-center gap-8 px-6">
+                    <a v-for="link in navLinks" :key="link.name" :href="link.url"
+                       class="text-lg font-medium uppercase tracking-[0.2em] text-gray-800 hover:text-brand transition"
+                       @click="isMobileMenuOpen = false">
+                       {{ link.name }}
+                    </a>
+                    
+                    <div class="w-16 h-px bg-gray-200 my-2"></div>
+
+                    <div class="flex flex-col items-center gap-4 w-full">
+                        <span class="text-xs text-gray-400 uppercase tracking-widest">Select Language</span>
+                        <div class="flex gap-3">
+                            <button @click="switchLang('中文')" class="px-5 py-2 rounded-full text-xs font-bold transition border" :class="currentLang === '中文' ? 'bg-brand text-white border-brand' : 'bg-white text-gray-600 border-gray-200'">中文</button>
+                            <button @click="switchLang('English')" class="px-5 py-2 rounded-full text-xs font-bold transition border" :class="currentLang === 'English' ? 'bg-brand text-white border-brand' : 'bg-white text-gray-600 border-gray-200'">EN</button>
+                            <button @click="switchLang('Française')" class="px-5 py-2 rounded-full text-xs font-bold transition border" :class="currentLang === 'Française' ? 'bg-brand text-white border-brand' : 'bg-white text-gray-600 border-gray-200'">FR</button>
+                        </div>
+                    </div>
+                </div>
+            </nav>
+        </transition>
+    </header>
+
+    <main class="pt-20 lg:pt-24">
+        <section class="relative h-[90vh] min-h-[600px] flex items-center justify-center bg-gray-900 overflow-hidden">
+            <transition-group name="fade-hero">
+                <img v-for="(img, index) in heroImages" v-show="currentHeroIndex === index" :src="img" :key="img" class="absolute inset-0 w-full h-full object-cover opacity-90">
+            </transition-group>
+            
+            <div class="absolute inset-0 bg-gradient-to-b from-black/60 via-black/20 to-black/70 z-10"></div>
+            
+            <div class="relative z-20 text-center px-4 max-w-6xl mx-auto hero-text-shadow">
+                <div class="inline-flex items-center gap-4 mb-8 opacity-0 animate-[fadeInDown_1s_ease-out_0.5s_forwards]">
+                    <span class="h-px w-8 bg-white/60"></span>
+                    <span class="text-white/90 text-xs md:text-sm font-medium tracking-[0.3em] uppercase">Eurasia Tours · Since 2000</span>
+                    <span class="h-px w-8 bg-white/60"></span>
+                </div>
+                
+                <h1 class="text-5xl md:text-7xl lg:text-7xl xl:text-8xl font-bold text-white mb-8 leading-tight">
+                    Timeless Journeys, <br>
+                    <span class="italic font-serif text-transparent bg-clip-text bg-gradient-to-r from-red-400 to-red-600 pr-2 md:whitespace-nowrap">Boundless Horizons</span>
+                </h1>
+                
+                <p class="text-lg md:text-xl text-gray-100 mb-12 max-w-3xl mx-auto font-light leading-relaxed tracking-wide opacity-90">
+                    From the historic castles of Europe to the mystic temples of Asia.<br class="hidden md:block">
+                    Experience the ultimate elegance of global travel with our bespoke itineraries.
+                </p>
+                
+                <div class="flex flex-col sm:flex-row justify-center gap-6">
+                    <a href="#tours" class="bg-brand hover:bg-red-800 text-white px-10 py-4 rounded-full text-sm uppercase tracking-widest font-bold transition-all shadow-[0_10px_20px_rgba(185,28,28,0.3)] hover:transform hover:-translate-y-1">
+                        Explore Journeys
+                    </a>
+                    <a href="custom-en.html" class="group bg-transparent hover:bg-white/10 backdrop-blur-sm border border-white/40 text-white px-10 py-4 rounded-full text-sm uppercase tracking-widest font-bold transition-all flex items-center justify-center gap-2">
+                        Tailor-made
+                        <i class="fas fa-arrow-right opacity-0 group-hover:opacity-100 -translate-x-2 group-hover:translate-x-0 transition-all duration-300"></i>
+                    </a>
+                </div>
+            </div>
+
+            <button @click="prevHero" class="absolute left-4 lg:left-10 top-1/2 -translate-y-1/2 z-30 w-12 h-12 flex items-center justify-center rounded-full bg-white/5 hover:bg-white/20 text-white/70 hover:text-white transition backdrop-blur-sm border border-white/10"><i class="fas fa-chevron-left text-lg"></i></button>
+            <button @click="nextHero" class="absolute right-4 lg:right-10 top-1/2 -translate-y-1/2 z-30 w-12 h-12 flex items-center justify-center rounded-full bg-white/5 hover:bg-white/20 text-white/70 hover:text-white transition backdrop-blur-sm border border-white/10"><i class="fas fa-chevron-right text-lg"></i></button>
+        </section>
+
+        <section class="py-20 bg-white border-b border-gray-100 relative z-20 -mt-16 mx-4 md:mx-auto max-w-7xl rounded-xl shadow-xl">
+            <div class="container mx-auto px-6">
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-12 text-center divide-y md:divide-y-0 md:divide-x divide-gray-100">
+                    <div v-for="val in values" :key="val.title" class="group pt-8 md:pt-0 px-4">
+                        <div class="w-16 h-16 bg-red-50 text-brand rounded-full flex items-center justify-center text-2xl mx-auto mb-6 transition-all duration-500 group-hover:bg-brand group-hover:text-white group-hover:shadow-lg">
+                            <i :class="val.icon"></i>
+                        </div>
+                        <h3 class="text-lg font-serif font-bold mb-3 tracking-wide text-gray-900">{{ val.title }}</h3>
+                        <p class="text-sm text-gray-500 leading-relaxed font-light">{{ val.desc }}</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="tours" class="py-28 bg-gray-50">
+            <div class="container mx-auto px-6 lg:px-12">
+                <div class="flex flex-col md:flex-row justify-between items-end mb-16 gap-4 border-b border-gray-200 pb-8">
+                    <div>
+                        <span class="text-brand font-bold tracking-widest text-xs uppercase mb-2 block">Our Collection</span>
+                        <h2 class="text-4xl md:text-5xl font-serif text-gray-900">Featured Itineraries</h2>
+                    </div>
+                    <a href="destination-main-en.html" class="group flex items-center gap-2 text-sm font-bold uppercase tracking-widest text-gray-600 hover:text-brand transition-colors">
+                        View All Tours 
+                        <span class="w-8 h-px bg-gray-300 group-hover:bg-brand transition-colors"></span>
+                    </a>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-10">
+                    <div v-for="tour in tours" :key="tour.title" class="group bg-white rounded-xl shadow-sm hover:shadow-xl transition-all duration-500 flex flex-col overflow-hidden">
+                        <div class="relative aspect-[4/3] overflow-hidden cursor-pointer" @click="goToProduct(tour.url)">
+                            <img :src="tour.image" :alt="tour.title" class="w-full h-full object-cover group-hover:scale-105 transition duration-700 ease-out">
+                            <div class="absolute inset-0 bg-black/10 group-hover:bg-black/0 transition"></div>
+                            <div class="absolute top-4 right-4 bg-white/95 backdrop-blur text-gray-900 text-[10px] font-bold uppercase tracking-widest px-3 py-1.5 rounded-sm shadow-sm">{{ tour.days }} Days</div>
+                        </div>
+                        <div class="p-8 flex-1 flex flex-col">
+                            <div class="mb-6">
+                                <h3 class="text-xl font-serif font-bold mb-3 text-gray-900 group-hover:text-brand transition-colors cursor-pointer leading-snug" @click="goToProduct(tour.url)">{{ tour.title }}</h3>
+                                <p class="text-gray-500 text-sm leading-relaxed line-clamp-3">{{ tour.desc }}</p>
+                            </div>
+                            <div class="mt-auto flex items-end justify-between border-t border-gray-100 pt-6">
+                                <div>
+                                    <p class="text-[10px] text-gray-400 uppercase tracking-widest mb-1">Starting From</p>
+                                    <p class="text-2xl font-serif text-brand">{{ tour.price }}</p>
+                                </div>
+                                <a :href="tour.url" class="text-gray-300 hover:text-brand text-2xl transition-colors"><i class="fas fa-long-arrow-alt-right"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="py-24 bg-[#1a1a1a] overflow-hidden relative">
+            <div class="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-gray-700 to-transparent"></div>
+            
+            <div class="container mx-auto px-6 relative z-10">
+                <div class="text-center mb-20">
+                    <span class="text-brand font-bold tracking-widest text-xs uppercase mb-4 block">Inspiration</span>
+                    <h2 class="text-4xl md:text-5xl text-white font-serif mb-6">Digital Brochures</h2>
+                    <p class="text-gray-400 max-w-2xl mx-auto font-light leading-relaxed">
+                        Curated travel guides for your next adventure. Browse our collection of hand-picked experiences.
+                    </p>
+                </div>
+                
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-12 max-w-6xl mx-auto px-4">
+                    <div class="brochure-card group cursor-pointer" @click="openBrochure('china')">
+                        <div class="relative bg-gray-800 aspect-[3/4] shadow-2xl overflow-hidden transform transition-all duration-500 group-hover:-translate-y-2">
+                            <img src="images/index/pdf/tulip-season-netherland-belgium-luxembourg-germany-france-10-days.jpg" class="w-full h-full object-cover opacity-80 group-hover:opacity-100 transition duration-500">
+                            <div class="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent opacity-90"></div>
+                            <div class="absolute bottom-0 left-0 w-full p-8">
+                                <p class="text-xs text-brand uppercase tracking-widest mb-2 font-bold">Western Europe</p>
+                                <h3 class="text-xl font-serif text-white mb-4 leading-tight">Spring Limited: <br>Dutch Tulips</h3>
+                                <span class="inline-flex items-center text-xs text-white uppercase tracking-widest border-b border-white/30 pb-1 group-hover:border-white transition-all">Read Online</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="brochure-card group cursor-pointer" @click="openBrochure('vietnam')">
+                        <div class="relative bg-gray-800 aspect-[3/4] shadow-2xl overflow-hidden transform transition-all duration-500 group-hover:-translate-y-2">
+                            <img src="images/index/pdf/eastern-europe-dream-tour-4-country-10-days.jpg" class="w-full h-full object-cover opacity-80 group-hover:opacity-100 transition duration-500">
+                            <div class="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent opacity-90"></div>
+                            <div class="absolute bottom-0 left-0 w-full p-8">
+                                <p class="text-xs text-blue-400 uppercase tracking-widest mb-2 font-bold">Eastern Europe</p>
+                                <h3 class="text-xl font-serif text-white mb-4 leading-tight">Bohemian Dream: <br>Eastern Capitals</h3>
+                                <span class="inline-flex items-center text-xs text-white uppercase tracking-widest border-b border-white/30 pb-1 group-hover:border-white transition-all">Read Online</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="brochure-card group cursor-pointer" @click="openBrochure('global')">
+                        <div class="relative bg-gray-800 aspect-[3/4] shadow-2xl overflow-hidden transform transition-all duration-500 group-hover:-translate-y-2">
+                            <img src="images/index/pdf/spain-portugal-indepth-tour-11-days.jpg" class="w-full h-full object-cover opacity-80 group-hover:opacity-100 transition duration-500">
+                            <div class="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent opacity-90"></div>
+                            <div class="absolute bottom-0 left-0 w-full p-8">
+                                <p class="text-xs text-yellow-500 uppercase tracking-widest mb-2 font-bold">Southern Europe</p>
+                                <h3 class="text-xl font-serif text-white mb-4 leading-tight">Passionate Iberia: <br>Spain & Portugal</h3>
+                                <span class="inline-flex items-center text-xs text-white uppercase tracking-widest border-b border-white/30 pb-1 group-hover:border-white transition-all">Read Online</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <transition name="modal">
+        <div v-if="isBrochureModalOpen" class="fixed inset-0 z-[200] flex items-center justify-center p-4 bg-black/90 backdrop-blur-sm" @click.self="isBrochureModalOpen = false">
+            <div class="bg-white w-full max-w-5xl h-[85vh] flex flex-col overflow-hidden relative shadow-2xl animate-[fadeInUp_0.4s_ease-out]">
+                <div class="flex justify-between items-center p-4 border-b border-gray-100 bg-gray-50">
+                    <h3 class="text-sm font-bold uppercase tracking-widest text-gray-700">{{ activeTitle }}</h3>
+                    <button @click="isBrochureModalOpen = false" class="w-8 h-8 hover:bg-gray-200 rounded-full flex items-center justify-center transition">
+                        <i class="fas fa-times text-gray-500"></i>
+                    </button>
+                </div>
+                <div class="flex-1 bg-gray-100 relative">
+                    <iframe :src="activePdfUrl" class="w-full h-full" frameborder="0"></iframe>
+                </div>
+                <div class="p-3 border-t border-gray-100 text-center bg-white">
+                    <a :href="activePdfUrl" download target="_blank" class="text-xs text-brand font-bold uppercase tracking-widest hover:underline">
+                        <i class="fas fa-download mr-2"></i> Download PDF
+                    </a>
+                </div>
+            </div>
+        </div>
+    </transition>
+
+    <footer class="bg-[#111] text-gray-400 pt-20 pb-10 border-t border-gray-800">
+        <div class="container mx-auto px-6 lg:px-12">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-16 mb-20">
+                <div class="space-y-8">
+                    <div class="inline-block bg-white p-3 rounded-md shadow-sm">
+                        <img src="https://www.eurasia-tours.fr/assets/logo-word-rNz8dsz6.jpg" alt="Eurasia Tours" class="h-10 w-auto object-contain">
+                    </div>
+                    <p class="text-sm leading-relaxed font-light">Since 2000, creating bespoke journeys that bridge cultures. Your trusted partner for authentic travel experiences across Europe and Asia.</p>
+                </div>
+                
+                <div>
+                    <h4 class="text-white font-serif text-lg mb-6">Accreditations</h4>
+                    <ul class="space-y-4 text-sm font-light">
+                        <li class="flex items-center gap-3"><i class="fas fa-certificate text-gray-600"></i> APST France Member</li>
+                        <li class="flex items-center gap-3"><i class="fas fa-plane text-gray-600"></i> IATA Accredited Agent</li>
+                        <li class="flex items-center gap-3"><i class="fas fa-shield-alt text-gray-600"></i> RCP Insurance Coverage</li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h4 class="text-white font-serif text-lg mb-6">Paris Headquarters</h4>
+                    <ul class="space-y-4 text-sm font-light">
+                        <li class="flex items-start gap-3"><i class="fas fa-map-marker-alt text-gray-600 mt-1"></i> 30 Rue Ernest Renan, 75015 Paris</li>
+                        <li class="flex items-center gap-3"><i class="fas fa-phone text-gray-600"></i> +33 (0)1 56 69 12 80</li>
+                        <li class="flex items-center gap-3"><i class="fas fa-envelope text-gray-600"></i> contact@eurasiatours.fr</li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h4 class="text-white font-serif text-lg mb-6">Connect</h4>
+                    <div class="flex gap-4 mb-8">
+                        <div class="relative group" @mouseenter="isWechatQR = true" @mouseleave="isWechatQR = false">
+                            <a href="#" class="w-10 h-10 border border-gray-700 rounded-full flex items-center justify-center hover:bg-[#07C160] hover:border-[#07C160] hover:text-white transition-all">
+                                <i class="fab fa-weixin"></i>
+                            </a>
+                            <transition name="qr-fade">
+                                <div v-if="isWechatQR" class="absolute bottom-14 left-1/2 -translate-x-1/2 bg-white p-2 rounded shadow-xl z-50 w-32">
+                                    <img src="https://www.eurasia-tours.fr/assets/wechat-account-VZcww6ek.jpg" class="w-full">
+                                </div>
+                            </transition>
+                        </div>
+                        <div class="relative group" @mouseenter="isFacebookQR = true" @mouseleave="isFacebookQR = false">
+                            <a href="#" class="w-10 h-10 border border-gray-700 rounded-full flex items-center justify-center hover:bg-[#1877F2] hover:border-[#1877F2] hover:text-white transition-all">
+                                <i class="fab fa-facebook-f"></i>
+                            </a>
+                            <transition name="qr-fade">
+                                <div v-if="isFacebookQR" class="absolute bottom-14 left-1/2 -translate-x-1/2 bg-white p-2 rounded shadow-xl z-50 w-32">
+                                    <img src="https://www.eurasia-tours.fr/assets/3-Bjf7LFHD.png" class="w-full">
+                                </div>
+                            </transition>
+                        </div>
+                    </div>
+                    <div class="flex gap-3 text-2xl opacity-20">
+                        <i class="fab fa-cc-visa"></i><i class="fab fa-cc-mastercard"></i><i class="fab fa-cc-amex"></i>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="border-t border-gray-800 pt-8 flex flex-col md:flex-row justify-between items-center text-xs tracking-widest uppercase text-gray-600">
+                <p>&copy; 2026 Eurasia Tours. All Rights Reserved.</p>
+                <div class="flex gap-6 mt-4 md:mt-0">
+                    <a href="#" class="hover:text-white transition">Privacy Policy</a>
+                    <a href="#" class="hover:text-white transition">Terms of Service</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+</div>
+
+<script>
+    const { createApp, ref } = Vue;
+    createApp({
+        setup() {
+            const isMobileMenuOpen = ref(false); 
+            const isDestDropdownOpen = ref(false);
+            const isLangDropdownOpen = ref(false);
+            const isWechatQR = ref(false);
+            const isFacebookQR = ref(false);
+            const isBrochureModalOpen = ref(false);
+            const activePdfUrl = ref('');
+            const activeTitle = ref('');
+            const currentHeroIndex = ref(0);
+            const currentLang = ref('English');
+            
+            const heroImages = [
+                'images/index/header/header-1.jpg',
+                'images/index/header/header-fr.jpg',
+                'images/index/header/header-2.jpg',
+                'images/index/header/header-3.jpg'
+            ];
+            
+            const nextHero = () => { currentHeroIndex.value = (currentHeroIndex.value + 1) % heroImages.length; };
+            const prevHero = () => { currentHeroIndex.value = (currentHeroIndex.value - 1 + heroImages.length) % heroImages.length; };
+
+            const navLinks = [
+                { name: 'Home', url: 'index-en.html' },
+                { 
+                    name: 'Destinations', 
+                    url: 'destination-main-en.html', 
+                    subLinks: [
+                        { name: 'Asia', url: 'destination-asia-en.html' },
+                        { name: 'Europe', url: 'destination-europe-en.html' }
+                    ] 
+                },
+                { name: 'Tailor-made', url: 'custom-en.html' },
+                { name: 'Flight Services', url: 'flight-tickets-en.html' },
+                { name: 'About Us', url: 'about-en.html' },
+                { name: 'Contact Us', url: 'contact-en.html' },
+                { name: 'Blog', url: 'blog-en.html' }
+            ];
+
+            const tours = [
+                { 
+                    title: 'Fragrant Europe: Benelux Tulip Season', 
+                    days: 10, 
+                    price: '1 688 $', 
+                    image: 'images/index/recommend/tulip-season-netherland-belgium-luxembourg-germany-france-10-days.jpg',
+                    desc: 'Stroll through the sea of tulips in Keukenhof Gardens, explore the medieval charm of Bruges, and experience the canals of Amsterdam.',
+                    url: 'tulip-season-netherland-belgium-luxembourg-germany-france-10-days-en.html'
+                },
+                { 
+                    title: 'Timeless Classic: In-depth Italy', 
+                    days: 8, 
+                    price: '1 950 $', 
+                    image: 'images/index/recommend/italy-indept-tour-8-days.jpg', 
+                    desc: 'From the Eternal City of Rome to the Water City of Venice, deeply explore the art halls of Florence and immerse yourself in Mediterranean romance.',
+                    url: 'italy-indept-tour-8-days-en.html'
+                },
+                { 
+                    title: 'European Model: France, Italy & Switzerland', 
+                    days: 10, 
+                    price: '1 888 $', 
+                    image: 'images/index/recommend/tulip-season-netherland-belgium-luxembourg-germany-france-10-days.jpg', 
+                    desc: 'Check in to three major European countries at once: Parisian fashion, Swiss mountains and lakes, and Italian art history. The best choice for a classic route.',
+                    url: 'france-switzerland-italy-classic-tour-10-days-en.html'
+                }
+            ];
+
+            const values = [
+                { title: 'Local Experts', icon: 'fas fa-hand-holding-heart', desc: 'Direct access to premium resources in Paris and Asia, ensuring authentic experiences without middleman costs.' },
+                { title: 'Guaranteed Departure', icon: 'fas fa-calendar-check', desc: 'Flexible scheduling with guaranteed departures for most classic routes, starting from just 2 travelers.' },
+                { title: 'Worry-free Journey', icon: 'fas fa-passport', desc: 'Comprehensive service including visa assistance, insurance, and flight logistics handled by our senior team.' }
+            ];
+
+            const openBrochure = (type) => {
+                if(type === 'china') {
+                    activePdfUrl.value = 'pdf/tulip-season-netherland-belgium-luxembourg-germany-france-10-days.pdf';
+                    activeTitle.value = 'Spring Limited: Dutch Tulips';
+                    isBrochureModalOpen.value = true;
+                } else if(type === 'vietnam') {
+                    activePdfUrl.value = 'pdf/eastern-europe-dream-tour-4-country-10-days.pdf';
+                    activeTitle.value = 'Dazzling Eastern Europe: Bohemian Style';
+                    isBrochureModalOpen.value = true;
+                } else {
+                    activePdfUrl.value = 'pdf/spain-portugal-indepth-tour-11-days.pdf'; 
+                    activeTitle.value = 'Passionate Iberia: Spain & Portugal';
+                    isBrochureModalOpen.value = true;
+                }
+            };
+
+            const goToProduct = (url) => {
+                window.location.href = url;
+            };
+
+            const switchLang = (lang) => {
+                const urlMap = {
+                    '中文': 'index-cn.html',
+                    'English': 'index-en.html',
+                    'Française': 'index-fr.html'
+                };
+                const targetUrl = urlMap[lang];
+                if (targetUrl) {
+                    window.location.href = targetUrl;
+                }
+            };
+
+            return { 
+                isMobileMenuOpen,
+                isDestDropdownOpen, isLangDropdownOpen, isWechatQR, isFacebookQR, isBrochureModalOpen, 
+                activePdfUrl, activeTitle, currentLang,
+                currentHeroIndex, heroImages, nextHero, prevHero, navLinks, tours, values, 
+                openBrochure, goToProduct, switchLang
+            }
+        }
+    }).mount('#app');
+</script>
+</body>
+</html>
