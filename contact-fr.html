@@ -421,6 +421,7 @@
                 // 3. Préparer les données (Payload)
                 const payload = {
                     type: 'General Inquiry',
+                    language: currentLang.value,
                     name: formData.value.name,
                     phone: formData.value.countryCode + " " + formData.value.phone,
                     email: formData.value.email,

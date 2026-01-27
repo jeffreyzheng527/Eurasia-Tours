@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Confirmation de votre message - Eurasia Tours</title>
+<style>
+    /* 基础重置 - Styles identiques au modèle chinois */
+    body, table, td, a { -webkit-text-size-adjust: 100%; -ms-text-size-adjust: 100%; }
+    table, td { mso-table-lspace: 0pt; mso-table-rspace: 0pt; }
+    img { -ms-interpolation-mode: bicubic; border: 0; height: auto; line-height: 100%; outline: none; text-decoration: none; }
+    table { border-collapse: collapse !important; }
+    body { height: 100% !important; margin: 0 !important; padding: 0 !important; width: 100% !important; font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; background-color: #f4f4f4; color: #333333; }
+
+    /* 布局样式 */
+    .wrapper { width: 100%; table-layout: fixed; background-color: #f4f4f4; padding-bottom: 40px; }
+    .main-content { background-color: #ffffff; margin: 0 auto; width: 100%; max-width: 600px; border-spacing: 0; font-family: sans-serif; color: #333333; box-shadow: 0 1px 3px rgba(0,0,0,0.05); }
+    
+    /* 品牌元素 */
+    .header-bar { height: 4px; background-color: #b91c1c; width: 100%; }
+    .logo-container { text-align: center; padding: 40px 0 30px 0; }
+    
+    /* 文本内容 */
+    .text-content { padding: 0 40px; text-align: left; line-height: 1.6; font-size: 15px; color: #333333; }
+    
+    /* 数据卡片 */
+    .summary-box { background-color: #f9f9f9; border: 1px solid #eeeeee; border-radius: 4px; margin: 25px 40px; padding: 25px; }
+    .summary-title { font-size: 12px; font-weight: bold; text-transform: uppercase; color: #b91c1c; letter-spacing: 1px; margin-bottom: 15px; border-bottom: 1px solid #e5e5e5; padding-bottom: 10px; }
+    .summary-row { display: flex; justify-content: space-between; margin-bottom: 10px; border-bottom: 1px dashed #e0e0e0; padding-bottom: 10px; }
+    .summary-row:last-child { border-bottom: none; margin-bottom: 0; padding-bottom: 0; }
+    .label { font-weight: bold; color: #666666; font-size: 13px; width: 30%; flex-shrink: 0; }
+    .value { color: #333333; font-size: 13px; width: 65%; text-align: right; word-break: break-word; }
+    
+    /* 联系方式高亮块 */
+    .contact-block { background-color: #fff1f2; padding: 15px; border-left: 3px solid #b91c1c; margin: 20px 0; font-size: 15px; }
+    
+    /* 页脚 */
+    .footer-address { padding: 30px 40px; background-color: #333333; color: #999999; font-size: 12px; text-align: center; line-height: 1.6; }
+
+    /* 移动端适配 */
+    @media screen and (max-width: 600px) {
+        .text-content { padding: 0 20px; }
+        .summary-box { margin: 20px 20px; }
+        .footer-address { padding: 20px; }
+        .summary-row { flex-direction: column; }
+        .label { width: 100%; margin-bottom: 4px; }
+        .value { width: 100%; text-align: left; }
+    }
+</style>
+</head>
+<body>
+
+<table class="wrapper" role="presentation">
+    <tr>
+        <td align="center">
+            <table class="main-content" role="presentation">
+                
+                <tr><td class="header-bar"></td></tr>
+
+                <tr>
+                    <td class="logo-container">
+                        <a href="https://www.eurasia-tours.fr" target="_blank">
+                            <img src="https://www.eurasia-tours.fr/assets/logo-word-rNz8dsz6.jpg" alt="Eurasia Tours" width="180" style="display: block; margin: 0 auto;">
+                        </a>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="text-content">
+                        <h1 style="font-size: 20px; font-weight: 700; color: #000000; margin-bottom: 25px; margin-top: 0;">
+                            Nous avons bien reçu votre message
+                        </h1>
+                        <p style="margin-bottom: 15px;">
+                            Chère Madame, Cher Monsieur,
+                        </p>
+                        <p style="margin-bottom: 15px;">
+                            Nous vous remercions chaleureusement d'avoir pris contact avec Eurasia Tours.
+                        </p>
+                        <p style="margin-bottom: 0;">
+                            Votre message a bien été reçu et sera traité avec la plus grande attention. Un conseiller voyage dédié vous répondra par téléphone ou par e-mail dès que possible.
+                        </p>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td>
+                        <div class="summary-box">
+                            <div class="summary-title">Détails de votre message</div>
+                            
+                            <div class="summary-row">
+                                <span class="label">Nom</span>
+                                <span class="value">{{ contact.name }}</span> 
+                            </div>
+                            <div class="summary-row">
+                                <span class="label">Email</span>
+                                <span class="value">{{ contact.email }}</span> 
+                            </div>
+                            <div class="summary-row">
+                                <span class="label">Téléphone</span>
+                                <span class="value">{{ contact.phone }}</span> 
+                            </div>
+                            <div class="summary-row">
+                                <span class="label">Sujet</span>
+                                <span class="value">{{ contact.subject }}</span> 
+                            </div>
+                            <div class="summary-row">
+                                <span class="label">Message</span>
+                                <span class="value">{{ contact.message }}</span> 
+                            </div>
+                        </div>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="text-content" style="padding-bottom: 40px;">
+                        <p style="margin-top: 0;">
+                            En attendant, n'hésitez pas à parcourir nos idées d'itinéraires et nos inspirations sur notre site : <a href="https://www.eurasia-tours.fr" style="color: #b91c1c; text-decoration: underline;">www.eurasia-tours.fr</a>
+                        </p>
+                        <p>
+                            Nous nous réjouissons d'avance à l'idée de vous aider à préparer un voyage qui vous ressemble.
+                        </p>
+
+                        <div class="contact-block">
+                            <strong>L'équipe Eurasia Tours</strong><br>
+                            Votre partenaire de voyage en Asie depuis 2000<br><br>
+                            📞 <a href="tel:0156691280" style="color: #b91c1c; text-decoration: none;">01 56 69 12 80</a><br>
+                            ✉️ <a href="mailto:inscription@eurasiatours.fr" style="color: #b91c1c; text-decoration: none;">inscription@eurasiatours.fr</a>
+                        </div>
+
+                        <p style="margin-top: 30px; margin-bottom: 0;">
+                            Bien cordialement,<br>
+                            <strong>EURASIA TOURS</strong>
+                        </p>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="footer-address">
+                        30 Rue Ernest Renan<br>
+                        75015 Paris<br>
+                        <a href="https://www.eurasia-tours.fr" style="color: #999999; text-decoration: none;">www.eurasia-tours.fr</a>
+                    </td>
+                </tr>
+
+            </table>
+        </td>
+    </tr>
+</table>
+
+</body>
+</html>

@@ -142,7 +142,7 @@
                         <button @click="switchLang('Français')" class="px-4 py-1 rounded-full text-sm font-bold transition" :class="currentLang === 'Français' ? 'bg-brand text-white' : 'bg-gray-100 text-gray-600'">Français</button>
                     </div>
 
-                    <a href="contact.html" class="bg-brand text-white px-10 py-3 rounded-full font-bold shadow-lg mt-4" @click="isMobileMenuOpen = false">Demandez un devis</a>
+                    <a href="contact-fr.html" class="bg-brand text-white px-10 py-3 rounded-full font-bold shadow-lg mt-4" @click="isMobileMenuOpen = false">Demandez un devis</a>
                 </div>
             </nav>
         </transition>
@@ -377,6 +377,18 @@
                                 </div>
                             </transition>
                         </div>
+
+                        <div class="relative group" @mouseenter="isInstagramQR = true" @mouseleave="isInstagramQR = false">
+                            <a href="#" class="w-10 h-10 bg-gray-800 rounded-full flex items-center justify-center hover:bg-[#E1306C] transition">
+                                <i class="fab fa-instagram text-white"></i>
+                            </a>
+                            <transition name="qr-fade">
+                                <div v-if="isInstagramQR" class="absolute bottom-12 left-1/2 -translate-x-1/2 bg-white p-2 rounded-lg shadow-2xl z-50 w-32 border border-gray-100">
+                                    <img src="images/instagramqr.jpg" alt="Instagram QR" class="w-full h-auto">
+                                    <p class="text-[10px] text-gray-500 text-center mt-1 font-sans">Compte Instagram</p>
+                                </div>
+                            </transition>
+                        </div>
                     </div>
                     <div class="flex gap-4 text-3xl opacity-30">
                         <i class="fab fa-cc-visa"></i><i class="fab fa-cc-mastercard"></i><i class="fab fa-cc-amex"></i>
@@ -399,6 +411,7 @@
             const isLangDropdownOpen = ref(false);
             const isWechatQR = ref(false);
             const isFacebookQR = ref(false);
+            const isInstagramQR = ref(false);
             const isBrochureModalOpen = ref(false);
             const activePdfUrl = ref('');
             const activeTitle = ref('');
@@ -441,23 +454,23 @@
                 { 
                     title: 'Chine Impériale', 
                     days: 16, 
-                    price: '1 688 €', 
+                    price: '2 654 €', 
                     image: 'images/chine-imperiale/header.jpg', 
                     desc: 'Un circuit incontournable de Shanghai à Pékin, entre modernité, héritage impérial et sites emblématiques de l\'UNESCO, ponctué d\'une croisière sur la rivière Li et de rencontres avec les minorités Zhuang et Dong.',
                     url: 'chine-imperiale.html'
                 },
                 { 
                     title: 'Les Couleurs du Yunnan', 
-                    days: 12, 
-                    price: '2 180 €', 
+                    days: 16, 
+                    price: '2 710 €', 
                     image: 'images/les-couleurs-du-yunnan/header.jpg', 
                     desc: 'Une immersion au cœur des montagnes majestueuses, des rizières en terrasse spectaculaires et des traditions authentiques des minorités ethniques du sud-ouest de la Chine.',
                     url: 'les-couleurs-du-yunnan.html'
                 },
                 { 
                     title: 'Merveilles du Vietnam', 
-                    days: 14, 
-                    price: '1 850 €', 
+                    days: 13, 
+                    price: '1 085 €', 
                     image: 'images/merveilles-du-vietnam/header.jpg', 
                     desc: 'Un voyage complet du Nord au Sud : croisière dans la baie d\'Halong, charme impérial de Hué et vie flottante sur le delta du Mékong.',
                     url: 'merveilles-du-vietnam.html'
@@ -507,7 +520,7 @@
 
             return { 
                 isMobileMenuOpen, 
-                isDestDropdownOpen, isLangDropdownOpen, isWechatQR, isFacebookQR, isBrochureModalOpen, 
+                isDestDropdownOpen, isLangDropdownOpen, isWechatQR, isFacebookQR, isInstagramQR, isBrochureModalOpen, 
                 activePdfUrl, activeTitle, currentLang,
                 currentHeroIndex, heroImages, nextHero, prevHero, navLinks, tours, values, 
                 openBrochure, goToProduct, switchLang

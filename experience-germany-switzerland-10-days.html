@@ -857,7 +857,7 @@
                     <ul class="space-y-4 text-sm text-gray-400">
                         <li class="flex items-start gap-3"><i class="fas fa-map-marker-alt text-brand mt-1"></i> 30 Rue Ernest Renan, 75015 Paris</li>
                         <li class="flex items-center gap-3"><i class="fas fa-phone-alt text-brand"></i> 01 56 69 12 80</li>
-                        <li class="flex items-center gap-3"><i class="fas fa-envelope text-brand"></i> contact@eurasiatours.fr</li>
+                        <li class="flex items-center gap-3"><i class="fas fa-envelope text-brand"></i> reservation@eurasiatours.fr</li>
                     </ul>
                 </div>
                 <div>
@@ -1267,69 +1267,52 @@
                 }
             };
 
-           const handleFormSubmit = async () => {
-    attemptedSubmit.value = true;
-    
-    // 1. 基础验证（保持不变）
-    const hasEmpty = !formData.name || !formData.phone || !formData.email || !formData.date || !formData.passengers;
-    if (hasEmpty || phoneError.value) {
-        nextTick(() => {
-            const firstError = document.querySelector('.input-error');
-            if (firstError) {
-                firstError.scrollIntoView({ behavior: 'smooth', block: 'center' });
-            }
-        });
-        return;
-    }
 
-    // 2. 开启发送状态
-    isSending.value = true;
+            const handleFormSubmit = async () => {
+                attemptedSubmit.value = true;
+                const hasEmpty = !formData.name || !formData.phone || !formData.email || !formData.date || !formData.passengers;
+                if (hasEmpty || phoneError.value) {
+                    nextTick(() => {
+                        const firstError = document.querySelector('.input-error');
+                        if (firstError) firstError.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                    });
+                    return;
+                }
 
-    // 3. 准备发送给服务器的数据 (Payload)
-    // 我们需要整理好数据，方便后台直接读取
-    const payload = {
-tourName: tour.title,
-        name: formData.name,
-        email: formData.email,
-        phone: formData.countryCode + " " + formData.phone,
-        travelDate: formData.date,
-        passengers: formData.passengers,
-        // 处理自费项目数组，只提取名字，或者传整个对象给后台处理
-        selectedOptionals: formData.selectedOptionals.map(item => item.name),
-        totalPrice: calculatedPrice.value, // 发送计算好的价格
-        remarks: formData.remarks || ""
-    };
+                isSending.value = true;
+                const payload = {
+                    tourName: tour.title,
+                    language: currentLang.value,
+                    name: formData.name,
+                    email: formData.email,
+                    phone: formData.countryCode + " " + formData.phone,
+                    travelDate: formData.date,
+                    passengers: formData.passengers,
+                    selectedOptionals: formData.selectedOptionals.map(item => item.name),
+                    totalPrice: calculatedPrice.value, 
+                    remarks: formData.remarks || ""
+                };
 
-    try {
-        // 4. 发送 POST 请求给您的服务器接口
-        // 假设您的服务器接口地址是 /api/submit-inquiry (需要根据实际后端地址修改)
-        const response = await fetch('/api/submit-inquiry', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-                'Accept': 'application/json'
-            },
-            body: JSON.stringify(payload)
-        });
+                try {
+                    // Production ready endpoint from Chinese file
+                    const response = await fetch('/api/submit-inquiry', {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+                        body: JSON.stringify(payload)
+                    });
 
-        // 5. 处理服务器响应
-        if (response.ok) {
-            // HTTP 状态码 200-299，表示服务器成功接收并处理
-            const result = await response.json(); // 如果服务器返回了JSON数据
-            isSending.value = false;
-            isSubmitted.value = true; // 显示成功界面
-            
-            // 可选：在这里处理服务器返回的特定信息
-        } else {
-            // 服务器返回了错误（如 400, 500 等）
-            throw new Error('Server responded with error');
-        }
-    } catch (error) {
-        console.error('Submission error:', error);
-        isSending.value = false;
-        alert("提交失败，请稍后重试或直接联系我们。");
-    }
-};
+                    if (response.ok) {
+                        isSending.value = false;
+                        isSubmitted.value = true;
+                    } else {
+                        throw new Error('Server responded with error');
+                    }
+                } catch (error) {
+                    console.error('Submission error:', error);
+                    isSending.value = false;
+                    alert("提交失败，请稍后重试或直接联系我们。");
+                }
+            };
 
             const resetForm = () => {
                 isSubmitted.value = false;

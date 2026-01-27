@@ -594,7 +594,7 @@
                     <ul class="space-y-4 text-sm font-light">
                         <li class="flex items-start gap-3"><i class="fas fa-map-marker-alt text-gray-600 mt-1"></i> 30 Rue Ernest Renan, 75015 Paris</li>
                         <li class="flex items-center gap-3"><i class="fas fa-phone text-gray-600"></i> +33 (0)1 56 69 12 80</li>
-                        <li class="flex items-center gap-3"><i class="fas fa-envelope text-gray-600"></i> contact@eurasiatours.fr</li>
+                        <li class="flex items-center gap-3"><i class="fas fa-envelope text-gray-600"></i> reservation@eurasiatours.fr</li>
                     </ul>
                 </div>
 
@@ -602,22 +602,37 @@
                     <h4 class="text-white font-serif text-lg mb-6">Connect</h4>
                     <div class="flex gap-4 mb-8">
                         <div class="relative group" @mouseenter="isWechatQR = true" @mouseleave="isWechatQR = false">
-                            <a href="#" class="w-10 h-10 border border-gray-700 rounded-full flex items-center justify-center hover:bg-[#07C160] hover:border-[#07C160] hover:text-white transition-all">
-                                <i class="fab fa-weixin"></i>
+                            <a href="#" class="w-10 h-10 bg-gray-800 rounded-full flex items-center justify-center hover:bg-[#07C160] transition">
+                                <i class="fab fa-weixin text-white"></i>
                             </a>
                             <transition name="qr-fade">
-                                <div v-if="isWechatQR" class="absolute bottom-14 left-1/2 -translate-x-1/2 bg-white p-2 rounded shadow-xl z-50 w-32">
-                                    <img src="https://www.eurasia-tours.fr/assets/wechat-account-VZcww6ek.jpg" class="w-full">
+                                <div v-if="isWechatQR" class="absolute bottom-12 left-1/2 -translate-x-1/2 bg-white p-2 rounded-lg shadow-2xl z-50 w-32 border border-gray-100">
+                                    <img src="https://www.eurasia-tours.fr/assets/wechat-account-VZcww6ek.jpg" alt="WeChat QR" class="w-full h-auto">
+                                    <p class="text-[10px] text-gray-500 text-center mt-1 font-sans">Compte WeChat</p>
                                 </div>
                             </transition>
                         </div>
+
                         <div class="relative group" @mouseenter="isFacebookQR = true" @mouseleave="isFacebookQR = false">
-                            <a href="#" class="w-10 h-10 border border-gray-700 rounded-full flex items-center justify-center hover:bg-[#1877F2] hover:border-[#1877F2] hover:text-white transition-all">
-                                <i class="fab fa-facebook-f"></i>
+                            <a href="#" class="w-10 h-10 bg-gray-800 rounded-full flex items-center justify-center hover:bg-[#1877F2] transition">
+                                <i class="fab fa-facebook-f text-white"></i>
                             </a>
                             <transition name="qr-fade">
-                                <div v-if="isFacebookQR" class="absolute bottom-14 left-1/2 -translate-x-1/2 bg-white p-2 rounded shadow-xl z-50 w-32">
-                                    <img src="https://www.eurasia-tours.fr/assets/3-Bjf7LFHD.png" class="w-full">
+                                <div v-if="isFacebookQR" class="absolute bottom-12 left-1/2 -translate-x-1/2 bg-white p-2 rounded-lg shadow-2xl z-50 w-32 border border-gray-100">
+                                    <img src="https://www.eurasia-tours.fr/assets/3-Bjf7LFHD.png" alt="Facebook QR" class="w-full h-auto">
+                                    <p class="text-[10px] text-gray-500 text-center mt-1 font-sans">Notre Facebook</p>
+                                </div>
+                            </transition>
+                        </div>
+
+                        <div class="relative group" @mouseenter="isInstagramQR = true" @mouseleave="isInstagramQR = false">
+                            <a href="#" class="w-10 h-10 bg-gray-800 rounded-full flex items-center justify-center hover:bg-[#E1306C] transition">
+                                <i class="fab fa-instagram text-white"></i>
+                            </a>
+                            <transition name="qr-fade">
+                                <div v-if="isInstagramQR" class="absolute bottom-12 left-1/2 -translate-x-1/2 bg-white p-2 rounded-lg shadow-2xl z-50 w-32 border border-gray-100">
+                                    <img src="images/instagramqr.jpg" alt="Instagram QR" class="w-full h-auto">
+                                    <p class="text-[10px] text-gray-500 text-center mt-1 font-sans">Compte Instagram</p>
                                 </div>
                             </transition>
                         </div>
@@ -650,6 +665,7 @@
             const isLangDropdownOpen = ref(false);
             const isWechatQR = ref(false);
             const isFacebookQR = ref(false);
+            const isInstagramQR = ref(false);
             const currentLang = ref('English');
 
             const switchLang = (lang) => {
@@ -958,6 +974,7 @@
                 // Payload matches backend expectation
                 const payload = {
                     tourName: tour.title,
+                    language: currentLang.value,
                     name: formData.name,
                     email: formData.email,
                     phone: formData.countryCode + " " + formData.phone,
@@ -1038,7 +1055,7 @@
 
             return {
                 isMobileMenuOpen, isDestDropdownOpen, isLangDropdownOpen, currentLang, switchLang,
-                isWechatQR, isFacebookQR,
+                isWechatQR, isFacebookQR, isInstagramQR,
                 navLinks, subMenu, activeSection, 
                 heroImages, currentHeroIndex, nextSlide, prevSlide,
                 tour, 

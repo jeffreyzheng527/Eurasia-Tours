@@ -1,0 +1,91 @@
+定制旅行页面封装数据：
+
+                const payload = {
+                    type: 'Custom Tour Request',
+                    language: currentLang.value,
+                    contact: {
+                        name: formData.value.name,
+                        phone: formData.value.countryCode + " " + formData.value.phone,
+                        email: formData.value.email
+                    },
+                    trip: {
+                        destination: formData.value.destination,
+                        startDate: formData.value.date,
+                        duration: formData.value.duration,
+                        passengers: formData.value.passengers,
+                        budget: formData.value.budget + " €/person"
+                    },
+                    preferences: {
+                        needFlights: formData.value.needFlights === 'yes' ? 'Flights Required' : 'Flights Not Required',
+                        hotelStars: formData.value.stars + " Stars",
+                        details: formData.value.details || "No special requirements"
+                    }
+                };
+
+机票页面封装数据：
+
+                const payload = {
+                    type: 'Group Flight Request',
+                    language: currentLang.value,
+                    contact: {
+                        name: groupData.value.name,
+                        phone: groupData.value.countryCode + " " + groupData.value.phone,
+                        email: groupData.value.email
+                    },
+                    flightDetails: {
+                        route: `${groupData.value.from} -> ${groupData.value.to}`,
+                        dates: `${groupData.value.dateStart} to ${groupData.value.dateEnd}`,
+                        flexibility: groupData.value.flex === 'fixed' ? 'Fixed Dates' : 'Flexible (+/-3)',
+                        passengers: groupData.value.passengers,
+                        airlinePreference: groupData.value.airline,
+                        cabinClass: groupData.value.class === 'eco' ? 'Economy' : 'Business',
+                        directFlight: groupData.value.direct === 'yes' ? 'Direct Only' : 'Layover OK'
+                    }
+                };
+
+
+
+联系我们页面封装数据：
+
+                const payload = {
+                    type: 'General Inquiry',
+                    language: currentLang.value,
+                    name: formData.value.name,
+                    phone: formData.value.countryCode + " " + formData.value.phone,
+                    email: formData.value.email,
+                    message: formData.value.details
+                };
+
+
+产品页面封装数据有两种（一种有selected option，一种没有，取决于产品所属的不同业务线）：
+
+                const payload = {
+                    tourName: tour.title,
+                    language: currentLang.value,
+                    name: formData.name,
+                    email: formData.email,
+                    phone: formData.countryCode + " " + formData.phone,
+                    travelDate: formData.date,
+                    passengers: formData.passengers,
+                    selectedOptionals: formData.selectedOptionals.map(item => item.name),
+                    totalPrice: calculatedPrice.value, 
+                    remarks: formData.remarks || ""
+                };
+
+
+or
+
+
+                const payload = {
+                    tourName: tour.title,
+                    language: currentLang.value,
+                    name: formData.name,
+                    email: formData.email,
+                    phone: formData.countryCode + " " + formData.phone,
+                    travelDate: formData.date,
+                    passengers: formData.passengers,
+                    totalPrice: calculatedPrice.value,
+                    remarks: formData.remarks || ""
+                };
+
+

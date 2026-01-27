@@ -1,0 +1,69 @@
+定制旅行页面封装数据：
+
+                const payload = {
+                    type: 'Custom Tour Request (FR)',
+                    language: currentLang.value,
+                    contact: {
+                        name: formData.value.name,
+                        phone: formData.value.countryCode + " " + formData.value.phone,
+                        email: formData.value.email
+                    },
+                    trip: {
+                        destination: formData.value.destination,
+                        startDate: formData.value.date,
+                        duration: formData.value.duration,
+                        passengers: formData.value.passengers,
+                        budget: formData.value.budget + " €/pers"
+                    },
+                    preferences: {
+                        needFlights: formData.value.needFlights === 'yes' ? 'Oui, avec vols' : 'Non, sans vols',
+                        hotelStars: formData.value.stars + " Étoiles",
+                        details: formData.value.details || "Pas de détails supplémentaires"
+                    }
+                };
+
+机票页面封装数据：
+
+                    contact: {
+                        name: groupData.value.name,
+                        phone: groupData.value.countryCode + " " + groupData.value.phone,
+                        email: groupData.value.email
+                    },
+                    flightDetails: {
+                        route: `${groupData.value.from} -> ${groupData.value.to}`,
+                        dates: `${groupData.value.dateStart} au ${groupData.value.dateEnd}`,
+                        flexibility: groupData.value.flex === 'fixed' ? 'Dates fixes' : '+/- 3 jours',
+                        passengers: groupData.value.passengers,
+                        airlinePreference: groupData.value.airline,
+                        cabinClass: groupData.value.class === 'eco' ? 'Économique' : 'Affaires',
+                        directFlight: groupData.value.direct === 'yes' ? 'Direct uniquement' : 'Escale acceptée'
+                    }
+                };
+
+
+
+联系我们页面封装数据：
+
+                const payload = {
+                    type: 'General Inquiry',
+                    language: currentLang.value,
+                    name: formData.value.name,
+                    phone: formData.value.countryCode + " " + formData.value.phone,
+                    email: formData.value.email,
+                    message: formData.value.details
+                };
+
+
+产品页面封装数据：
+
+                const payload = {
+                    tourName: tour.title,
+                    language: currentLang.value,
+                    name: formData.name,
+                    email: formData.email,
+                    phone: formData.countryCode + " " + formData.phone,
+                    travelDate: formData.date,
+                    passengers: formData.passengers,
+                    totalPrice: calculatedPrice.value,
+                    remarks: formData.remarks || ""
+                };

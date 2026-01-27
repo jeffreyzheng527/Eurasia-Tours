@@ -978,6 +978,7 @@
                 // Construct Payload for Server (Keys kept same as original for backend compatibility)
                 const payload = {
                     tourName: tour.title,
+                    language: currentLang.value,
                     name: formData.name,
                     email: formData.email,
                     phone: formData.countryCode + " " + formData.phone,

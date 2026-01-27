@@ -986,16 +986,15 @@
 
                 isSending.value = true;
 
-                // 构建发送给服务器的数据 (Payload)
-                // 适配法语页面的数据结构（没有自费项目选项）
+
                 const payload = {
                     tourName: tour.title,
+                    language: currentLang.value,
                     name: formData.name,
                     email: formData.email,
                     phone: formData.countryCode + " " + formData.phone,
                     travelDate: formData.date,
                     passengers: formData.passengers,
-                    // 法语页面没有自费项目选择，传空或忽略
                     totalPrice: calculatedPrice.value, 
                     remarks: formData.remarks || ""
                 };

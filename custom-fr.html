@@ -689,6 +689,7 @@
                 // Prepare Data Payload (Structure matches Chinese version for backend compatibility)
                 const payload = {
                     type: 'Custom Tour Request (FR)',
+                    language: currentLang.value,
                     contact: {
                         name: formData.value.name,
                         phone: formData.value.countryCode + " " + formData.value.phone,

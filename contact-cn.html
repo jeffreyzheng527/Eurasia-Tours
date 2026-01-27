@@ -32,7 +32,7 @@
       "@id": "https://www.eurasia-tours.fr",
       "url": "https://www.eurasia-tours.fr/contact-cn.html",
       "telephone": "+33156691280",
-      "email": "contact@eurasiatours.fr",
+      "email": "reservation@eurasiatours.fr",
       "priceRange": "$$",
       "address": {
         "@type": "PostalAddress",
@@ -268,7 +268,7 @@
                             <div class="w-12 h-12 bg-red-50 rounded-lg flex items-center justify-center flex-shrink-0 text-brand text-xl"><i class="fas fa-envelope"></i></div>
                             <div>
                                 <h4 class="font-bold text-gray-900 text-lg">电子邮箱</h4>
-                                <p class="text-gray-600">contact@eurasiatours.fr</p>
+                                <p class="text-gray-600">reservation@eurasiatours.fr</p>
                             </div>
                         </div>
                     </div>
@@ -368,7 +368,7 @@
                     <ul class="space-y-4 text-sm text-gray-400">
                         <li class="flex items-start gap-3"><i class="fas fa-map-marker-alt text-brand mt-1"></i> 30 Rue Ernest Renan, 75015 Paris</li>
                         <li class="flex items-center gap-3"><i class="fas fa-phone-alt text-brand"></i> 01 56 69 12 80</li>
-                        <li class="flex items-center gap-3"><i class="fas fa-envelope text-brand"></i> contact@eurasiatours.fr</li>
+                        <li class="flex items-center gap-3"><i class="fas fa-envelope text-brand"></i> reservation@eurasiatours.fr</li>
                     </ul>
                 </div>
                 <div>
@@ -489,6 +489,7 @@
                 // 3. 准备发送给服务器的数据
                 const payload = {
                     type: 'General Inquiry',
+                    language: currentLang.value,
                     name: formData.value.name,
                     phone: formData.value.countryCode + " " + formData.value.phone,
                     email: formData.value.email,

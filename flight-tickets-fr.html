@@ -436,9 +436,9 @@
                 // 2. 开启 Loading
                 isSending.value = true;
 
-                // 3. 准备数据 Payload (已翻译为法语值)
                 const payload = {
                     type: 'Group Flight Request (FR)',
+                    language: currentLang.value,
                     contact: {
                         name: groupData.value.name,
                         phone: groupData.value.countryCode + " " + groupData.value.phone,
