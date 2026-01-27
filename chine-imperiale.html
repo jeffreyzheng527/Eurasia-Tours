@@ -328,9 +328,16 @@
                                             </td>
 
                                             <td class="py-6 align-middle text-center">
-                                                <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-bold bg-emerald-50 text-emerald-600 border border-emerald-100">
-                                                    <span class="w-1.5 h-1.5 rounded-full bg-emerald-500"></span>
-                                                    Confirmé
+                                                <span v-if="date.status === 'guaranteed'"
+                                                            class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-bold bg-emerald-50 text-emerald-600 border border-emerald-100">
+                                                       <span class="w-1.5 h-1.5 rounded-full bg-emerald-500"></span>
+                                                       Départ garanti
+                                                </span>
+
+                                                <span v-else
+                                                            class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-bold bg-sky-50 text-sky-600 border border-sky-100">
+                                                       <span class="w-1.5 h-1.5 rounded-full bg-sky-500"></span>
+                                                       Disponible
                                                 </span>
                                             </td>
 
@@ -346,7 +353,6 @@
                             </div>
                             <div class="bg-gray-50 px-6 py-3 text-[11px] text-gray-500 border-t border-gray-100 flex flex-wrap gap-4 items-center justify-between">
                                 <span class="flex items-center gap-2"><i class="fas fa-info-circle text-brand"></i> Départ garanti à partir de 10 personnes, limité à 18 personnes.</span>
-                                <span class="hidden md:inline text-gray-400">* Prix hors vols internationaux</span>
                             </div>
                         </div>
                     </section>
@@ -600,7 +606,7 @@
                     <ul class="space-y-4 text-sm text-gray-400">
                         <li class="flex items-start gap-3"><i class="fas fa-map-marker-alt text-brand mt-1"></i> 30 Rue Ernest Renan, 75015 Paris</li>
                         <li class="flex items-center gap-3"><i class="fas fa-phone-alt text-brand"></i> 01 56 69 12 80</li>
-                        <li class="flex items-center gap-3"><i class="fas fa-envelope text-brand"></i> contact@eurasiatours.fr</li>
+                        <li class="flex items-center gap-3"><i class="fas fa-envelope text-brand"></i> inscription@eurasiatours.fr</li>
                     </ul>
                 </div>
                 <div>
@@ -727,9 +733,25 @@
                 singleSupplement: '350 €',
                 
                 dates: [
-                    { start: '16/05/2026', end: '31/05/2026', price: '2 654 €' },
-                    { start: '29/08/2026', end: '13/09/2026', price: '2 840 €' },
-                    { start: '06/11/2026', end: '21/11/2026', price: '2 790 €' }
+                    { 
+                           start: '16/05/2026', 
+                           end: '31/05/2026', 
+                           price: '2 654 €', 
+                           status: 'guaranteed' 
+                     },
+                    { 
+                           start: '29/08/2026', 
+                           end: '13/09/2026', 
+                           price: '2 840 €', 
+                           status: 'available' 
+                     },
+                    { 
+                           start: '06/11/2026', 
+                           end: '21/11/2026', 
+                           price: '2 790 €', 
+                           status: 'available' 
+                     },
+
                 ],
                 
                 includes: [

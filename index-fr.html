@@ -18,7 +18,7 @@
         .bg-brand { background-color: #b91c1c; }
         .hover\:bg-brand:hover { background-color: #991b1b; }
         .hero-text-shadow { text-shadow: 0 4px 15px rgba(0, 0, 0, 0.6); }
-        .nav-link-spacing { letter-spacing: 0.05em; } /* 法语字符较长，稍微减小字间距 */
+        .nav-link-spacing { letter-spacing: 0.05em; } 
 
         .dropdown-enter-active { transition: all 0.3s ease-out; }
         .dropdown-leave-active { transition: all 0.2s ease-in; }
@@ -27,9 +27,6 @@
         .fade-hero-enter-active, .fade-hero-leave-active { transition: opacity 1.5s ease-in-out; }
         .fade-hero-enter-from, .fade-hero-leave-to { opacity: 0; }
         
-        .brochure-card { perspective: 1000px; transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1); }
-        .brochure-card:hover { transform: translateY(-10px) rotateY(-5deg); }
-
         .qr-fade-enter-active, .qr-fade-leave-active { transition: all 0.3s ease-out; }
         .qr-fade-enter-from, .qr-fade-leave-to { opacity: 0; transform: translateY(10px); }
 
@@ -241,40 +238,59 @@
         </section>
 
         <section class="py-24 bg-gray-900 overflow-hidden relative">
-            <div class="absolute top-0 right-0 w-1/3 h-full bg-brand/5 -skew-x-12 translate-x-1/2"></div>
+            <div class="absolute top-0 right-0 w-1/2 h-full bg-brand/5 -skew-x-12 translate-x-1/3"></div>
+            
             <div class="container mx-auto px-4 relative z-10">
-                <div class="text-center mb-20">
-                    <h2 class="text-4xl md:text-5xl font-bold text-white mb-6 font-serif">Notre brochure en ligne</h2>
-                    <p class="text-gray-400 max-w-2xl mx-auto tracking-widest font-light">Plongez dans notre brochure électronique et laissez-vous inspirer par nos destinations incontournables pour trouver votre prochain voyage.</p>
-                </div>
-                <div class="grid grid-cols-1 md:grid-cols-3 gap-12 max-w-6xl mx-auto">
-                    <div class="brochure-card group cursor-pointer" @click="openBrochure('china')">
-                        <div class="relative bg-white aspect-[3/4] rounded-r-xl shadow-2xl overflow-hidden border-l-8 border-brand/80">
-                            <img src="images/chine-imperiale/header.jpg" class="w-full h-full object-cover">
-                            <div class="absolute inset-0 bg-gradient-to-t from-black/80 flex flex-col justify-end p-8 text-white">
-                                <h3 class="text-2xl font-bold mb-2 text-shadow">Voyage en Chine</h3>
-                                <span class="text-brand font-bold group-hover:translate-x-2 transition">Lire en ligne <i class="fas fa-book-open ml-2"></i></span>
+                <div class="flex flex-col md:flex-row items-center gap-12 lg:gap-20 max-w-6xl mx-auto">
+                    
+                    <div class="w-full md:w-1/2 text-left">
+                        <span class="text-brand font-bold tracking-widest uppercase text-sm mb-2 block">Inspiration & Découverte</span>
+                        <h2 class="text-4xl lg:text-5xl font-bold text-white mb-6 font-serif leading-tight">
+                            Téléchargez notre brochure exclusive 2026
+                        </h2>
+                        <p class="text-gray-400 text-lg mb-8 leading-relaxed">
+                            Plongez dans notre guide complet de 50 pages. Retrouvez tous nos circuits phares, nos conseils d'experts et nos itinéraires secrets pour préparer votre voyage de rêve depuis votre canapé.
+                        </p>
+                        
+                        <ul class="space-y-4 mb-10">
+                            <li class="flex items-center text-gray-300">
+                                <i class="fas fa-check text-brand mr-3"></i> Plus de 30 itinéraires détaillés
+                            </li>
+                            <li class="flex items-center text-gray-300">
+                                <i class="fas fa-check text-brand mr-3"></i> Cartes illustrées et infos pratiques
+                            </li>
+                            <li class="flex items-center text-gray-300">
+                                <i class="fas fa-check text-brand mr-3"></i> Calendrier des départs 2026
+                            </li>
+                        </ul>
+
+                        <button @click="openBrochure" class="group bg-brand hover:bg-white hover:text-brand text-white text-lg font-bold px-10 py-4 rounded-full transition-all shadow-lg flex items-center gap-3">
+                            Lire la brochure <i class="fas fa-book-open group-hover:translate-x-1 transition-transform"></i>
+                        </button>
+                    </div>
+
+                    <div class="w-full md:w-1/2 flex justify-center md:justify-end">
+                        <div class="relative w-3/4 md:w-[70%] aspect-[3/4] group cursor-pointer perspective-1000" @click="openBrochure">
+                            <div class="absolute inset-0 bg-white/90 rounded-r-xl transform translate-x-3 translate-y-3 border-l border-gray-200"></div>
+                            <div class="absolute inset-0 bg-white/95 rounded-r-xl transform translate-x-1.5 translate-y-1.5 border-l border-gray-200"></div>
+                            
+                            <div class="relative h-full w-full rounded-r-xl shadow-2xl overflow-hidden border-l-8 border-gray-800 transform transition-transform duration-500 group-hover:-translate-y-2 group-hover:-rotate-1">
+                                <img src="images/pdf/brochure-2026.jpg" alt="Brochure Cover" class="w-full h-full object-cover">
+                                
+                                <div class="absolute inset-0 bg-gradient-to-t from-black/90 via-transparent to-transparent flex flex-col justify-end p-6">
+                                    <h3 class="text-white text-2xl font-serif font-bold mb-1">Collection 2026</h3>
+                                    <p class="text-brand text-sm font-bold uppercase tracking-widest">Asie & Orient</p>
+                                </div>
+
+                                <div class="absolute inset-0 bg-black/20 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
+                                    <div class="w-16 h-16 bg-brand rounded-full flex items-center justify-center text-white text-2xl shadow-xl scale-0 group-hover:scale-100 transition-transform duration-300 delay-75">
+                                        <i class="fas fa-download"></i>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
-                    <div class="brochure-card group cursor-pointer" @click="openBrochure('vietnam')">
-                        <div class="relative bg-white aspect-[3/4] rounded-r-xl shadow-2xl overflow-hidden border-l-8 border-blue-800/80">
-                            <img src="images/merveilles-du-vietnam/header.jpg" class="w-full h-full object-cover">
-                            <div class="absolute inset-0 bg-gradient-to-t from-black/80 flex flex-col justify-end p-8 text-white">
-                                <h3 class="text-2xl font-bold mb-2 text-shadow">Voyage en Vietnam</h3>
-                                <span class="text-brand font-bold group-hover:translate-x-2 transition">Lire en ligne <i class="fas fa-book-open ml-2"></i></span>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="brochure-card group cursor-pointer" @click="openBrochure('global')">
-                        <div class="relative bg-white aspect-[3/4] rounded-r-xl shadow-2xl overflow-hidden border-l-8 border-gray-800">
-                            <img src="images/les-couleurs-du-yunnan/header.jpg" class="w-full h-full object-cover">
-                            <div class="absolute inset-0 bg-gradient-to-t from-black/80 flex flex-col justify-end p-8 text-white">
-                                <h3 class="text-2xl font-bold mb-2 text-shadow">Circuits 2026</h3>
-                                <span class="text-brand font-bold group-hover:translate-x-2 transition">Lire en ligne <i class="fas fa-book-open ml-2"></i></span>
-                            </div>
-                        </div>
-                    </div>
+
                 </div>
             </div>
         </section>
@@ -310,6 +326,7 @@
             </div>
         </div>
     </transition>
+
     <footer class="bg-gray-900 text-gray-400 pt-20 pb-10 border-t-8 border-brand">
         <div class="container mx-auto px-4">
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-16 mb-20">
@@ -331,7 +348,7 @@
                     <ul class="space-y-4 text-sm text-gray-400">
                         <li class="flex items-start gap-3"><i class="fas fa-map-marker-alt text-brand mt-1"></i> 30 Rue Ernest Renan, 75015 Paris</li>
                         <li class="flex items-center gap-3"><i class="fas fa-phone-alt text-brand"></i> 01 56 69 12 80</li>
-                        <li class="flex items-center gap-3"><i class="fas fa-envelope text-brand"></i> contact@eurasiatours.fr</li>
+                        <li class="flex items-center gap-3"><i class="fas fa-envelope text-brand"></i> inscription@eurasiatours.fr</li>
                     </ul>
                 </div>
                 <div>
@@ -386,7 +403,7 @@
             const activePdfUrl = ref('');
             const activeTitle = ref('');
             const currentHeroIndex = ref(0);
-            const currentLang = ref('Français'); // 默认语言设为法语
+            const currentLang = ref('Français');
             
             const heroImages = [
                 'images/index/header/header-fr.jpg'
@@ -465,20 +482,11 @@
                 }
             ];
 
-            const openBrochure = (type) => {
-                if(type === 'china') {
-                    activePdfUrl.value = 'pdf/voyage-en-chine.pdf';
-                    activeTitle.value = 'Voyage en Chine';
-                    isBrochureModalOpen.value = true;
-                } else if(type === 'vietnam') {
-                    activePdfUrl.value = 'pdf/voyage-en-vietnam.pdf';
-                    activeTitle.value = 'Voyage en Vietnam';
-                    isBrochureModalOpen.value = true;
-                } else {
-                    activePdfUrl.value = 'pdf/brochure-2026.pdf';
-                    activeTitle.value = 'Circuits 2026';
-                    isBrochureModalOpen.value = true;
-                }
+            // Modification : Fonction simplifiée pour un seul PDF
+            const openBrochure = () => {
+                activePdfUrl.value = 'pdf/brochure-2026.pdf'; 
+                activeTitle.value = 'Brochure Eurasia Tours 2026';
+                isBrochureModalOpen.value = true;
             };
 
             const goToProduct = (url) => {
@@ -486,15 +494,12 @@
             };
 
             const switchLang = (lang) => {
-                // 1. 定义语言和文件名的对应关系
                 const urlMap = {
                     '中文': 'index-cn.html',
                     'English': 'index-en.html',
                     'Français': 'index-fr.html'
                 };
-                // 2.以此查找目标文件的 URL
                 const targetUrl = urlMap[lang];
-                // 3. 执行跳转
                 if (targetUrl) {
                     window.location.href = targetUrl;
                 }

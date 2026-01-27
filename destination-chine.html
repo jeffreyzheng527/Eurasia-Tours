@@ -255,7 +255,7 @@
                     <ul class="space-y-4 text-sm text-gray-400">
                         <li class="flex items-start gap-3"><i class="fas fa-map-marker-alt text-brand mt-1"></i> 30 Rue Ernest Renan, 75015 Paris</li>
                         <li class="flex items-center gap-3"><i class="fas fa-phone-alt text-brand"></i> 01 56 69 12 80</li>
-                        <li class="flex items-center gap-3"><i class="fas fa-envelope text-brand"></i> contact@eurasiatours.fr</li>
+                        <li class="flex items-center gap-3"><i class="fas fa-envelope text-brand"></i> inscription@eurasiatours.fr</li>
                     </ul>
                 </div>
                 <div>
@@ -346,105 +346,103 @@
                 { name: 'Blog', url: 'blog-fr.html' }
             ];
 
-            // Product Data
-            // 注意：这里新增了 'order' 属性来控制默认推荐顺序
             const rawTours = [
                 {
                     id: 1,
                     title: "Chine Essentielle",
-                    price: 1888,
-                    days: 10,
+                    price: 2120,
+                    days: 11,
                     image: "images/chine-essentielle/header.jpg",
                     url: "chine-essentielle.html",
                     isHot: true,
                     sales: 320,
-                    order: 1, // 推荐排序第1名
+                    order: 1,
                     tag: "Classique",
                     highlights: ["Grande Muraille", "Cité Interdite", "Armée de Terre Cuite"]
                 },
                 {
                     id: 2,
                     title: "Au Sommet des Montagnes Sacrées",
-                    price: 2488,
-                    days: 14,
+                    price: 1240,
+                    days: 12,
                     image: "images/au-sommet-des-montagnes-sacrées/header.jpg",
                     url: "au-sommet-des-montagnes-sacrées.html",
                     isHot: true,
                     sales: 180,
-                    order: 2, // 推荐排序第2名
+                    order: 6, 
                     tag: "Nature & Culture",
                     highlights: ["Randonnée Huangshan", "Le lever de soleil", "Villages anciens"]
                 },
                 {
                     id: 3,
                     title: "Joyaux du Tibet",
-                    price: 2888,
-                    days: 15,
+                    price: 1340,
+                    days: 10,
                     image: "images/joyaux-du-tibet/header.jpg",
                     url: "joyaux-du-tibet.html",
                     isHot: true,
                     sales: 90,
-                    order: 3, // 推荐排序第3名
+                    order: 5, 
                     tag: "Aventure",
                     highlights: ["Palais du Potala", "Mont Everest", "Culture bouddhiste"]
                 },
                 {
                     id: 4,
                     title: "Saveurs du Sichuan",
-                    price: 1988,
-                    days: 10,
+                    price: 1230,
+                    days: 8,
                     image: "images/saveurs-du-sichuan/header.jpg",
                     url: "saveurs-du-sichuan.html",
-                    isHot: true,
+                    isHot: false,
                     sales: 250,
-                    order: 4,
+                    order: 7,
                     tag: "Gastronomie",
                     highlights: ["Pandas géants", "Cuisine épicée", "Grand Bouddha de Leshan"]
                 },
                 {
                     id: 5,
                     title: "Les Couleurs du Yunnan",
-                    price: 2388,
-                    days: 13,
+                    price: 2710,
+                    days: 16,
                     image: "images/les-couleurs-du-yunnan/header.jpg",
                     url: "les-couleurs-du-yunnan.html",
                     isHot: true,
                     sales: 210,
-                    order: 5,
+                    order: 3,
                     tag: "Ethnique",
                     highlights: ["Dali & Lijiang", "Gorges du Saut du Tigre", "Shangri-La"]
                 },
                 {
                     id: 6,
                     title: "Route de la Soie",
-                    price: 2988,
-                    days: 16,
+                    price: 2480,
+                    days: 15,
                     image: "images/route-de-la-soie/header.jpg",
                     url: "route-de-la-soie.html",
                     isHot: false,
                     sales: 110,
-                    order: 6,
+                    order: 4,
                     tag: "Légendaire",
                     highlights: ["Grottes de Mogao", "Désert de Gobi", "Marché de Kashgar"]
                 },
                 {
                     id: 7,
                     title: "Chine Impériale",
-                    price: 2188,
-                    days: 12,
+                    price: 2654,
+                    days: 16,
                     image: "images/chine-imperiale/header.jpg",
                     url: "chine-imperiale.html",
-                    isHot: false,
+                    isHot: true,
                     sales: 150,
-                    order: 7,
+                    order: 2,
                     tag: "Histoire",
                     highlights: ["Pékin, Xi'an & Shanghai", "Croisière Li River", "Jardins de Suzhou"]
                 },
                 {
                     id: 8,
                     title: "Les Milles Visages des Guizhou",
-                    price: 2088,
-                    days: 11,
+                    price: 1420,
+                    days: 14,
                     image: "images/les-milles-visages-des-guizhou/header.jpg",
                     url: "les-milles-visages-des-guizhou.html",
                     isHot: false,
@@ -456,7 +454,7 @@
                 {
                     id: 9,
                     title: "Secret du Nord du Vietnam et du Guangxi",
-                    price: 2588,
+                    price: 1660,
                     days: 15,
                     image: "images/secret-du-nord-du-vietnam-et-du-guangxi-en-Chine/header.jpg",
                     url: "secret-du-nord-du-vietnam-et-du-guangxi-en-Chine.html",
@@ -469,8 +467,8 @@
                 {
                     id: 10,
                     title: "Sur les Routes du Sud de Canton aux Terres Hakka",
-                    price: 1788,
-                    days: 9,
+                    price: 1360,
+                    days: 12,
                     image: "images/sur-les-routes-du-sud-de-canton-aux-terres-hakka/header.jpg",
                     url: "sur-les-routes-du-sud-de-canton-aux-terres-hakka.html",
                     isHot: false,
