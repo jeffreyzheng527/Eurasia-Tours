@@ -192,10 +192,10 @@
                                         </a>
                                     </li>
                                     <li>
-                                        <a href="#" @click.prevent="switchLang('Française')" 
+                                        <a href="#" @click.prevent="switchLang('Français')" 
                                            class="flex items-center justify-between px-4 py-2 text-sm font-medium text-gray-700 hover:bg-red-50 hover:text-brand rounded-lg transition-all"
-                                           :class="{'bg-red-50 text-brand': currentLang === 'Française'}">
-                                            Française <i v-if="currentLang === 'Française'" class="fas fa-check text-xs"></i>
+                                           :class="{'bg-red-50 text-brand': currentLang === 'Français'}">
+                                            Français <i v-if="currentLang === 'Français'" class="fas fa-check text-xs"></i>
                                         </a>
                                     </li>
                                 </ul>
@@ -219,7 +219,7 @@
                     <div class="flex items-center gap-4 mt-2 border-t border-gray-100 pt-6 w-full justify-center flex-wrap px-4">
                         <button @click="switchLang('中文')" class="px-4 py-1 rounded-full text-sm font-bold transition" :class="currentLang === '中文' ? 'bg-brand text-white' : 'bg-gray-100 text-gray-600'">中文</button>
                         <button @click="switchLang('English')" class="px-4 py-1 rounded-full text-sm font-bold transition" :class="currentLang === 'English' ? 'bg-brand text-white' : 'bg-gray-100 text-gray-600'">English</button>
-                        <button @click="switchLang('Française')" class="px-4 py-1 rounded-full text-sm font-bold transition" :class="currentLang === 'Française' ? 'bg-brand text-white' : 'bg-gray-100 text-gray-600'">Française</button>
+                        <button @click="switchLang('Français')" class="px-4 py-1 rounded-full text-sm font-bold transition" :class="currentLang === 'Français' ? 'bg-brand text-white' : 'bg-gray-100 text-gray-600'">Français</button>
                     </div>
 
                     <a href="contact-cn.html" class="bg-brand text-white px-10 py-3 rounded-full font-bold shadow-lg mt-4" @click="isMobileMenuOpen = false">立即咨询</a>
@@ -420,7 +420,7 @@
                 const urlMap = {
                     '中文': 'contact-cn.html',
                     'English': 'contact-en.html',
-                    'Française': 'contact-fr.html'
+                    'Français': 'contact-fr.html'
                 };
                 const targetUrl = urlMap[lang];
                 if (targetUrl) {
@@ -498,7 +498,7 @@
 
                 try {
                     // 4. 发送 POST 请求给您的服务器接口
-                    const response = await fetch('/api/contact', {
+                    const response = await fetch('https://service.eurasia-tours.fr/sendmail/GeneralInquiry', {
                         method: 'POST',
                         headers: {
                             'Content-Type': 'application/json',

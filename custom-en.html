@@ -700,19 +700,20 @@
                         destination: formData.value.destination,
                         startDate: formData.value.date,
                         duration: formData.value.duration,
-                        passengers: formData.value.passengers,
-                        budget: formData.value.budget + " €/person"
+                        passengers: Number(formData.value.passengers),
+                        budget: formData.value.budget + " €/人"
                     },
                     preferences: {
-                        needFlights: formData.value.needFlights === 'yes' ? 'Flights Required' : 'Flights Not Required',
-                        hotelStars: formData.value.stars + " Stars",
-                        details: formData.value.details || "No special requirements"
+                        needFlights: formData.value.needFlights === 'yes' ? '需要协助预订机票' : '自行解决机票',
+                        hotelStars: formData.value.stars + " 星级",
+                        details: formData.value.details || "无特殊备注"
                     }
                 };
 
+                const API_ENDPOINT = 'https://api.eurasia-tours.fr/api/v1/submit_custom_tour';
+
                 try {
-                    // 4. Send to Server (Matches CN file logic)
-                    const response = await fetch('/api/custom-trip', {
+                    const response = await fetch(API_ENDPOINT, {
                         method: 'POST',
                         headers: {
                             'Content-Type': 'application/json',
@@ -721,18 +722,21 @@
                         body: JSON.stringify(payload)
                     });
 
-                    // 5. Handle Response
+                    const result = await response.json();
+
                     if (response.ok) {
+                        console.log('提交成功:', result);
                         isSending.value = false;
                         isSubmitted.value = true;
                         window.scrollTo({ top: 300, behavior: 'smooth' });
                     } else {
+                        console.error('服务器报错:', result);
                         throw new Error('Server submission failed');
                     }
                 } catch (error) {
                     console.error('Submission error:', error);
                     isSending.value = false;
-                    alert("Submission failed. Please check your connection or contact us directly.");
+                    alert("提交失败，请检查网络或直接联系客服。");
                 }
             };
 

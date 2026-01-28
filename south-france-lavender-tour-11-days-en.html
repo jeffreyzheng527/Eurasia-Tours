@@ -1180,7 +1180,7 @@
                 };
 
                 try {
-                    const response = await fetch('/api/submit-inquiry', {
+                    const response = await fetch('https://service.eurasia-tours.fr/sendmail/TourOrderRequest', {
                         method: 'POST',
                         headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
                         body: JSON.stringify(payload)

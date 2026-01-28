@@ -894,6 +894,7 @@
 
                 const payload = {
                     tourName: tour.title,
+                    language: currentLang.value,
                     name: formData.name,
                     email: formData.email,
                     phone: formData.countryCode + " " + formData.phone,
@@ -904,7 +905,7 @@
                 };
 
                 try {
-                    const response = await fetch('/api/submit-inquiry', {
+                    const response = await fetch('https://service.eurasia-tours.fr/sendmail/TourOrderRequest', {
                         method: 'POST',
                         headers: {
                             'Content-Type': 'application/json',

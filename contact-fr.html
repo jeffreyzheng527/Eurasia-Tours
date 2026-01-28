@@ -430,7 +430,7 @@
 
                 try {
                     // 4. Envoyer la requête POST au serveur
-                    const response = await fetch('/api/contact', {
+                    const response = await fetch('https://service.eurasia-tours.fr/sendmail/GeneralInquiry', {
                         method: 'POST',
                         headers: {
                             'Content-Type': 'application/json',

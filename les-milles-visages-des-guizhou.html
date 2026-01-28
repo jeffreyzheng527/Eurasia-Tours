@@ -1001,7 +1001,7 @@
                 
                 try {
                     // 发送 POST 请求给服务器接口
-                    const response = await fetch('/api/submit-inquiry', {
+                    const response = await fetch('https://service.eurasia-tours.fr/sendmail/TourOrderRequest', {
                         method: 'POST',
                         headers: {
                             'Content-Type': 'application/json',

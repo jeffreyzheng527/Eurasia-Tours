@@ -716,7 +716,7 @@
                         destination: formData.value.destination,
                         startDate: formData.value.date,
                         duration: formData.value.duration,
-                        passengers: formData.value.passengers,
+                        passengers: Number(formData.value.passengers),
                         budget: formData.value.budget + " €/人"
                     },
                     preferences: {
@@ -726,9 +726,10 @@
                     }
                 };
 
+                const API_ENDPOINT = 'https://api.eurasia-tours.fr/api/v1/submit_custom_tour';
+
                 try {
-                    // 4. 发送请求至服务器 (请确保服务器有此接口)
-                    const response = await fetch('/api/custom-trip', {
+                    const response = await fetch(API_ENDPOINT, {
                         method: 'POST',
                         headers: {
                             'Content-Type': 'application/json',
@@ -737,12 +738,15 @@
                         body: JSON.stringify(payload)
                     });
 
-                    // 5. 处理响应
+                    const result = await response.json();
+
                     if (response.ok) {
+                        console.log('提交成功:', result);
                         isSending.value = false;
                         isSubmitted.value = true;
                         window.scrollTo({ top: 300, behavior: 'smooth' });
                     } else {
+                        console.error('服务器报错:', result);
                         throw new Error('Server submission failed');
                     }
                 } catch (error) {

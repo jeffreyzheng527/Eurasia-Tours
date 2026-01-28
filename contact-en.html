@@ -75,7 +75,7 @@
                             {{ link.name }}
                             <i v-if="link.subLinks" class="fas fa-chevron-down text-[9px] opacity-50 transition-transform duration-300 ml-1" :class="{'rotate-180': link.name === 'Destinations' && isDestDropdownOpen}"></i>
                             <span class="absolute bottom-0 left-0 h-[2px] bg-brand transition-all duration-300 group-hover:w-full"
-                                  :class="link.name === 'Contact Us' ? 'w-full opacity-100' : 'w-0 opacity-0 group-hover:opacity-100'"></span>
+                                  :class="link.current ? 'w-full opacity-100' : 'w-0 opacity-0 group-hover:opacity-100'"></span>
                         </a>
 
                         <transition name="dropdown">
@@ -110,7 +110,7 @@
                             <div v-if="isLangDropdownOpen" 
                                  class="absolute top-[80%] right-0 w-[160px] bg-white shadow-[0_10px_40px_rgba(0,0,0,0.1)] rounded-sm border-t-2 border-brand p-1">
                                 <ul class="space-y-0.5">
-                                    <li v-for="lang in ['中文', 'English', 'Française']" :key="lang">
+                                    <li v-for="lang in ['中文', 'English', 'Français']" :key="lang">
                                         <a href="#" @click.prevent="switchLang(lang)" 
                                            class="flex items-center justify-between px-4 py-2.5 text-xs font-medium text-gray-600 hover:bg-gray-50 hover:text-brand transition-all"
                                            :class="{'text-brand bg-red-50/50': currentLang === lang}">
@@ -143,7 +143,7 @@
                         <div class="flex gap-3">
                             <button @click="switchLang('中文')" class="px-5 py-2 rounded-full text-xs font-bold transition border" :class="currentLang === '中文' ? 'bg-brand text-white border-brand' : 'bg-white text-gray-600 border-gray-200'">中文</button>
                             <button @click="switchLang('English')" class="px-5 py-2 rounded-full text-xs font-bold transition border" :class="currentLang === 'English' ? 'bg-brand text-white border-brand' : 'bg-white text-gray-600 border-gray-200'">EN</button>
-                            <button @click="switchLang('Française')" class="px-5 py-2 rounded-full text-xs font-bold transition border" :class="currentLang === 'Française' ? 'bg-brand text-white border-brand' : 'bg-white text-gray-600 border-gray-200'">FR</button>
+                            <button @click="switchLang('Français')" class="px-5 py-2 rounded-full text-xs font-bold transition border" :class="currentLang === 'Français' ? 'bg-brand text-white border-brand' : 'bg-white text-gray-600 border-gray-200'">FR</button>
                         </div>
                     </div>
                 </div>
@@ -378,7 +378,7 @@
                 { name: 'Tailor-made', url: 'custom-en.html' },
                 { name: 'Flight Services', url: 'flight-tickets-en.html' },
                 { name: 'About Us', url: 'about-en.html' },
-                { name: 'Contact Us', url: 'contact-en.html' },
+                { name: 'Contact Us', url: 'contact-en.html', current: true },
                 { name: 'Blog', url: 'blog-en.html' }
             ];
 
@@ -386,7 +386,7 @@
                 const urlMap = {
                     '中文': 'contact-cn.html',
                     'English': 'contact-en.html',
-                    'Française': 'contact-fr.html'
+                    'Français': 'contact-fr.html'
                 };
                 const targetUrl = urlMap[lang];
                 if (targetUrl) {
@@ -434,7 +434,7 @@
 
                 try {
                     // 4. Send POST request to real server API
-                    const response = await fetch('/api/contact', {
+                    const response = await fetch('https://service.eurasia-tours.fr/sendmail/GeneralInquiry', {
                         method: 'POST',
                         headers: {
                             'Content-Type': 'application/json',

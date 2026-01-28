@@ -637,7 +637,7 @@
             });
 
             const availableDestinations = computed(() => {
-                const selected = formData.value.destination.split('、'); 
+                const selected = formData.value.destination.split(','); 
                 return hotDestinations.filter(d => !formData.value.destination.includes(d));
             });
 
@@ -688,7 +688,7 @@
 
                 // Prepare Data Payload (Structure matches Chinese version for backend compatibility)
                 const payload = {
-                    type: 'Custom Tour Request (FR)',
+                    type: 'Custom Tour Request',
                     language: currentLang.value,
                     contact: {
                         name: formData.value.name,
@@ -699,19 +699,20 @@
                         destination: formData.value.destination,
                         startDate: formData.value.date,
                         duration: formData.value.duration,
-                        passengers: formData.value.passengers,
-                        budget: formData.value.budget + " €/pers"
+                        passengers: Number(formData.value.passengers),
+                        budget: formData.value.budget + " €/人"
                     },
                     preferences: {
-                        needFlights: formData.value.needFlights === 'yes' ? 'Oui, avec vols' : 'Non, sans vols',
-                        hotelStars: formData.value.stars + " Étoiles",
-                        details: formData.value.details || "Pas de détails supplémentaires"
+                        needFlights: formData.value.needFlights === 'yes' ? '需要协助预订机票' : '自行解决机票',
+                        hotelStars: formData.value.stars + " 星级",
+                        details: formData.value.details || "无特殊备注"
                     }
                 };
 
+                const API_ENDPOINT = 'https://api.eurasia-tours.fr/api/v1/submit_custom_tour';
+
                 try {
-                    // Send to backend
-                    const response = await fetch('/api/custom-trip', {
+                    const response = await fetch(API_ENDPOINT, {
                         method: 'POST',
                         headers: {
                             'Content-Type': 'application/json',
@@ -720,17 +721,21 @@
                         body: JSON.stringify(payload)
                     });
 
+                    const result = await response.json();
+
                     if (response.ok) {
+                        console.log('提交成功:', result);
                         isSending.value = false;
                         isSubmitted.value = true;
                         window.scrollTo({ top: 300, behavior: 'smooth' });
                     } else {
+                        console.error('服务器报错:', result);
                         throw new Error('Server submission failed');
                     }
                 } catch (error) {
                     console.error('Submission error:', error);
                     isSending.value = false;
-                    alert("Une erreur s'est produite lors de l'envoi. Veuillez vérifier votre connexion ou nous contacter directement par téléphone.");
+                    alert("提交失败，请检查网络或直接联系客服。");
                 }
             };
 

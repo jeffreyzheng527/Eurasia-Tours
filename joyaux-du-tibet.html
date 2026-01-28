@@ -961,7 +961,7 @@
 
                 try {
                     // Envoi des données à l'API backend
-                    const response = await fetch('/api/submit-inquiry', {
+                    const response = await fetch('https://service.eurasia-tours.fr/sendmail/TourOrderRequest', {
                         method: 'POST',
                         headers: {
                             'Content-Type': 'application/json',
