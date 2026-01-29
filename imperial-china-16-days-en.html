@@ -994,14 +994,12 @@
                     });
 
                     if (response.ok) {
-                        const result = await response.json();
                         isSending.value = false;
                         isSubmitted.value = true;
                     } else {
                         throw new Error('Server responded with error');
                     }
                 } catch (error) {
-                    console.error('Submission error:', error);
                     isSending.value = false;
                     alert("Sending failed, please try again later or contact us directly.");
                 }

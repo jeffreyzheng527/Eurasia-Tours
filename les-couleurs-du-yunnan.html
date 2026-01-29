@@ -1009,16 +1009,12 @@
                     });
 
                     if (response.ok) {
-                        // Success handling
-                        const result = await response.json(); 
                         isSending.value = false;
                         isSubmitted.value = true;
                     } else {
-                        // Error handling
                         throw new Error('Server responded with error');
                     }
                 } catch (error) {
-                    console.error('Submission error:', error);
                     isSending.value = false;
                     alert("L'envoi a échoué. Veuillez réessayer plus tard ou nous contacter directement.");
                 }

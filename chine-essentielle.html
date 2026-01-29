@@ -963,14 +963,12 @@
 
                     // 5. Response Handling
                     if (response.ok) {
-                        // const result = await response.json(); // Optional
                         isSending.value = false;
                         isSubmitted.value = true;
                     } else {
                         throw new Error('Server responded with error');
                     }
                 } catch (error) {
-                    console.error('Submission error:', error);
                     isSending.value = false;
                     alert("L'envoi a échoué, veuillez réessayer plus tard ou nous contacter directement.");
                 }

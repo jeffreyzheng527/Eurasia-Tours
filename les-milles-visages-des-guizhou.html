@@ -1012,16 +1012,13 @@
 
                     // 处理服务器响应
                     if (response.ok) {
-                        const result = await response.json();
                         isSending.value = false;
                         isSubmitted.value = true;
                     } else {
                         throw new Error('Server responded with error');
                     }
                 } catch (error) {
-                    console.error('Submission error:', error);
                     isSending.value = false;
-                    // 使用法语提示错误
                     alert("Une erreur s'est produite lors de l'envoi. Veuillez réessayer plus tard ou nous contacter directement.");
                 }
             };
