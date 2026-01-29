@@ -452,7 +452,6 @@
                         throw new Error('Server submission failed');
                     }
                 } catch (error) {
-                    console.error('Submission error:', error);
                     isSending.value = false;
                     alert("Connection failed. Please check your network or call us directly.");
                 }

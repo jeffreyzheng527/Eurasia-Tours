@@ -448,7 +448,6 @@
                         throw new Error('Erreur de soumission au serveur');
                     }
                 } catch (error) {
-                    console.error('Submission error:', error);
                     isSending.value = false;
                     alert("Échec de la connexion réseau, veuillez vérifier votre réseau ou nous appeler directement.");
                 }

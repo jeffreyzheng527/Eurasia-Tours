@@ -516,7 +516,6 @@
                         throw new Error('Server submission failed');
                     }
                 } catch (error) {
-                    console.error('Submission error:', error);
                     isSending.value = false;
                     alert("网络连接失败，请检查您的网络或直接拨打我们要电话。");
                 }
