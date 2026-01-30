@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>内部新订单通知 - Eurasia Tours</title>
+<style>
+    /* 样式重置 - 保持品牌一致性 */
+    body, table, td, a { -webkit-text-size-adjust: 100%; -ms-text-size-adjust: 100%; }
+    table, td { mso-table-lspace: 0pt; mso-table-rspace: 0pt; }
+    img { -ms-interpolation-mode: bicubic; border: 0; height: auto; line-height: 100%; outline: none; text-decoration: none; }
+    table { border-collapse: collapse !important; }
+    body { height: 100% !important; margin: 0 !important; padding: 0 !important; width: 100% !important; font-family: 'Microsoft YaHei', 'PingFang SC', 'Helvetica Neue', Helvetica, Arial, sans-serif; background-color: #f4f4f4; color: #333333; }
+    
+    /* 容器布局 */
+    .wrapper { width: 100%; table-layout: fixed; background-color: #f4f4f4; padding-bottom: 40px; }
+    .main-content { background-color: #ffffff; margin: 0 auto; width: 100%; max-width: 600px; border-spacing: 0; box-shadow: 0 1px 3px rgba(0,0,0,0.05); }
+    
+    /* 品牌头部 */
+    .header-bar { height: 4px; background-color: #b91c1c; width: 100%; }
+    .logo-container { text-align: center; padding: 30px 0 20px 0; border-bottom: 1px solid #f0f0f0; }
+    
+    /* 内部通知标题区 */
+    .internal-header { padding: 20px 40px 10px 40px; text-align: center; background-color: #fff; }
+    .status-badge { display: inline-block; background-color: #b91c1c; color: #ffffff; padding: 5px 12px; border-radius: 4px; font-size: 12px; font-weight: bold; text-transform: uppercase; letter-spacing: 1px; }
+    
+    /* 数据模块通用样式 */
+    .section-box { border-top: 1px solid #eeeeee; margin: 0 40px; padding: 20px 0; }
+    .section-title { font-size: 15px; font-weight: bold; color: #b91c1c; margin-bottom: 15px; display: flex; align-items: center; }
+    .section-title span { background: #eee; padding: 2px 8px; border-radius: 3px; font-size: 11px; color: #666; margin-left: 10px; font-weight: normal; }
+    
+    /* 数据行样式 */
+    .data-row { display: flex; justify-content: space-between; margin-bottom: 10px; font-size: 14px; }
+    .label { color: #666666; font-weight: bold; width: 35%; flex-shrink: 0; }
+    .value { color: #333333; width: 65%; text-align: right; word-break: break-word; }
+    .highlight { color: #b91c1c; font-weight: bold; }
+    
+    /* 底部页脚 */
+    .footer-address { padding: 30px 40px; background-color: #333333; color: #999999; font-size: 12px; text-align: center; line-height: 1.6; }
+    .footer-link { color: #999999; text-decoration: none; }
+
+    /* 移动端适配 */
+    @media screen and (max-width: 600px) {
+        .internal-header, .section-box { padding-left: 20px; padding-right: 20px; margin: 0 10px; }
+        .data-row { flex-direction: column; border-bottom: 1px dashed #eee; padding-bottom: 8px; }
+        .label { width: 100%; margin-bottom: 4px; }
+        .value { width: 100%; text-align: left; }
+    }
+</style>
+</head>
+<body>
+
+<table class="wrapper" role="presentation">
+    <tr>
+        <td align="center">
+            <table class="main-content" role="presentation">
+                <tr><td class="header-bar"></td></tr>
+
+                <tr>
+                    <td class="logo-container">
+                        <a href="https://www.eurasia-tours.fr" target="_blank">
+                            <img src="https://www.eurasia-tours.fr/assets/logo-word-rNz8dsz6.jpg" alt="Eurasia Tours" width="180" style="display: block; margin: 0 auto;">
+                        </a>
+                    </td>
+                </tr>
+                
+                <tr>
+                    <td class="internal-header">
+                        <div class="status-badge">内部新订单通知</div>
+                        <h1 style="font-size: 22px; margin: 15px 0 5px 0; color: #333;">{{ type }}</h1>
+                        <p style="font-size: 13px; color: #999; margin: 0;">语言环境: {{ language }}</p>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td>
+                        <div class="section-box" style="border-top: none;">
+                            <div class="section-title">👤 客户联系方式</div>
+                            <div class="data-row">
+                                <span class="label">姓名</span>
+                                <span class="value highlight" style="font-size: 16px;">{{ contact.name }}</span>
+                            </div>
+                            <div class="data-row">
+                                <span class="label">邮箱</span>
+                                <span class="value"><a href="mailto:{{ contact.email }}" style="color:#b91c1c; text-decoration:none;">{{ contact.email }}</a></span>
+                            </div>
+                            <div class="data-row">
+                                <span class="label">电话</span>
+                                <span class="value">{{ contact.phone }}</span>
+                            </div>
+                        </div>
+                    </td>
+                </tr>
+
+                {% if trip %}
+                <tr>
+                    <td>
+                        <div class="section-box">
+                            <div class="section-title">🌏 定制旅行需求 <span>Custom Tour</span></div>
+                            <div class="data-row"><span class="label">目的地</span><span class="value">{{ trip.destination }}</span></div>
+                            <div class="data-row"><span class="label">出发日期</span><span class="value">{{ trip.startDate }}</span></div>
+                            <div class="data-row"><span class="label">行程天数</span><span class="value">{{ trip.duration }}</span></div>
+                            <div class="data-row"><span class="label">出行人数</span><span class="value">{{ trip.passengers }}</span></div>
+                            <div class="data-row"><span class="label">预算范围</span><span class="value highlight">{{ trip.budget }}</span></div>
+                            
+                            <div class="data-row" style="margin-top:15px; border-top:1px dashed #eee; padding-top:10px;">
+                                <span class="label">国际机票</span><span class="value">{{ preferences.needFlights }}</span>
+                            </div>
+                            <div class="data-row"><span class="label">酒店星级</span><span class="value">{{ preferences.hotelStars }}</span></div>
+                            
+                            <div class="data-row" style="flex-direction: column; margin-top: 10px; background: #fafafa; padding: 10px; border-radius: 4px;">
+                                <span class="label" style="width:100%; margin-bottom: 5px;">备注 / 详细需求：</span>
+                                <span class="value" style="width:100%; text-align: left; color: #555;">{{ preferences.details }}</span>
+                            </div>
+                        </div>
+                    </td>
+                </tr>
+                {% endif %}
+
+                {% if tourName %}
+                <tr>
+                    <td>
+                        <div class="section-box">
+                            <div class="section-title">🚩 线路产品预订 <span>Product Tour</span></div>
+                            <div class="data-row"><span class="label">产品名称</span><span class="value highlight">{{ tourName }}</span></div>
+                            <div class="data-row"><span class="label">出发日期</span><span class="value">{{ travelDate }}</span></div>
+                            <div class="data-row"><span class="label">出行人数</span><span class="value">{{ passengers }}</span></div>
+                            
+                            {% if selectedOptionals %}
+                            <div class="data-row"><span class="label">增值服务</span><span class="value" style="color:#d97706;">{{ selectedOptionals }}</span></div>
+                            {% endif %}
+
+                            <div class="data-row"><span class="label">预估总价</span><span class="value highlight" style="font-size:16px;">€{{ totalPrice }}</span></div>
+                            
+                            {% if remarks %}
+                            <div class="data-row" style="flex-direction: column; margin-top: 10px; background: #fafafa; padding: 10px; border-radius: 4px;">
+                                <span class="label" style="width:100%; margin-bottom: 5px;">客户备注：</span>
+                                <span class="value" style="width:100%; text-align: left; color: #555;">{{ remarks }}</span>
+                            </div>
+                            {% endif %}
+                        </div>
+                    </td>
+                </tr>
+                {% endif %}
+
+                {% if flightDetails %}
+                <tr>
+                    <td>
+                        <div class="section-box">
+                            <div class="section-title">✈️ 机票询价 <span>Flight Request</span></div>
+                            <div class="data-row"><span class="label">航线</span><span class="value highlight">{{ flightDetails.route }}</span></div>
+                            <div class="data-row"><span class="label">日期范围</span><span class="value">{{ flightDetails.dates }}</span></div>
+                            <div class="data-row"><span class="label">时间弹性</span><span class="value">{{ flightDetails.flexibility }}</span></div>
+                            <div class="data-row"><span class="label">乘客人数</span><span class="value">{{ flightDetails.passengers }}</span></div>
+                            <div class="data-row"><span class="label">航司偏好</span><span class="value">{{ flightDetails.airlinePreference }}</span></div>
+                            <div class="data-row"><span class="label">舱位等级</span><span class="value">{{ flightDetails.cabinClass }}</span></div>
+                            <div class="data-row"><span class="label">直飞/转机</span><span class="value">{{ flightDetails.directFlight }}</span></div>
+                        </div>
+                    </td>
+                </tr>
+                {% endif %}
+
+                {% if message %}
+                <tr>
+                    <td>
+                        <div class="section-box">
+                            <div class="section-title">💬 普通咨询留言 <span>General Inquiry</span></div>
+                            <div style="font-size: 14px; line-height: 1.6; color: #555; background: #fffdf5; padding: 15px; border-radius: 4px; border: 1px dashed #e0e0e0;">
+                                {{ message }}
+                            </div>
+                        </div>
+                    </td>
+                </tr>
+                {% endif %}
+
+                <tr>
+                    <td style="padding: 20px 40px;">
+                        <a href="mailto:{{ contact.email }}?subject=Re: {{ type }} - Eurasia Tours" style="display: block; width: 220px; margin: 0 auto; background-color: #333333; color: #ffffff; text-align: center; padding: 12px; border-radius: 4px; text-decoration: none; font-weight: bold; font-size: 14px;">
+                            ✉️ 回复客户邮件
+                        </a>
+                        <p style="text-align: center; font-size: 12px; color: #999; margin-top: 15px;">
+                            此邮件由系统自动生成，请尽快处理。
+                        </p>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="footer-address">
+                        30 Rue Ernest Renan<br>
+                        75015 Paris<br>
+                        <a href="https://www.eurasia-tours.fr" class="footer-link">www.eurasia-tours.fr</a>
+                    </td>
+                </tr>
+
+            </table>
+        </td>
+    </tr>
+</table>
+
+</body>
+</html>

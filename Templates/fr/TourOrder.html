@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Merci de votre message | Eurasia Tours</title>
+<style>
+    /* Styles conservés du fichier original */
+    body, table, td, a { -webkit-text-size-adjust: 100%; -ms-text-size-adjust: 100%; }
+    table, td { mso-table-lspace: 0pt; mso-table-rspace: 0pt; }
+    img { -ms-interpolation-mode: bicubic; border: 0; height: auto; line-height: 100%; outline: none; text-decoration: none; }
+    table { border-collapse: collapse !important; }
+    body { height: 100% !important; margin: 0 !important; padding: 0 !important; width: 100% !important; font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; background-color: #f4f4f4; color: #333333; }
+    .wrapper { width: 100%; table-layout: fixed; background-color: #f4f4f4; padding-bottom: 40px; }
+    .main-content { background-color: #ffffff; margin: 0 auto; width: 100%; max-width: 600px; border-spacing: 0; font-family: sans-serif; color: #333333; box-shadow: 0 1px 3px rgba(0,0,0,0.05); }
+    .header-bar { height: 4px; background-color: #b91c1c; width: 100%; }
+    .logo-container { text-align: center; padding: 40px 0 30px 0; }
+    .text-content { padding: 0 40px; text-align: left; line-height: 1.6; font-size: 15px; color: #333333; }
+    .summary-box { background-color: #f9f9f9; border: 1px solid #eeeeee; border-radius: 4px; margin: 25px 40px; padding: 25px; }
+    .summary-title { font-size: 12px; font-weight: bold; text-transform: uppercase; color: #b91c1c; letter-spacing: 1px; margin-bottom: 15px; border-bottom: 1px solid #e5e5e5; padding-bottom: 10px; }
+    .summary-row { display: flex; justify-content: space-between; margin-bottom: 10px; border-bottom: 1px dashed #e0e0e0; padding-bottom: 10px; }
+    .summary-row:last-child { border-bottom: none; margin-bottom: 0; padding-bottom: 0; }
+    .label { font-weight: bold; color: #666666; font-size: 13px; width: 35%; flex-shrink: 0; }
+    .value { color: #333333; font-size: 13px; width: 60%; text-align: right; word-break: break-word; }
+    /* Le bloc de contact rose a été supprimé car votre texte a sa propre signature détaillée */
+    .footer-address { padding: 30px 40px; background-color: #333333; color: #999999; font-size: 12px; text-align: center; line-height: 1.6; }
+    @media screen and (max-width: 600px) {
+        .text-content { padding: 0 20px; }
+        .summary-box { margin: 20px 20px; }
+        .footer-address { padding: 20px; }
+        .summary-row { flex-direction: column; }
+        .label { width: 100%; margin-bottom: 4px; }
+        .value { width: 100%; text-align: left; }
+    }
+</style>
+</head>
+<body>
+
+<table class="wrapper" role="presentation">
+    <tr>
+        <td align="center">
+            <table class="main-content" role="presentation">
+                <tr><td class="header-bar"></td></tr>
+                <tr>
+                    <td class="logo-container">
+                        <a href="https://www.eurasia-tours.fr" target="_blank">
+                            <img src="https://www.eurasia-tours.fr/assets/logo-word-rNz8dsz6.jpg" alt="Eurasia Tours" width="180" style="display: block; margin: 0 auto;">
+                        </a>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="text-content">
+                        <h1 style="font-size: 20px; font-weight: 700; color: #000000; margin-bottom: 25px; margin-top: 0;">
+                            Merci de votre demande
+                        </h1>
+                        <p style="margin-bottom: 0;">
+                            Chère Madame, Cher Monsieur,<br><br>
+                            Nous vous remercions chaleureusement d'avoir pris contact avec Eurasia Tours et de nous avoir fait part de votre projet.<br><br>
+                            Votre message a bien été reçu et sera traité avec la plus grande attention. Un conseiller voyage dédié vous répondra par téléphone ou par e‑mail dès que possible, afin d'échanger plus en détail avec vous et vous accompagner dans la concrétisation de votre voyage.
+                        </p>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <div class="summary-box">
+                            <div class="summary-title">Détails de votre projet</div>
+                            
+                            <div class="summary-row">
+                                <span class="label">Circuit</span>
+                                <span class="value" style="font-weight: bold;">{{ tourName }}</span> 
+                            </div>
+
+                            <div class="summary-row">
+                                <span class="label">Nom</span>
+                                <span class="value">{{ name }}</span> 
+                            </div>
+
+                            <div class="summary-row">
+                                <span class="label">E-mail</span>
+                                <span class="value">{{ email }}</span> 
+                            </div>
+
+                            <div class="summary-row">
+                                <span class="label">Téléphone</span>
+                                <span class="value">{{ phone }}</span> 
+                            </div>
+
+                            <div class="summary-row">
+                                <span class="label">Date de départ</span>
+                                <span class="value">{{ travelDate }}</span> 
+                            </div>
+
+                            <div class="summary-row">
+                                <span class="label">Participants</span>
+                                <span class="value">{{ passengers }}</span> 
+                            </div>
+
+                            <div class="summary-row">
+                                <span class="label">Prix total estimé</span>
+                                <span class="value" style="color: #b91c1c; font-weight: bold;">€{{ totalPrice }}</span> 
+                            </div>
+
+                            <div class="summary-row">
+                                <span class="label">Remarques</span>
+                                <span class="value" style="color: #b91c1c;">{{ remarks }}</span> 
+                            </div>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="text-content" style="padding-bottom: 40px;">
+                        <p style="margin-top: 0;">
+                            En attendant, n'hésitez pas à parcourir nos idées d'itinéraires et nos inspirations sur notre site : <br>
+                            <a href="https://www.eurasia-tours.fr" style="color: #b91c1c; text-decoration: none;">www.eurasia-tours.fr</a>
+                        </p>
+                        <p>
+                            Nous nous réjouissons d'avance à l'idée de vous aider à préparer un voyage qui vous ressemble.
+                        </p>
+                        
+                        <p style="margin-top: 30px; margin-bottom: 0; border-top: 1px solid #eeeeee; padding-top: 20px;">
+                            Bien cordialement,<br><br>
+                            <strong>L'équipe Eurasia Tours</strong><br>
+                            <span style="color: #666; font-size: 13px;">Votre partenaire de voyage en Asie depuis 2000</span><br><br>
+                            📍 30 Rue Ernest Renan, 75015 Paris<br>
+                            📞 <a href="tel:0156691280" style="color: #333; text-decoration: none;">01 56 69 12 80</a><br>
+                            ✉️ <a href="mailto:inscription@eurasiatours.fr" style="color: #b91c1c; text-decoration: none;">inscription@eurasiatours.fr</a><br>
+                            🌐 <a href="https://www.eurasia-tours.fr" style="color: #b91c1c; text-decoration: none;">www.eurasia-tours.fr</a>
+                        </p>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="footer-address">
+                        30 Rue Ernest Renan<br>
+                        75015 Paris
+                    </td>
+                </tr>
+            </table>
+        </td>
+    </tr>
+</table>
+
+</body>
+</html>
