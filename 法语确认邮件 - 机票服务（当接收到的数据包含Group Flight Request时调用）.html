@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fr">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Thank you for your inquiry | We have received your request</title>
+<title>Confirmation de votre demande de vol - Eurasia Tours</title>
 <style>
     /* 基础重置 */
     body, table, td, a { -webkit-text-size-adjust: 100%; -ms-text-size-adjust: 100%; }
@@ -28,8 +28,8 @@
     .summary-title { font-size: 12px; font-weight: bold; text-transform: uppercase; color: #b91c1c; letter-spacing: 1px; margin-bottom: 15px; border-bottom: 1px solid #e5e5e5; padding-bottom: 10px; }
     .summary-row { display: flex; justify-content: space-between; margin-bottom: 10px; border-bottom: 1px dashed #e0e0e0; padding-bottom: 10px; }
     .summary-row:last-child { border-bottom: none; margin-bottom: 0; padding-bottom: 0; }
-    .label { font-weight: bold; color: #666666; font-size: 13px; width: 35%; flex-shrink: 0; } /* 调整了宽度以适应英文 */
-    .value { color: #333333; font-size: 13px; width: 60%; text-align: right; word-break: break-word; }
+    .label { font-weight: bold; color: #666666; font-size: 13px; width: 40%; flex-shrink: 0; } /* 稍微加宽Label以适应法语 */
+    .value { color: #333333; font-size: 13px; width: 55%; text-align: right; word-break: break-word; }
     
     /* 联系方式高亮块 */
     .contact-block { background-color: #fff1f2; padding: 15px; border-left: 3px solid #b91c1c; margin: 20px 0; font-size: 15px; }
@@ -68,11 +68,16 @@
                 <tr>
                     <td class="text-content">
                         <h1 style="font-size: 20px; font-weight: 700; color: #000000; margin-bottom: 25px; margin-top: 0;">
-                            Thank you for your inquiry | We have received your request
+                            Nous avons bien reçu votre demande de vol
                         </h1>
+                        <p style="margin-bottom: 15px;">
+                            Chère Madame, Cher Monsieur,
+                        </p>
+                        <p style="margin-bottom: 15px;">
+                            Nous vous remercions chaleureusement d'avoir pris contact avec Eurasia Tours.
+                        </p>
                         <p style="margin-bottom: 0;">
-                            Hello,<br><br>
-                            We have successfully received your inquiry. Our team will contact you shortly to provide further information and assistance.
+                            Votre demande a bien été reçue et sera traitée avec la plus grande attention. Un conseiller voyage dédié vous répondra par téléphone ou par e-mail dès que possible, afin d'échanger plus en détail avec vous et vous proposer les meilleures options de vol.
                         </p>
                     </td>
                 </tr>
@@ -80,18 +85,18 @@
                 <tr>
                     <td>
                         <div class="summary-box">
-                            <div class="summary-title">Flight Inquiry Details</div>
+                            <div class="summary-title">Détails de votre demande</div>
                             
                             <div class="summary-row">
-                                <span class="label">Inquiry Type</span>
+                                <span class="label">Type de demande</span>
                                 <span class="value">{{ type }}</span> 
                             </div>
                             <div class="summary-row">
-                                <span class="label">Name</span>
+                                <span class="label">Nom du contact</span>
                                 <span class="value">{{ contact.name }}</span> 
                             </div>
                             <div class="summary-row">
-                                <span class="label">Phone</span>
+                                <span class="label">Téléphone</span>
                                 <span class="value">{{ contact.phone }}</span> 
                             </div>
                             <div class="summary-row">
@@ -100,32 +105,32 @@
                             </div>
 
                             <div class="summary-row">
-                                <span class="label">Route</span>
+                                <span class="label">Itinéraire</span>
                                 <span class="value">{{ flightDetails.route }}</span> 
                             </div>
                             <div class="summary-row">
-                                <span class="label">Dates</span>
+                                <span class="label">Dates de voyage</span>
                                 <span class="value">{{ flightDetails.flightDates }}</span> 
                             </div>
                             <div class="summary-row">
-                                <span class="label">Flexibility</span>
+                                <span class="label">Flexibilité</span>
                                 <span class="value">{{ flightDetails.flexibility }}</span> 
                             </div>
                             <div class="summary-row">
-                                <span class="label">Passengers</span>
+                                <span class="label">Passagers</span>
                                 <span class="value">{{ flightDetails.passengers }}</span> 
                             </div>
                             
                             <div class="summary-row">
-                                <span class="label">Preferred Airline</span>
+                                <span class="label">Compagnie préférée</span>
                                 <span class="value">{{ flightDetails.airlinePreference }}</span> 
                             </div>
                             <div class="summary-row">
-                                <span class="label">Cabin Class</span>
+                                <span class="label">Classe de voyage</span>
                                 <span class="value">{{ flightDetails.cabinClass }}</span> 
                             </div>
                             <div class="summary-row">
-                                <span class="label">Direct Flight</span>
+                                <span class="label">Vol direct</span>
                                 <span class="value">{{ flightDetails.directFlight }}</span> 
                             </div>
                         </div>
@@ -135,18 +140,20 @@
                 <tr>
                     <td class="text-content" style="padding-bottom: 40px;">
                         <p style="margin-top: 0;">
-                            Should you have any questions or wish to share additional details in the meantime, please feel free to contact us using the information below:
+                            En attendant, n'hésitez pas à parcourir nos idées d'itinéraires et nos inspirations sur notre site : <a href="https://www.eurasia-tours.fr" style="color: #b91c1c; text-decoration: underline;">www.eurasia-tours.fr</a>
+                        </p>
+                        <p>
+                            Nous nous réjouissons d'avance à l'idée de vous aider à préparer votre voyage.
                         </p>
                         
                         <div class="contact-block">
-                            Email: <a href="mailto:reservation@eurasiatours.fr" style="color: #b91c1c; text-decoration: none;">reservation@eurasiatours.fr</a><br>
-                            Phone: <a href="tel:+33156691281" style="color: #b91c1c; text-decoration: none;">+33 (0)1 56 69 12 81</a>
+                            <strong>Service Billetterie - Eurasia Tours</strong><br><br>
+                            Email : <a href="mailto:inscription@eurasiatours.fr" style="color: #b91c1c; text-decoration: none;">inscription@eurasiatours.fr</a><br>
+                            Tél : <a href="tel:+33156691281" style="color: #b91c1c; text-decoration: none;">+33 (0)1 56 69 12 81</a>
                         </div>
 
-                        <p>We look forward to helping you plan a wonderful journey.</p>
-
                         <p style="margin-top: 30px; margin-bottom: 0;">
-                            Best regards,<br><br>
+                            Bien cordialement,<br>
                             <strong>EURASIA TOURS</strong>
                         </p>
                     </td>
@@ -154,8 +161,9 @@
 
                 <tr>
                     <td class="footer-address">
-                        30 rue Ernest Renan<br>
-                        75015 Paris
+                        30 Rue Ernest Renan<br>
+                        75015 Paris<br>
+                        <a href="https://www.eurasia-tours.fr" style="color: #999999; text-decoration: none;">www.eurasia-tours.fr</a>
                     </td>
                 </tr>
 

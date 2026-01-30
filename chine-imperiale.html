@@ -1035,14 +1035,12 @@
                     });
 
                     if (response.ok) {
-                        const result = await response.json();
                         isSending.value = false;
                         isSubmitted.value = true;
                     } else {
                         throw new Error('Server responded with error');
                     }
                 } catch (error) {
-                    console.error('Submission error:', error);
                     isSending.value = false;
                     alert("Échec de l'envoi, veuillez réessayer plus tard ou nous contacter directement.");
                 }

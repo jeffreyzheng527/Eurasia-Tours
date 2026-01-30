@@ -1,29 +1,43 @@
 <!DOCTYPE html>
-<html lang="zh-CN">
+<html lang="fr">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>感谢您的咨询｜我们已收到您的请求</title>
+<title>Confirmation de votre demande de vol - Eurasia Tours</title>
 <style>
-    /* 基础样式保持不变 */
+    /* 基础重置 */
     body, table, td, a { -webkit-text-size-adjust: 100%; -ms-text-size-adjust: 100%; }
     table, td { mso-table-lspace: 0pt; mso-table-rspace: 0pt; }
     img { -ms-interpolation-mode: bicubic; border: 0; height: auto; line-height: 100%; outline: none; text-decoration: none; }
     table { border-collapse: collapse !important; }
     body { height: 100% !important; margin: 0 !important; padding: 0 !important; width: 100% !important; font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; background-color: #f4f4f4; color: #333333; }
+
+    /* 布局样式 */
     .wrapper { width: 100%; table-layout: fixed; background-color: #f4f4f4; padding-bottom: 40px; }
     .main-content { background-color: #ffffff; margin: 0 auto; width: 100%; max-width: 600px; border-spacing: 0; font-family: sans-serif; color: #333333; box-shadow: 0 1px 3px rgba(0,0,0,0.05); }
+    
+    /* 品牌元素 */
     .header-bar { height: 4px; background-color: #b91c1c; width: 100%; }
     .logo-container { text-align: center; padding: 40px 0 30px 0; }
+    
+    /* 文本内容 */
     .text-content { padding: 0 40px; text-align: left; line-height: 1.6; font-size: 15px; color: #333333; }
+    
+    /* 数据卡片 */
     .summary-box { background-color: #f9f9f9; border: 1px solid #eeeeee; border-radius: 4px; margin: 25px 40px; padding: 25px; }
     .summary-title { font-size: 12px; font-weight: bold; text-transform: uppercase; color: #b91c1c; letter-spacing: 1px; margin-bottom: 15px; border-bottom: 1px solid #e5e5e5; padding-bottom: 10px; }
     .summary-row { display: flex; justify-content: space-between; margin-bottom: 10px; border-bottom: 1px dashed #e0e0e0; padding-bottom: 10px; }
     .summary-row:last-child { border-bottom: none; margin-bottom: 0; padding-bottom: 0; }
-    .label { font-weight: bold; color: #666666; font-size: 13px; width: 30%; flex-shrink: 0; }
-    .value { color: #333333; font-size: 13px; width: 65%; text-align: right; word-break: break-word; }
+    .label { font-weight: bold; color: #666666; font-size: 13px; width: 40%; flex-shrink: 0; } /* 稍微加宽Label以适应法语 */
+    .value { color: #333333; font-size: 13px; width: 55%; text-align: right; word-break: break-word; }
+    
+    /* 联系方式高亮块 */
     .contact-block { background-color: #fff1f2; padding: 15px; border-left: 3px solid #b91c1c; margin: 20px 0; font-size: 15px; }
+    
+    /* 页脚 */
     .footer-address { padding: 30px 40px; background-color: #333333; color: #999999; font-size: 12px; text-align: center; line-height: 1.6; }
+
+    /* 移动端适配 */
     @media screen and (max-width: 600px) {
         .text-content { padding: 0 20px; }
         .summary-box { margin: 20px 20px; }
@@ -40,7 +54,9 @@
     <tr>
         <td align="center">
             <table class="main-content" role="presentation">
+                
                 <tr><td class="header-bar"></td></tr>
+
                 <tr>
                     <td class="logo-container">
                         <a href="https://www.eurasia-tours.fr" target="_blank">
@@ -48,70 +64,109 @@
                         </a>
                     </td>
                 </tr>
+
                 <tr>
                     <td class="text-content">
                         <h1 style="font-size: 20px; font-weight: 700; color: #000000; margin-bottom: 25px; margin-top: 0;">
-                            感谢您的咨询｜我们已收到您的请求
+                            Nous avons bien reçu votre demande de vol
                         </h1>
+                        <p style="margin-bottom: 15px;">
+                            Chère Madame, Cher Monsieur,
+                        </p>
+                        <p style="margin-bottom: 15px;">
+                            Nous vous remercions chaleureusement d'avoir pris contact avec Eurasia Tours.
+                        </p>
                         <p style="margin-bottom: 0;">
-                            您好，我们确认已收到您的咨询请求，相关团队将尽快与您联系，为您提供进一步的信息与协助。
+                            Votre demande a bien été reçue et sera traitée avec la plus grande attention. Un conseiller voyage dédié vous répondra par téléphone ou par e-mail dès que possible, afin d'échanger plus en détail avec vous et vous proposer les meilleures options de vol.
                         </p>
                     </td>
                 </tr>
+
                 <tr>
                     <td>
                         <div class="summary-box">
-                            <div class="summary-title">在线留言详情</div>
+                            <div class="summary-title">Détails de votre demande</div>
                             
                             <div class="summary-row">
-                                <span class="label">咨询类型</span>
+                                <span class="label">Type de demande</span>
                                 <span class="value">{{ type }}</span> 
                             </div>
-
                             <div class="summary-row">
-                                <span class="label">姓名</span>
-                                <span class="value">{{ name }}</span> 
+                                <span class="label">Nom du contact</span>
+                                <span class="value">{{ contact.name }}</span> 
+                            </div>
+                            <div class="summary-row">
+                                <span class="label">Téléphone</span>
+                                <span class="value">{{ contact.phone }}</span> 
+                            </div>
+                            <div class="summary-row">
+                                <span class="label">Email</span>
+                                <span class="value">{{ contact.email }}</span> 
                             </div>
 
                             <div class="summary-row">
-                                <span class="label">电话</span>
-                                <span class="value">{{ phone }}</span> 
+                                <span class="label">Itinéraire</span>
+                                <span class="value">{{ flightDetails.route }}</span> 
                             </div>
-
                             <div class="summary-row">
-                                <span class="label">邮箱</span>
-                                <span class="value">{{ email }}</span> 
+                                <span class="label">Dates de voyage</span>
+                                <span class="value">{{ flightDetails.flightDates }}</span> 
+                            </div>
+                            <div class="summary-row">
+                                <span class="label">Flexibilité</span>
+                                <span class="value">{{ flightDetails.flexibility }}</span> 
+                            </div>
+                            <div class="summary-row">
+                                <span class="label">Passagers</span>
+                                <span class="value">{{ flightDetails.passengers }}</span> 
                             </div>
                             
                             <div class="summary-row">
-                                <span class="label">咨询内容</span>
-                                <span class="value" style="color: #b91c1c;">{{ message }}</span> 
+                                <span class="label">Compagnie préférée</span>
+                                <span class="value">{{ flightDetails.airlinePreference }}</span> 
+                            </div>
+                            <div class="summary-row">
+                                <span class="label">Classe de voyage</span>
+                                <span class="value">{{ flightDetails.cabinClass }}</span> 
+                            </div>
+                            <div class="summary-row">
+                                <span class="label">Vol direct</span>
+                                <span class="value">{{ flightDetails.directFlight }}</span> 
                             </div>
                         </div>
                     </td>
                 </tr>
+
                 <tr>
                     <td class="text-content" style="padding-bottom: 40px;">
                         <p style="margin-top: 0;">
-                            如您在此期间有任何问题，或希望补充更多内容，欢迎随时通过以下方式与我们联系：
+                            En attendant, n'hésitez pas à parcourir nos idées d'itinéraires et nos inspirations sur notre site : <a href="https://www.eurasia-tours.fr" style="color: #b91c1c; text-decoration: underline;">www.eurasia-tours.fr</a>
                         </p>
+                        <p>
+                            Nous nous réjouissons d'avance à l'idée de vous aider à préparer votre voyage.
+                        </p>
+                        
                         <div class="contact-block">
-                            邮箱：<a href="mailto:reservation@eurasiatours.fr" style="color: #b91c1c; text-decoration: none;">reservation@eurasiatours.fr</a><br>
-                            电话：<a href="tel:+33156691281" style="color: #b91c1c; text-decoration: none;">+33 (0)1 56 69 12 81</a>
+                            <strong>Service Billetterie - Eurasia Tours</strong><br><br>
+                            Email : <a href="mailto:reservation@eurasiatours.fr" style="color: #b91c1c; text-decoration: none;">reservation@eurasiatours.fr</a><br>
+                            Tél : <a href="tel:+33156691281" style="color: #b91c1c; text-decoration: none;">+33 (0)1 56 69 12 81</a>
                         </div>
-                        <p>期待与您一起开启一段美好的旅程。</p>
+
                         <p style="margin-top: 30px; margin-bottom: 0;">
-                            祝好，<br><br>
+                            Bien cordialement,<br>
                             <strong>EURASIA TOURS</strong>
                         </p>
                     </td>
                 </tr>
+
                 <tr>
                     <td class="footer-address">
-                        30 rue Ernest Renan<br>
-                        75015 Paris
+                        30 Rue Ernest Renan<br>
+                        75015 Paris<br>
+                        <a href="https://www.eurasia-tours.fr" style="color: #999999; text-decoration: none;">www.eurasia-tours.fr</a>
                     </td>
                 </tr>
+
             </table>
         </td>
     </tr>
